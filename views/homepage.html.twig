@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Le Pélican | Le Pélican est une application vous permettant de préparer votre retraire à l'étrangé</title>
+    <meta name="description" content="Le Pélican | Le Pélican est une application vous permettant de préparer votre retraire à l'étrangé">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ asset('/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- TEMPLATE HEREs -->
+
+<div class="container">
+
+    <h1>MES PAYS - TEST ALARRACHE</h1>
+    <hr>
+
+    {% for pays_single in pays_multiple %}
+        <article>
+            <h2>id = {{ pays_single.id }}</h2>
+            <h2>name = {{ pays_single.name }}</h2>
+            <h2>climat = {{ pays_single.climat }}</h2>
+            <h2>distance to france = {{ pays_single.distanceToFrance }}</h2>
+            <h2>indice = {{ pays_single.indice }}</h2>
+        </article>
+        <hr>
+
+    {% endfor %}
+
+</div>
+
+
+
+</body>
+</html>
