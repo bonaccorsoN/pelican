@@ -20,3 +20,18 @@ $app->register(new Silex\Provider\AssetServiceProvider(), array(
 $app['dao.pays'] = function ($app) {
     return new landingSILEX\DAO\PaysDAO($app['db']);
 };
+$app['dao.paysNew'] = function ($app) {
+    return new landingSILEX\DAO\PaysNewDAO($app['db']);
+};
+$app['dao.budget'] = function ($app) {
+    return new landingSILEX\DAO\BudgetDAO($app['db']);
+};
+$app['dao.destination'] = function ($app) {
+    return new landingSILEX\DAO\DestinationDAO($app['db']);
+};
+$app['dao.ville'] = function ($app) {
+    return new landingSILEX\DAO\VilleDAO($app['db']);
+};
+$app['dao.user'] = function ($app) {
+    return new landingSILEX\DAO\UserDAO($app['db']);
+};

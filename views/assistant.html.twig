@@ -1,0 +1,456 @@
+{% include 'tpl/head.html.twig' %}
+<!-- TEMPLATE ASSISTANT -->
+<!-- GLOBAL MENU -->
+<div id="find_global_menu" class="container-fluid">
+    <div class="row">
+        <div class="find_menu animated fadeInDown">
+            <!--
+               <nav class="navbar navbar-default navbar-fixed-top">
+                   <div class="container-fluid">
+                       <div class="navbar-header">
+                           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                               <span class="sr-only">Toggle navigation</span>
+                               <span class="icon-bar"></span>
+                               <span class="icon-bar"></span>
+                               <span class="icon-bar"></span>
+                           </button>
+                           <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Pélican logo" width="75px" height="auto" /></a>
+                       </div>
+
+                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                           <ul class="nav navbar-nav navbar-right">
+                               <li><a href="#">manifesto</a></li>
+                           </ul>
+                       </div>
+                   </div>
+               </nav>
+               -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="find_menu_inside">
+                            <div class="find_menu_logo">
+                                <a class="" href="{{ path('assistant') }}"><img src="{{ asset('/img/logo.png') }}" alt="Pélicanlogo" /></a>
+                            </div>
+                            <div class="find_menu_manifesto">
+                                <a href="#">Le Pélican</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SLIDES MENU -->
+<div id="find_slides_menu" class="container-fluid">
+    <div class="row">
+        <div class="find_slides_menu animated fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-ms-12">
+                        <ul class="find_slides_menu_list">
+                            <li class="slides_button slides_active"> <a class="nav__item active" href="#find/q1"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q2"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q3"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q4"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q5"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q6"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FULLPAGE -->
+<div id="fullpage">
+    <div class="section">
+        <!-- SLIDE HOME -->
+        <div style="" class="slide slidehome" data-anchor="home">
+            <div class="insideslide_container">
+                <div class="insideslide_inside home">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="customvalign">
+                                    <h2 class="centertext animated fadeInDown">Le Pélican sélectionne pour vous les endroits qui vous ressemblent. </h2>
+                                    <h1 class="centertext animated fadeInDown">Découvrez dès maintenant la destination <br class="titleseparator"> où vous pourriez vivre!</h1>
+                                    <button class="animated fadeInDown btn btn-default btnpelican"> <a class="nav__item active" href="#find/q1"> Commencer le test </a> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE GENDER -->
+        <div style="" class="slide" data-anchor="q1">
+            <div class="container">
+                <div class="row">
+                    <div class="insideslide_container">
+                        <div class="insideslide_inside">
+                            <div class="col-md-4">
+                                <div class="insideslide_title">
+                                    <h4 class=""> Vous êtes... </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="insideslide_input">
+                                    <div class="insideslide_input_inside_centered">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="radio radioHF">
+                                                    <label>
+                                                        <input class="optionsHF" type="radio" name="optionsHF" id="optionsHF_H" value="Femme">
+                                                        <img src="{{ asset('/img/hommenocircle.png') }}" alt="homme.png" />
+                                                        <span>Un homme</span>
+                                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="radio radioHF">
+                                                    <label>
+                                                        <input class="optionsHF" type="radio" name="optionsHF" id="optionsHF_F" value="Homme">
+                                                        <img src="{{ asset('/img/femmenocircle.png') }}" alt="femme.png" />
+                                                        <span>Une Femme</span>
+                                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE AGE -->
+        <div style="" class="slide" data-anchor="q2">
+            <div class="container">
+                <div class="row">
+                    <div class="insideslide_container">
+                        <div class="insideslide_inside">
+                            <div class="col-md-4">
+                                <div class="insideslide_title">
+                                    <h4 class=""> Vous avez... </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="insideslide_input">
+                                    <div id="ticker">
+                                        <div id="rotator">
+                                            <span>15 ans </span>
+                                            <span>16 ans </span>
+                                            <span>17 ans </span>
+                                            <span>18 ans </span>
+                                            <span>19 ans </span>
+                                            <span>20 ans </span>
+                                            <span>21 ans </span>
+                                            <span>22 ans </span>
+                                            <span>23 ans </span>
+                                            <span>24 ans </span>
+                                            <span>25 ans </span>
+                                            <span>26 ans </span>
+                                            <span>27 ans </span>
+                                            <span>28 ans </span>
+                                            <span>29 ans </span>
+                                            <span>30 ans </span>
+                                            <span>31 ans </span>
+                                            <span>32 ans </span>
+                                            <span>33 ans </span>
+                                            <span>34 ans </span>
+                                            <span>35 ans </span>
+                                            <span>36 ans </span>
+                                            <span>37 ans </span>
+                                            <span>38 ans </span>
+                                            <span>39 ans </span>
+                                            <span>40 ans </span>
+                                            <span>41 ans </span>
+                                            <span>42 ans </span>
+                                            <span>43 ans </span>
+                                            <span>44 ans </span>
+                                            <span>45 ans </span>
+                                            <span>46 ans </span>
+                                            <span>47 ans </span>
+                                            <span>48 ans </span>
+                                            <span>49 ans </span>
+                                            <span>50 ans </span>
+                                            <span>51 ans </span>
+                                            <span>52 ans </span>
+                                            <span>53 ans </span>
+                                            <span>54 ans </span>
+                                            <span>55 ans </span>
+                                            <span>56 ans </span>
+                                            <span>57 ans </span>
+                                            <span>58 ans </span>
+                                            <span>59 ans </span>
+                                            <span>60 ans </span>
+                                            <span>61 ans </span>
+                                            <span>62 ans </span>
+                                            <span>63 ans </span>
+                                            <span>64 ans </span>
+                                            <span>65 ans </span>
+                                            <span>66 ans </span>
+                                            <span>67 ans </span>
+                                            <span>68 ans </span>
+                                            <span>69 ans </span>
+                                            <span>70 ans </span>
+                                            <span>71 ans </span>
+                                            <span>72 ans </span>
+                                            <span>73 ans </span>
+                                            <span>74 ans </span>
+                                            <span>75 ans </span>
+                                            <span>76 ans </span>
+                                            <span>77 ans </span>
+                                            <span>78 ans </span>
+                                            <span>79 ans </span>
+                                            <span>80 ans </span>
+                                            <span>81 ans </span>
+                                            <span>82 ans </span>
+                                            <span>83 ans </span>
+                                            <span>84 ans </span>
+                                            <span>85 ans </span>
+                                            <span>86 ans </span>
+                                            <span>87 ans </span>
+                                            <span>88 ans </span>
+                                            <span>89 ans </span>
+                                            <span>90 ans </span>
+                                            <span>91 ans </span>
+                                            <span>92 ans </span>
+                                            <span>93 ans </span>
+                                            <span>94 ans </span>
+                                            <span>95 ans </span>
+                                            <span>96 ans </span>
+                                            <span>97 ans </span>
+                                            <span>98 ans </span>
+                                            <span>99 ans </span>
+                                            <span>100 ans </span>
+                                            <span>101 ans </span>
+                                            <span>102 ans </span>
+                                            <span>103 ans </span>
+                                            <span>104 ans </span>
+                                            <span>105 ans </span>
+                                            <span>106 ans </span>
+                                            <span>107 ans </span>
+                                            <span>108 ans </span>
+                                            <span>109 ans </span>
+                                            <span>110 ans </span>
+                                        </div>
+                                    </div>
+                                    <input class="optionAGE" type="hidden" name="optionAGE" id="optionAGE" value="18">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE AVIS -->
+        <div style="" class="slide" data-anchor="q3">
+            <div class="container">
+                <div class="row">
+                    <div class="insideslide_container">
+                        <div class="insideslide_inside">
+                            <div class="col-md-4">
+                                <div class="insideslide_title">
+                                    <h4 class=""> Pour vous partir c'est... </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="insideslide_input">
+                                    <div class="insideslide_input_inside_centered">
+                                        <div class="radio radioAVIS">
+                                            <label id="">
+                                                <input class="optionAVIS" type="radio" name="optionAVIS" id="" value="eclater">
+                                                <img src="{{ asset('/img/chill.png') }}" alt="chill.png" />
+                                                <span>S'éclater en profitant de mes économies</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioAVIS">
+                                            <label id="">
+                                                <input class="optionAVIS" type="radio" name="optionAVIS" id="" value="culture">
+                                                <img src="{{ asset('/img/teuf.png') }}" alt="teuf.png" />
+                                                <span>Vivre des expériences culturelles</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioAVIS">
+                                            <label id="">
+                                                <input class="optionAVIS" type="radio" name="optionAVIS" id="" value="investir">
+                                                <img src="{{ asset('/img/money.png') }}" alt="money.png" />
+                                                <span>Investir dans un nouveau projet</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioAVIS">
+                                            <label id="">
+                                                <input class="optionAVIS" type="radio" name="optionAVIS" id="" value="autres">
+                                                <img src="{{ asset('/img/time.png') }}" alt="time.png" />
+                                                <span>Consacrer mon temps aux autres</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE DISTANCE -->
+        <div style="" class="slide" data-anchor="q4">
+            <div class="container">
+                <div class="row">
+                    <div class="insideslide_container">
+                        <div class="insideslide_inside">
+                            <div class="col-md-4">
+                                <div class="insideslide_title">
+                                    <h4 class=""> Vous préférez aller... </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="insideslide_input">
+                                    <div class="insideslide_input_inside_centered">
+                                        <div class="radio radioDISTANCE">
+                                            <label id="">
+                                                <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="autour">
+                                                <img src="{{ asset('/img/beach.png') }}" alt="chill.png" />
+                                                <span>Autour de la mer méditérannée</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioDISTANCE">
+                                            <label id="">
+                                                <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="loin">
+                                                <img src="{{ asset('/img/pin.png') }}" alt="chill.png" />
+                                                <span>Loin mais <br class="titleseparatorbis"> pas trop</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioDISTANCE">
+                                            <label id="">
+                                                <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="tresloin">
+                                                <img src="{{ asset('/img/mapmonde.png') }}" alt="chill.png" />
+                                                <span>Très loin à l'autre bout du monde</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioDISTANCE">
+                                            <label id="">
+                                                <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="peuimporte">
+                                                <img src="{{ asset('/img/plan.png') }}" alt="chill.png" />
+                                                <span>Peu importe la distance</span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE CLIMAT -->
+        <div style="" class="slide" data-anchor="q5">
+            <div class="container">
+                <div class="row">
+                    <div class="insideslide_container">
+                        <div class="insideslide_inside">
+                            <div class="col-md-4">
+                                <div class="insideslide_title">
+                                    <h4 class=""> La chaleur c'est... </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="insideslide_input">
+                                    <div class="insideslide_input_inside_centered">
+                                        <div class="radio radioCLIMAT">
+                                            <label id="">
+                                                <input class="optionCLIMAT" type="radio" name="optionCLIMAT" id="" value="obligation">
+                                                <img src="{{ asset('img/palmier.png') }}" alt="chill.png" />
+                                                <span> Une obligation, c'est essentiel </span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioCLIMAT">
+                                            <label id="">
+                                                <input class="optionCLIMAT" type="radio" name="optionCLIMAT" id="" value="necessite">
+                                                <img src="{{ asset('img/sun.png') }}" alt="chill.png" />
+                                                <span> Une nécessité, mais pas la canicule </span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div class="radio radioCLIMAT">
+                                            <label id="">
+                                                <input class="optionCLIMAT" type="radio" name="optionCLIMAT" id="" value="saison">
+                                                <img src="{{ asset('img/nuage.png') }}" alt="chill.png" />
+                                                <span> Uniquement l'été, je tiens aux saison </span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                        <div id="niquetarace" class="radio radioCLIMAT">
+                                            <label id="">
+                                                <input class="optionCLIMAT" type="radio" name="optionCLIMAT" id="" value="redhibitoire">
+                                                <img src="{{ asset('img/froid.png') }}" alt="chill.png" />
+                                                <span> Rédhibitoire, je ne la supporte pas </span>
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE BUDGET -->
+        <div style="" class="slide" data-anchor="q6">
+            <div class="container">
+                <div class="row">
+                    <div class="insideslide_container">
+                        <div class="insideslide_inside">
+                            <div class="col-md-4">
+                                <div class="insideslide_title">
+                                    <h4 class=""> Définissez votre budget... </h4>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="insideslide_input">
+                                    <div class="slideMONEYcontainer">
+                                        <input id="sliderMONEY" data-slider-id='sliderMONEYID' type="text" data-slider-min="500" data-slider-max="3500" data-slider-step="100" data-slider-value="2000"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="insideslide_validate">
+                            <form id="finder_validate" action="{{ path('results') }}" method="post">
+                                <input type="hidden" id="finder_gender" name="finder_gender" value="finder_gender">
+                                <input type="hidden" id="finder_age" name="finder_age" value="finder_age">
+                                <input type="hidden" id="finder_avis" name="finder_avis" value="finder_avis">
+                                <input type="hidden" id="finder_distance" name="finder_distance" value="finder_distance">
+                                <input type="hidden" id="finder_climat" name="finder_climat" value="finder_climat">
+                                <input type="hidden" id="finder_budget" name="finder_budget" value="2000">
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <button type="submit" id="finder_submit" name="finder_submit" class="animated fadeInDown btn btn-default btnpelican"> Découvrir les résultats de l'assistant !  </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'tpl/footerassistant.html.twig' %}

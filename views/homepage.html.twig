@@ -1,43 +1,292 @@
-<!DOCTYPE html>
-<html class="no-js" lang="">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Le Pélican | Le Pélican est une application vous permettant de préparer votre retraire à l'étrangé</title>
-    <meta name="description" content="Le Pélican | Le Pélican est une application vous permettant de préparer votre retraire à l'étrangé">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-</head>
-
-<body>
-<!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-
-<!-- TEMPLATE HEREs -->
-
-<div class="container">
-
-    <h1>MES PAYS - TEST ALARRACHE</h1>
-    <hr>
-
-    {% for pays_single in pays_multiple %}
-        <article>
-            <h2>id = {{ pays_single.id }}</h2>
-            <h2>name = {{ pays_single.name }}</h2>
-            <h2>climat = {{ pays_single.climat }}</h2>
-            <h2>distance to france = {{ pays_single.distanceToFrance }}</h2>
-            <h2>indice = {{ pays_single.indice }}</h2>
-        </article>
-        <hr>
-
-    {% endfor %}
-
+{% include 'tpl/head.html.twig' %}
+<!-- TEMPLATE HOMEPAGE (MANIFESTO) -->
+<div id="manifesto_header" class="manifesto_header animated fadeInDown">
+    <div class="manifesto_header_inside">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 manifesto_header_container">
+                    <div class="manifesto_header_logo">
+                        <figure>
+                            <img src="{{ asset('/img/logo.png') }}" alt="logo.png" />
+                        </figure>
+                    </div>
+                    <ul class="">
+                        <li><a href="#service">Le service</a></li>
+                        <li><a href="#assistant">L'assistant</a></li>
+                        <li><a href="#genese">La genèse</a></li>
+                        <li class="manifesto_header_cta"><a href="{{ path('assistant') }}">Faire le test</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
-</body>
-</html>
+<div class="manifesto_section manifesto_jumbo">
+    <div class="manifesto_jumbo_inside">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="manifesto_jumbo_content">
+                        <div class="manifesto_jumbo_content_inside">
+                            <div class="manifesto_jumbo_logo animated fadeInDown">
+                                <figure>
+                                    <img src="{{ asset('/img/logotypo.png') }}" alt="logotypo.png" />
+                                </figure>
+                            </div>
+                            <div id="punchline_scroll_mark" class="manifesto_jumbo_punchline animated fadeInDown">
+                                <p>Il serait peut être temps de</p>
+                                <p><strong>changer votre routine...</strong></p>
+                            </div>
+                            <div class="manifesto_jumbo_cta animated fadeInDown">
+                                <a href="#explainer" data-toggle="modal" data-target="#modal_video">voir la vidéo <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="service" class="manifesto_section manifesto_explainer">
+    <div class="manifesto_explainer_inside">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="manifesto_explainer_section_title section_title">
+                        <p>Le Pélican vous accompagne</p>
+                        <p>dans la durée</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="manifesto_explainer_icon_container">
+                            <hr>
+                            <div class="col-md-3">
+                                <div class="manifesto_explainer_icon">
+                                    <img src="{{ asset('/img/manifestocoeur.png') }}" alt=""/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="manifesto_explainer_icon">
+                                    <img src="{{ asset('/img/manifestopin.png') }}" alt=""/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="manifesto_explainer_icon">
+                                    <img src="{{ asset('/img/manifestoinfo.png') }}" alt=""/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="manifesto_explainer_icon">
+                                    <img src="{{ asset('/img/manifestomail.png') }}" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="manifesto_explainer_txt_container">
+                                <div class="col-md-3">
+                                    <div class="manifesto_explainer_title section_sub_title">
+                                        Choisissez vos critères
+                                    </div>
+                                    <div class="manifesto_explainer_content section_txt">
+                                        Le Pélican se charge
+                                        ensuite de trouver
+                                        le pays qui vous correspond le plus
+                                    </div>
+                                    <div class="manifesto_explainer_cta section_cta">
+                                        <a href="" data-toggle="modal" data-target="#modal_mail">Choisir mes critères <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="manifesto_explainer_title section_sub_title">
+                                        Préparez votre départ
+                                    </div>
+                                    <div class="manifesto_explainer_content section_txt">
+                                        Le Pélican vous sélectionne
+                                        les meilleurs offres de locations
+                                        ou d’achats sur place
+                                    </div>
+                                    <div class="manifesto_explainer_cta section_cta">
+                                        <a href="" data-toggle="modal" data-target="#modal_mail">Voir les offres <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="manifesto_explainer_title section_sub_title">
+                                        Partez serein
+                                    </div>
+                                    <div class="manifesto_explainer_content section_txt">
+                                        Le Pélican vous aide à trouver
+                                        les renseignements
+                                        dont vous avez besoin
+                                    </div>
+                                    <div class="manifesto_explainer_cta section_cta">
+                                        <a href="" data-toggle="modal" data-target="#modal_mail">Obtenir un renseignement <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="manifesto_explainer_title section_sub_title">
+                                        Vivez enfin
+                                    </div>
+                                    <div class="manifesto_explainer_content section_txt">
+                                        Même après votre départ,
+                                        Le Pélican continue de vous suivre
+                                        grâce à l’envoi de bons plans
+                                    </div>
+                                    <div class="manifesto_explainer_cta section_cta">
+                                        <a href="" data-toggle="modal" data-target="#modal_mail">Recevoir mes bons plans locaux <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="assistant" class="manifesto_section manifesto_assistant">
+    <div class="manifesto_assistant_inside">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="manifesto_assistant_desc">
+                        <div class="manifesto_assistant_desc_inside">
+                            <div class="manifesto_assistant_desc_title section_title">
+                                Votre assistant avec vous, partout.
+                            </div>
+                            <div class="manifesto_assistant_desc_txt section_txt">
+                                Grâce à votre messagerie Facebook Messenger,
+                                vous pouvez recevoir les offres immobilières,
+                                poser une question sur une démarche
+                                ou encore trouver un restaurant ou un coiffeur local.
+                                Un vrai assistant personnel, mais dans votre poche.
+                            </div>
+                            <div class="manifesto_assistant_desc_cta section_cta">
+                                <a href="" data-toggle="modal" data-target="#modal_mail">Je veux recevoir mes offres sur Messenger <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="manifesto_assistant_desc_cta section_cta">
+                                <a href="" data-toggle="modal" data-target="#modal_mail">Je préfère les recevoir par mail <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="manifesto_assistant_img">
+                        <div class="manifesto_assistant_img_inside">
+                            <img src="{{ asset('/img/iPhone.png') }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="genese" class="manifesto_section manifesto_genese">
+    <div class="manifesto_genese_inside">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="manifesto_genese_desc">
+                        <div class="manifesto_genese_inside">
+                            <div class="manifesto_genese_desc_title section_title">
+                                La genèse
+                            </div>
+                            <div class="manifesto_genese_desc_txt section_txt">
+                                Né du constat que la plupart des gens qui veulent s’expatrier
+                                n’ose pas partir à cause de démarche trop difficile, nous avons
+                                conçu notre service dans l’objectif de faciliter le départ.
+                                Beaucoup de communautés locales existent pour aider,
+                                mais personne ne suit le déménagement de A à Z.
+                                Enfin, c’était avant Le Pélican  ...
+                            </div>
+                            <div class="manifesto_genese_desc_cta section_cta">
+                                <a href="" data-toggle="modal" data-target="#modal_mail">Rejoindre la communauté Pélican sur Facebook <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="manifesto_assistant_desc_cta section_cta">
+                                <a href="" data-toggle="modal" data-target="#modal_mail">Aidez-nous à développer notre service  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="manifesto_section manifesto_footer">
+    <div class="manifesto_footer_inside">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="manifesto_footer_others">
+                        <p>© Tout droits réservés Le Pélican - Mentions légales</p>
+                        <p>Télécharger le kit presse <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODALS -->
+<!-- Modal video-->
+<div class="modal fade" id="modal_video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="questionscontainer_videocontainer">
+                    <video id="explainervideo" src="{{ asset('/video/landing.mp4') }}" poster="{{ asset('/img/thumb.png') }}" controls="true">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal mail-->
+<div class="modal fade" id="modal_mail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal_mail_inside">
+                    <div class="section_title">Cette fonctionnalité n'est pas disponible</div>
+                    <div class="section_sub_title">Notre service est en cour de developpement,<br> inscrivez-vous pour être tenu informer des nouveautés</div>
+                    <!-- Begin MailChimp Signup Form -->
+                    <div id="mc_embed_signup">
+                        <form action="//le-pelican.us16.list-manage.com/subscribe/post?u=b8cff8d1f114fa9b4e88f5a7b&amp;id=8bb836a9cc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate newlandingFORM_one" target="_blank" novalidate>
+                            <div id="mc_embed_signup_scroll">
+                                <div class="mc-field-group form-group">
+                                    <label for="mce-EMAIL"></label>
+                                    <div class="controls">
+                                        <input placeholder="Votre Email" type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL">
+                                    </div>
+                                </div>
+                                <!--
+                                   <div id="mce-responses" class="clear">
+                                       <div class="response" id="mce-error-response" style="display:none"></div>
+                                       <div class="response" id="mce-success-response" style="display:none"></div>
+                                   </div>
+                                   -->
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b8cff8d1f114fa9b4e88f5a7b_8bb836a9cc" tabindex="-1" value=""></div>
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <div class="clear"><input type="submit" value="Valider" name="subscribe" id="mc-embedded-subscribe" class="button form-control "></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End mc_embed_signup-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'tpl/footer.html.twig' %}
