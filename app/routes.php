@@ -3,8 +3,6 @@
 
 // homepage
 $app->get('/', function () use ($app) {
-    //$pays_multiple = $app['dao.pays']->findAll();
-    //return $app['twig']->render('homepage.html.twig', array('pays_multiple' => $pays_multiple));
     return $app['twig']->render('homepage.html.twig');
 })->bind('home');
 
@@ -16,7 +14,11 @@ $app->get('/assistant', function () use ($app) {
 // results
 $app->post('/results', function (Symfony\Component\HttpFoundation\Request $request) use ($app) {
 
-    // declaration de variables
+
+    /*
+     *      0 - Décalaration des variables
+     */
+
     $finder_gender =$request->get('finder_gender');
     $finder_age = $request->get('finder_age');
     $finder_avis = $request->get('finder_avis');
@@ -25,261 +27,780 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
     $finder_budget = $request->get('finder_budget');
 
     /*
-     * TRIER PAR RAPPORT AU BUDGET -> 1ERE ETAPE
+    var_dump($finder_gender);
+    var_dump($finder_age);
+    var_dump($finder_avis);
+    var_dump($finder_distance);
+    var_dump($finder_climat);
+    var_dump($finder_budget);
+    */
+
+    /*
+     *      1 - On récupère les villes des 6 pays les plus attractifs de notre bdd dans un tab
+     *          Canada - Portugal - Espagne - Maroc - Thailande - Indonésie
      */
 
-    $paysToPushBudget = array();
+    $bestCities = array();
+    $allCities = $app['dao.cityIndice']->findAll();
+    foreach ($allCities as $allCities_key => $allCities_value){
 
-    // setup des tranches budget
+        // Getting cities by countries name
+        $allCitiesNames = $allCities_value->getcity_name();
+        $allCountriesName = explode(',', $allCitiesNames);
+        if(count($allCountriesName) > 1){
+            if(count($allCountriesName) === 2){
+                if($allCountriesName[1] === ' Canada' || $allCountriesName[1] === ' Portugal' || $allCountriesName[1] === ' Spain' || $allCountriesName[1] === ' Morocco' || $allCountriesName[1] === ' Thailand' || $allCountriesName[1] === ' Indonesia'){
 
-    $budget_tranches = '';
+                    $bestCities[$allCities_key]['city_id'] = $allCities_value->getcity_id();
+                    $bestCities[$allCities_key]['gmap_id'] = $allCities_value->getgmap_id();
+                    $bestCities[$allCities_key]['gmap_formatted_address'] = $allCities_value->getgmap_formatted_address();
+                    $bestCities[$allCities_key]['gmap_lat'] = $allCities_value->getgmap_lat();
+                    $bestCities[$allCities_key]['gmap_lng'] = $allCities_value->getgmap_lng();
+                    $bestCities[$allCities_key]['health_care_index'] = $allCities_value->gethealth_care_index();
+                    $bestCities[$allCities_key]['crime_index'] = $allCities_value->getcrime_index();
+                    $bestCities[$allCities_key]['traffic_time_index'] = $allCities_value->gettraffic_time_index();
+                    $bestCities[$allCities_key]['purchasing_power_incl_rent_index'] = $allCities_value->getpurchasing_power_incl_rent_index();
+                    $bestCities[$allCities_key]['cpi_index'] = $allCities_value->getpollution_index();
+                    $bestCities[$allCities_key]['traffic_index'] = $allCities_value->gettraffic_index();
+                    $bestCities[$allCities_key]['quality_of_life_index'] = $allCities_value->getquality_of_life_index();
+                    $bestCities[$allCities_key]['cpi_and_rent_index'] = $allCities_value->getcpi_and_rent_index();
+                    $bestCities[$allCities_key]['groceries_index'] = $allCities_value->getgroceries_index();
+                    $bestCities[$allCities_key]['safety_index'] = $allCities_value->getsafety_index();
+                    $bestCities[$allCities_key]['city_name'] = $allCities_value->getcity_name();
+                    $bestCities[$allCities_key]['rent_index'] = $allCities_value->getrent_index();
+                    $bestCities[$allCities_key]['traffic_co2_index'] = $allCities_value->gettraffic_co2_index();
+                    $bestCities[$allCities_key]['restaurant_price_index'] = $allCities_value->getrestaurant_price_index();
+                    $bestCities[$allCities_key]['traffic_inefficiency_index'] = $allCities_value->gettraffic_inefficiency_index();
+                    $bestCities[$allCities_key]['property_price_to_income_ratio'] = $allCities_value->getproperty_price_to_income_ratio();
 
-        // tranches budgets
-        if ( $finder_budget <= 500) {
-            // T1
-            $budget_tranches = 'T1';
-        } elseif ($finder_budget > 500 && $finder_budget <= 1000){
-            // T2
-            $budget_tranches = 'T2';
-        } elseif ($finder_budget > 1000 && $finder_budget <= 1500){
-            // T3
-            $budget_tranches = 'T3';
-        } elseif ($finder_budget > 1500 && $finder_budget <= 1800){
-            // T4
-            $budget_tranches = 'T4';
-        } else {
-            // budget de dinguo
-            $budget_tranches = 'DEGLINGUO';
+                }
+            }elseif (count($allCountriesName) === 3){
+                if($allCountriesName[2] === ' Canada' || $allCountriesName[2] === ' Portugal' || $allCountriesName[2] === ' Spain' || $allCountriesName[2] === ' Morocco' || $allCountriesName[2] === ' Thailand' || $allCountriesName[2] === ' Indonesia'){
+
+                    $bestCities[$allCities_key]['city_id'] = $allCities_value->getcity_id();
+                    $bestCities[$allCities_key]['gmap_id'] = $allCities_value->getgmap_id();
+                    $bestCities[$allCities_key]['gmap_formatted_address'] = $allCities_value->getgmap_formatted_address();
+                    $bestCities[$allCities_key]['gmap_lat'] = $allCities_value->getgmap_lat();
+                    $bestCities[$allCities_key]['gmap_lng'] = $allCities_value->getgmap_lng();
+                    $bestCities[$allCities_key]['health_care_index'] = $allCities_value->gethealth_care_index();
+                    $bestCities[$allCities_key]['crime_index'] = $allCities_value->getcrime_index();
+                    $bestCities[$allCities_key]['traffic_time_index'] = $allCities_value->gettraffic_time_index();
+                    $bestCities[$allCities_key]['purchasing_power_incl_rent_index'] = $allCities_value->getpurchasing_power_incl_rent_index();
+                    $bestCities[$allCities_key]['cpi_index'] = $allCities_value->getpollution_index();
+                    $bestCities[$allCities_key]['traffic_index'] = $allCities_value->gettraffic_index();
+                    $bestCities[$allCities_key]['quality_of_life_index'] = $allCities_value->getquality_of_life_index();
+                    $bestCities[$allCities_key]['cpi_and_rent_index'] = $allCities_value->getcpi_and_rent_index();
+                    $bestCities[$allCities_key]['groceries_index'] = $allCities_value->getgroceries_index();
+                    $bestCities[$allCities_key]['safety_index'] = $allCities_value->getsafety_index();
+                    $bestCities[$allCities_key]['city_name'] = $allCities_value->getcity_name();
+                    $bestCities[$allCities_key]['rent_index'] = $allCities_value->getrent_index();
+                    $bestCities[$allCities_key]['traffic_co2_index'] = $allCities_value->gettraffic_co2_index();
+                    $bestCities[$allCities_key]['restaurant_price_index'] = $allCities_value->getrestaurant_price_index();
+                    $bestCities[$allCities_key]['traffic_inefficiency_index'] = $allCities_value->gettraffic_inefficiency_index();
+                    $bestCities[$allCities_key]['property_price_to_income_ratio'] = $allCities_value->getproperty_price_to_income_ratio();
+
+                }
+            }
         }
 
-        // request indice ( cpi_and_rent_index ) par rapport aux tranches
-
-        $city_indice = $app['dao.cityIndice']->findAll();
-        foreach ($city_indice as $city_indice_key => $city_indice_value){
-
-            if($city_indice_value->getcpi_and_rent_index() === NULL){
-
-                //if NULL
-
-            }else{
+    }
 
 
-                if($budget_tranches === 'T1'){
+    /*
+    *      2 - Le tri des pays par rapport a la distance & climat
+    */
 
-                    if(floatval($city_indice_value->getcpi_and_rent_index()) >= 0 && floatval($city_indice_value->getcpi_and_rent_index()) < 32) {
+
+    $bestCitiesDistance = array();
+
+    if($finder_distance == "autour"){
+
+        // reponse = autour de la méditerranée
+        // pays = espagne - maroc
+
+        foreach ($bestCities as $bestCities_key => $bestCities_value){
+
+            $allCountriesName = explode(',', $bestCities_value['city_name']);
+            $allCountriesNameEnd = end($allCountriesName);
 
 
-                        $paysToPushBudget[$city_indice_key]['city_id'] = $city_indice_value->getcity_id();
-                        $paysToPushBudget[$city_indice_key]['city_name'] = $city_indice_value->getcity_name();
-                        //var_dump($paysToPushBudget);
-                        //var_dump('JE SUIS T1');
-                        //var_dump(floatval($city_indice_value->getcpi_and_rent_index()));
-                    }
+            /*
+             *      tri par rapport au climat
+             */
+            if($finder_climat === 'obligation'){
 
-                }elseif($budget_tranches === 'T2'){
+                //reponse = une obligation , c'est essentiel
+                //MOROCCO!
 
-                    if(floatval($city_indice_value->getcpi_and_rent_index()) >= 32 && floatval($city_indice_value->getcpi_and_rent_index()) < 64) {
+                if($allCountriesNameEnd === ' Morocco'){
 
-                        $paysToPushBudget[$city_indice_key]['city_id'] = $city_indice_value->getcity_id();
-                        $paysToPushBudget[$city_indice_key]['city_name'] = $city_indice_value->getcity_name();
-                        //var_dump($paysToPushBudget);
-                        //var_dump('JE SUIS T2');
-                        //var_dump(floatval($city_indice_value->getcpi_and_rent_index()));
-                    }
-
-                }elseif($budget_tranches === 'T3'){
-
-                    if (floatval($city_indice_value->getcpi_and_rent_index()) >= 64 && floatval($city_indice_value->getcpi_and_rent_index()) < 96) {
-
-                        $paysToPushBudget[$city_indice_key]['city_id'] = $city_indice_value->getcity_id();
-                        $paysToPushBudget[$city_indice_key]['city_name'] = $city_indice_value->getcity_name();
-                        //var_dump($paysToPushBudget);
-                        //var_dump('JE SUIS T3');
-                        //var_dump(floatval($city_indice_value->getcpi_and_rent_index()));
-                    }
-
-                }elseif($budget_tranches === 'T4'){
-
-                    if (floatval($city_indice_value->getcpi_and_rent_index()) >= 96) {
-
-                        $paysToPushBudget[$city_indice_key]['city_id'] = $city_indice_value->getcity_id();
-                        $paysToPushBudget[$city_indice_key]['city_name'] = $city_indice_value->getcity_name();
-                        //var_dump($paysToPushBudget);
-                        //var_dump('JE SUIS T4');
-                        //var_dump(floatval($city_indice_value->getcpi_and_rent_index()));
-                    }
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
 
                 }
 
+
+            }elseif ($finder_climat === 'necessite'){
+
+                //reponse = une necessite , mais pas la canicule
+                //ESPAGNE!
+
+                if($allCountriesNameEnd === ' Spain'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'saison'){
+
+                //reponse = uniquement l'été je tiens au saison
+                //ESPAGNE!
+
+                if($allCountriesNameEnd === ' Spain'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'redhibitoire'){
+
+                //reponse = je ne supporte pas la chaleur
+                //ESPAGNE!
+
+                if($allCountriesNameEnd === ' Spain'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+
             }
 
         }
 
-    // tableau des villes qui rentre dans la catégorie de prix 
-    var_dump($paysToPushBudget);
-    die();
+    }elseif ($finder_distance === "loin"){
+
+        // reponse = loin mais pas trop
+        // pays = espace - maroc - portugal
+
+        foreach ($bestCities as $bestCities_key => $bestCities_value){
+
+            $allCountriesName = explode(',', $bestCities_value['city_name']);
+            $allCountriesNameEnd = end($allCountriesName);
+
+
+            /*
+             *      tri par rapport au climat
+             */
+            if($finder_climat === 'obligation'){
+
+                //reponse = une obligation , c'est essentiel
+                //MOROCCO!
+
+                if($allCountriesNameEnd === ' Morocco'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+
+            }elseif ($finder_climat === 'necessite'){
+
+                //reponse = une necessite , mais pas la canicule
+                //ESPAGNEouPORTUGAL!
+
+                if($allCountriesNameEnd === ' Spain' || $allCountriesNameEnd === ' Portugal'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'saison'){
+
+                //reponse = uniquement l'été je tiens au saison
+                //ESPAGNEouPORTUGAL!
+
+                if($allCountriesNameEnd === ' Spain'||$allCountriesNameEnd === ' Portugal'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'redhibitoire'){
+
+                //reponse = je ne supporte pas la chaleur
+                //ESPAGNEouPORTUGAL!
+
+                if($allCountriesNameEnd === ' Spain'||$allCountriesNameEnd === ' Portugal'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+
+            }
+
+        }
+
+    }elseif ($finder_distance === "tresloin"){
+
+        // reponse = tres loin
+        // pays = indonesie - canada - thailande
+
+        foreach ($bestCities as $bestCities_key => $bestCities_value){
+
+            $allCountriesName = explode(',', $bestCities_value['city_name']);
+            $allCountriesNameEnd = end($allCountriesName);
+
+            /*
+             *      tri par rapport au climat
+             */
+            if($finder_climat === 'obligation'){
+
+                //reponse = une obligation , c'est essentiel
+                //THAILANDEouINDONESIE!
+
+                if($allCountriesNameEnd === ' Thailand' || $allCountriesNameEnd === ' Indonesia'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+
+            }elseif ($finder_climat === 'necessite'){
+
+                //reponse = une necessite , mais pas la canicule
+                //THAILANDouINDONESIE!
+
+                if($allCountriesNameEnd === ' Thailand' || $allCountriesNameEnd === ' Indonesia'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'saison'){
+
+                //reponse = uniquement l'été je tiens au saison
+                //CANADA!
+
+                if($allCountriesNameEnd === ' Canada'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'redhibitoire'){
+
+                //reponse = je ne supporte pas la chaleur
+                //CANADA!
+
+                if($allCountriesNameEnd === ' Canada'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+
+            }
+
+
+        }
+
+    }elseif ($finder_distance === "peuimporte"){
+
+        // reponse = peut importe
+        // on touche pas au tableau
+        // pays = Canada - Portugal - Espagne - Maroc - Thailande - Indonésie
+
+
+        foreach ($bestCities as $bestCities_key => $bestCities_value){
+
+            $allCountriesName = explode(',', $bestCities_value['city_name']);
+            $allCountriesNameEnd = end($allCountriesName);
+
+            /*
+             *      tri par rapport au climat
+             */
+            if($finder_climat === 'obligation'){
+
+                //reponse = une obligation , c'est essentiel
+                //THAILANDEouINDONESIEouMAROC!
+
+                if($allCountriesNameEnd === ' Thailand' || $allCountriesNameEnd === ' Indonesia' || $allCountriesNameEnd === ' Morocco'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+
+            }elseif ($finder_climat === 'necessite'){
+
+                //reponse = une necessite , mais pas la canicule
+                //THAILANDouINDONESIEouSPAINouPORTUGAL!
+
+                if($allCountriesNameEnd === ' Thailand' || $allCountriesNameEnd === ' Indonesia' || $allCountriesNameEnd === ' Spain' || $allCountriesNameEnd === ' Portugal'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'saison'){
+
+                //reponse = uniquement l'été je tiens au saison
+                //CANADAouESPAGNEouPORTUGAL!
+
+                if($allCountriesNameEnd === ' Canada' || $allCountriesNameEnd === ' Spain' || $allCountriesNameEnd === ' Portugal'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+            }elseif ($finder_climat === 'redhibitoire'){
+
+                //reponse = je ne supporte pas la chaleur
+                //CANADAouSPAINouPORTUGAL!
+
+                if($allCountriesNameEnd === ' Canada' || $allCountriesNameEnd === ' Spain' || $allCountriesNameEnd === ' Portugal'){
+
+                    $bestCitiesDistance[$bestCities_key]['city_id'] = $bestCities_value['city_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_id'] = $bestCities_value['gmap_id'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_formatted_address'] = $bestCities_value['gmap_formatted_address'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lat'] = $bestCities_value['gmap_lat'];
+                    $bestCitiesDistance[$bestCities_key]['gmap_lng'] = $bestCities_value['gmap_lng'];
+                    $bestCitiesDistance[$bestCities_key]['health_care_index'] = $bestCities_value['health_care_index'];
+                    $bestCitiesDistance[$bestCities_key]['crime_index'] = $bestCities_value['crime_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_time_index'] = $bestCities_value['traffic_time_index'];
+                    $bestCitiesDistance[$bestCities_key]['purchasing_power_incl_rent_index'] = $bestCities_value['purchasing_power_incl_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_index'] = $bestCities_value['cpi_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_index'] = $bestCities_value['traffic_index'];
+                    $bestCitiesDistance[$bestCities_key]['quality_of_life_index'] = $bestCities_value['quality_of_life_index'];
+                    $bestCitiesDistance[$bestCities_key]['cpi_and_rent_index'] = $bestCities_value['cpi_and_rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['groceries_index'] = $bestCities_value['groceries_index'];
+                    $bestCitiesDistance[$bestCities_key]['safety_index'] = $bestCities_value['safety_index'];
+                    $bestCitiesDistance[$bestCities_key]['city_name'] = $bestCities_value['city_name'];
+                    $bestCitiesDistance[$bestCities_key]['rent_index'] = $bestCities_value['rent_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_co2_index'] = $bestCities_value['traffic_co2_index'];
+                    $bestCitiesDistance[$bestCities_key]['restaurant_price_index'] = $bestCities_value['restaurant_price_index'];
+                    $bestCitiesDistance[$bestCities_key]['traffic_inefficiency_index'] = $bestCities_value['traffic_inefficiency_index'];
+                    $bestCitiesDistance[$bestCities_key]['property_price_to_income_ratio'] = $bestCities_value['property_price_to_income_ratio'];
+
+                }
+
+
+            }
+
+
+        }
+
+    }
+
 
 
 
     /*
-     * TRIER PAR RAPPORT A LA DISTANCE 2EME ETAPE
+     *      3 - Le tri des villes par rapport à la thune
      */
 
-    // calcul kilom
 
-/*
-    class POI {
-        private $latitude;
-        private $longitude;
-        public function __construct($latitude, $longitude) {
-            $this->latitude = deg2rad($latitude);
-            $this->longitude = deg2rad($longitude);
-        }
-        public function getLatitude(){return $this->latitude;}
-        public function getLongitude(){return $this->longitude;}
-        public function getDistanceInMetersTo(POI $other) {
-            $radiusOfEarth = 6371000;// Earth's radius in meters.
-            $diffLatitude = $other->getLatitude() - $this->latitude;
-            $diffLongitude = $other->getLongitude() - $this->longitude;
-            $a = sin($diffLatitude / 2) * sin($diffLatitude / 2) +
-                cos($this->latitude) * cos($other->getLatitude()) *
-                sin($diffLongitude / 2) * sin($diffLongitude / 2);
-            $c = 2 * asin(sqrt($a));
-            $distance = $radiusOfEarth * $c;
-            return $distance;
-        }
-    }
-*/
-
-    /*
-    foreach ($paysToPushBudget as $paysToPushBudget_key => $paysToPushBudget_value){
-        if($city_indice->getcity_id() === $paysToPushBudget_value['city_id']){
-            var_dump($city_indice->getcity_id());
-        }
-    }
-    */
-
-    //var_dump($city_indice);
-    //var_dump($paysToPushBudget);
-
-    // setup distance tranche
-
-    //$paysToPushBudgetDistance = array();
-
-    /*
-    var_dump($finder_distance);
-    die();
-    */
-
-    //$distance_tranches;
-
-/*
-
-    foreach ($paysToPushBudget as $paysToPushBudget_key => $paysToPushBudget_value){
-
-
-        $bdd = new POI($city_indice[$paysToPushBudget_key]->getgmap_lat(), $city_indice[$paysToPushBudget_key]->getgmap_lng());
-        $paris = new POI(48,86471, 2.34901);
-
-        if($finder_distance === 'pasloin'){
-
-            if(($bdd->getDistanceInMetersTo($paris) / 1000) < 2000){
-                var_dump($paysToPushBudget_value);
+    function getClosest($search, $arr) {
+        $closest = null;
+        foreach ($arr as $item) {
+            if ($closest === null || abs($search - $closest) > abs($item - $search)) {
+                $closest = $item;
             }
+        }
+        return $closest;
+    }
 
-        }elseif($finder_distance === 'loin'){
 
-            if(($bdd->getDistanceInMetersTo($paris) / 1000) >= 2000){
-                var_dump($paysToPushBudget_value);
-            }
+    $allcpi = array();
+    foreach ($bestCitiesDistance as $bestCitiesDistance_key => $bestCitiesDistance_value){
+        if($bestCitiesDistance_value['cpi_index'] != NULL){
+            array_push($allcpi, $bestCitiesDistance_value['cpi_index']);
+        }
+    }
 
-        }else{
+    $citycpi = '';
 
-            var_dump('else');
+    $integerBudget = intval($finder_budget);
+    //var_dump($integerBudget);
+
+    if($integerBudget === 500){
+        //T1
+        //var_dump('t1');
+        $citycpi = getClosest(25, $allcpi);
+
+    }elseif ($integerBudget > 500 && $integerBudget <= 1500){
+        //T2
+        //var_dump('t2');
+        $citycpi = getClosest(50, $allcpi);
+
+    }elseif ($integerBudget > 1500 && $integerBudget <= 1800){
+        //T3
+        //var_dump('t3');
+        $citycpi = getClosest(75, $allcpi);
+
+    }elseif ($integerBudget > 1800) {
+        //T4
+        //var_dump('t4');
+        $citycpi = getClosest(100, $allcpi);
+
+    }else{}
+
+
+    $finalCity = array();
+    foreach ($bestCitiesDistance as $bestCitiesDistance_key => $bestCitiesDistance_value) {
+        if($bestCitiesDistance_value['cpi_index'] === $citycpi){
+
+            $finalCity['city_id'] = $bestCitiesDistance_value['city_id'];
+            $finalCity['gmap_id'] = $bestCitiesDistance_value['gmap_id'];
+            $finalCity['gmap_formatted_address'] = $bestCitiesDistance_value['gmap_formatted_address'];
+            $finalCity['gmap_lat'] = $bestCitiesDistance_value['gmap_lat'];
+            $finalCity['gmap_lng'] = $bestCitiesDistance_value['gmap_lng'];
+            $finalCity['health_care_index'] = $bestCitiesDistance_value['health_care_index'];
+            $finalCity['crime_index'] = $bestCitiesDistance_value['crime_index'];
+            $finalCity['traffic_time_index'] = $bestCitiesDistance_value['traffic_time_index'];
+            $finalCity['purchasing_power_incl_rent_index'] = $bestCitiesDistance_value['purchasing_power_incl_rent_index'];
+            $finalCity['cpi_index'] = $bestCitiesDistance_value['cpi_index'];
+            $finalCity['traffic_index'] = $bestCitiesDistance_value['traffic_index'];
+            $finalCity['quality_of_life_index'] = $bestCitiesDistance_value['quality_of_life_index'];
+            $finalCity['cpi_and_rent_index'] = $bestCitiesDistance_value['cpi_and_rent_index'];
+            $finalCity['groceries_index'] = $bestCitiesDistance_value['groceries_index'];
+            $finalCity['safety_index'] = $bestCitiesDistance_value['safety_index'];
+            $finalCity['city_name'] = $bestCitiesDistance_value['city_name'];
+            $finalCity['rent_index'] = $bestCitiesDistance_value['rent_index'];
+            $finalCity['traffic_co2_index'] = $bestCitiesDistance_value['traffic_co2_index'];
+            $finalCity['restaurant_price_index'] = $bestCitiesDistance_value['restaurant_price_index'];
+            $finalCity['traffic_inefficiency_index'] = $bestCitiesDistance_value['traffic_inefficiency_index'];
+            $finalCity['property_price_to_income_ratio'] = $bestCitiesDistance_value['property_price_to_income_ratio'];
 
         }
-
     }
 
-*/
 
-    /*
-    $bdd = new POI(50.454660, 30.523800);
-    $paris = new POI(48,86471, 2.34901);
-    var_dump($bdd->getDistanceInMetersTo($paris) / 1000);
-    */
+    return $app['twig']->render('results.html.twig', array(
 
-    /*
-    foreach ($city_indice as $city_indice_key => $city_indice_value){
-        var_dump($city_indice_value->getgmap_lat());
-        die();
-    }
-    */
+        'city_id' => $finalCity['city_id'],
+        'gmap_id' => $finalCity['gmap_id'],
+        'gmap_formatted_address' => $finalCity['gmap_formatted_address'],
+        'gmap_lat' => $finalCity['gmap_lat'],
+        'gmap_lng' => $finalCity['gmap_lng'],
+        'health_care_index' => $finalCity['health_care_index'],
+        'crime_index' => $finalCity['crime_index'],
+        'traffic_time_index' => $finalCity['traffic_time_index'],
+        'purchasing_power_incl_rent_index' => $finalCity['purchasing_power_incl_rent_index'],
+        'cpi_index' => $finalCity['cpi_index'],
+        'traffic_index' => $finalCity['traffic_index'],
+        'quality_of_life_index' => $finalCity['quality_of_life_index'],
+        'cpi_and_rent_index' => $finalCity['cpi_and_rent_index'],
+        'groceries_index' => $finalCity['groceries_index'],
+        'safety_index' => $finalCity['safety_index'],
+        'city_name' => $finalCity['city_name'],
+        'rent_index' => $finalCity['rent_index'],
+        'traffic_co2_index' => $finalCity['traffic_co2_index'],
+        'restaurant_price_index' => $finalCity['restaurant_price_index'],
+        'traffic_inefficiency_index' => $finalCity['traffic_inefficiency_index'],
+        'property_price_to_income_ratio' => $finalCity['property_price_to_income_ratio']
 
-
-
-
-    //echo $user->getDistanceInMetersTo($poi);
-
-
-    // setup des tranches distance
-
-
-
-
-    /*
-    foreach ($paysToPushBudget as $paysToPushBudget_key => $paysToPushBudget_value) {
-
-        $city_name_array = explode(',', $paysToPushBudget_value['city_name']);
-
-        $curl_city_data = curl_init();
-        curl_setopt_array($curl_city_data, array(
-            CURLOPT_URL => "https://maps.googleapis.com/maps/api/geocode/json?address=".$city_name_array[0]."&key=AIzaSyBHINkbrm1lT1QyomQpM_X6qcYVJEnoR3c",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "cache-control: no-cache"
-            ),
-        ));
-        $response_city_data = curl_exec($curl_city_data);
-        $err = curl_error($curl_city_data);
-        curl_close($curl_city_data);
-
-        var_dump(json_decode($response_city_data));
-        die();
-
-    }
-    */
-
-
-
-    //var_dump($paysToPushBudget);
-
-    //API call for prices of the first city
-
-    /*
-    $curl_city_data = curl_init();
-    curl_setopt_array($curl_city_data, array(
-        CURLOPT_URL => "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "GET",
-        CURLOPT_HTTPHEADER => array(
-            "cache-control: no-cache"
-        ),
     ));
-    $response_city_data = curl_exec($curl_city_data);
-    $err = curl_error($curl_city_data);
-    curl_close($curl_city_data);
-    */
-
-
-
-
-
-    //return new \Symfony\Component\HttpFoundation\Response();
 
 })->bind('results');
