@@ -3833,19 +3833,19 @@ margin-left: 25px
 }
 
 .manifesto_genese .section_title{
-    text-align: left;
+    text-align: center;
     margin-bottom: 50px;
 }
 .manifesto_genese .section_sub_title{
-    text-align: left;
+    text-align: center;
     margin-bottom: 50px;
 }
 .manifesto_genese .section_txt{
-    text-align: left;
+    text-align: center;
     line-height: 2em;
 }
 .manifesto_genese .section_cta{
-    text-align: left;
+    text-align: center;
 }
 
 /* manifesto_footer_others */
@@ -3941,6 +3941,18 @@ margin-left: 25px
     font-size: 2.5em;
 
 }
+
+.fullpagecity h3{
+    font-family: Lato, sans-serif;
+    font-weight: 400;
+    color:white;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+    //margin: 0;
+margin-bottom: 15px;
+    font-size: 2em;
+
+}
+
 .fullpagecity p{
     text-align: center;
     margin: 0;
@@ -3969,18 +3981,236 @@ margin-left: 25px
 .fullpagecity .citiesContainer > div{
     width: 100%;
     height: 100%;
+    padding: 20px;
+
 }
-
 .fullpagecity .citiesContainer > div:first-child{
-    background: #0089e9;
-    border-right: 5px #23c0ff solid;
-
+    padding-right: 10px;
 }
 
 .fullpagecity .citiesContainer > div:last-child{
-    background: #0089e9;
-    border-left: 5px #23c0ff solid;
+    padding-left: 10px;
+}
 
+.fullpagecity .citiesContainer > div:first-child > div{
+    background: #0089e9;
+    height: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 15px;
+    border-radius: 3px;
+
+}
+
+.fullpagecity .citiesContainer > div:last-child > div{
+    background: #0089e9;
+    height: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 15px;
+    border-radius: 3px;
+
+
+}
+
+.fullpagecity .citiesContainer > div > div > div{
+    /*
+    background: #0062ef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 3px;
+    */
+}
+
+.fullpagecity .citiesContainer > div > div > div ul li{
+    background: #0062ef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    //margin-bottom: 15px;
+    padding: 5px;
+    //border-radius: 3px;
+    color:white;
+    border:none;
+    padding:15px;
+}
+
+.citiesLeftPanelinside-name{
+    background: none!important;
+    box-shadow: none!important;
+    border-bottom: 1px white solid!important;
+    font-family: Lato, sans-serif!important;
+    font-weight: 400!important;
+    color:white!important;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 1)!important;
+    margin-bottom: 15px!important;
+//margin-bottom: 25px!important;
+    font-size: 2.5em!important;
+    border-radius: 0!important;
+    padding: 0!important;
+}
+
+
+
+
+
+.compcontainer{
+    background:  #23c0ff;
+}
+.compcontainer div{
+    height: auto;
+}
+
+.compcontainer h1{
+    font-family: Lato, sans-serif;
+    font-weight: 400;
+    color:white;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+    margin: 0;
+    margin-bottom: 100px;
+    font-size: 3.5em;
+    margin-top: 50px;
+}
+
+.compcontainer h2{
+    font-family: Lato, sans-serif;
+    font-weight: 400;
+    color:white;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+    margin: 0;
+//margin-bottom: 25px;
+    font-size: 2.5em;
+
+}
+
+.compcontainer h3{
+    font-family: Lato, sans-serif;
+    font-weight: 400;
+    color:white;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+//margin: 0;
+    margin-bottom: 15px;
+    font-size: 2em;
+
+}
+
+.compcontainer p{
+    text-align: center;
+    margin: 0;
+}
+
+.compcontainer p i{
+//font-family: Lato, sans-serif;
+    font-weight: 400;
+    color:white;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 1);
+    margin: 0;
+//margin-bottom: 25px;
+    font-size: 2.5em;
+    cursor: pointer;
+
+}
+
+.compcontainer .citiesContainer{
+    display: flex;
+}
+
+.compcontainer .sectionComp .insideslide_container{
+    padding-bottom: 0;
+}
+
+.compcontainer .citiesContainer > div{
+    width: 100%;
+    //height: 100%;
+    padding: 20px;
+
+}
+.compcontainer .citiesContainer > div:first-child{
+    padding-right: 10px;
+}
+
+.compcontainer .citiesContainer > div:last-child{
+    padding-left: 10px;
+}
+
+.compcontainer .citiesContainer > div:first-child > div{
+    background: #0089e9;
+    //height: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 15px;
+    border-radius: 3px;
+
+}
+
+.compcontainer .citiesContainer > div:last-child > div{
+    background: #0089e9;
+    //height: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 15px;
+    border-radius: 3px;
+
+
+}
+
+.compcontainer .citiesContainer > div > div > div{
+    /*
+    background: #0062ef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 3px;
+    */
+}
+
+.compcontainer .citiesContainer > div > div > div ul li{
+    background: #0062ef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+//margin-bottom: 15px;
+    padding: 5px;
+//border-radius: 3px;
+    color:white;
+    border:none;
+    padding:15px;
+}
+.compcontainer .citiesContainer > div > div > div ul li{
+    text-align: right;
+}
+
+.compcontainer .citiesContainer > div > div > div ul li span{
+    font-weight: bold;
+float:left;
+}
+
+.compcontainer .citiesLeftPanelinside-name{
+    background: none!important;
+    box-shadow: none!important;
+    border-bottom: 1px white solid!important;
+    font-family: Lato, sans-serif!important;
+    font-weight: 400!important;
+    color:white!important;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 1)!important;
+    margin-bottom: 15px!important;
+//margin-bottom: 25px!important;
+    font-size: 2.5em!important;
+    border-radius: 0!important;
+    padding: 0!important;
+}
+
+
+.compfooter{
+    background:  #23c0ff;
+
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.overflowhidden{
+    overflow:hidden!important;
 }
 
 /* ==========================================================================

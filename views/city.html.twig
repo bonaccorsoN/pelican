@@ -56,7 +56,7 @@
                         <div class="col-md-8">
                             <div class="customvalign">
                                 <h2 class="centertext animated fadeInDown"> Grâce à vos critères, le Pélican a trouvé la destination qui vous correspond le plus: </h2>
-                                <h1 class="centertext animated fadeInDown"> <strong> {{ formulairecity_name }} !</strong> </h1>
+                                <h1 class="centertext animated fadeInDown"> <strong> {{ random_name }} !</strong> </h1>
 
                                 <p><i id="cityNext" class="fa animated fadeInDown fa-arrow-circle-down" aria-hidden="true"></i></p>
                             </div>
@@ -69,107 +69,105 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="compcontainer">
     <!-- SECTION CONCEPT -->
-    <div class="section sectionComp">
+    <div class="sectionComp">
+        <div class="insideslide_container">
+            <!--
+               <div class="insideslide_inside">
 
-            <div class="insideslide_container">
-
-                <!--
-                <div class="insideslide_inside">
-
-                                <div class="customvalign">
-                                    -->
-                                    <div class="citiesContainer">
-
-                                        <div class="citiesLeftPanel">
-
-                                            <div class="citiesLeftPanelinside">
-
-                                                <div class="citiesLeftPanelinside-name">
-
-                                                    Paris
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-indices">
-
-                                                    Paris
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-alimentation">
-
-                                                    Paris
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-logement">
-
-                                                    Paris
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-vetement">
-
-                                                    Paris
-
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-
-                                        <div class="citiesRightPanel">
-
-                                            <div class="citiesLeftPanelinside">
-
-
-                                                <div class="citiesLeftPanelinside-name">
-
-                                                    {{ formulairecity_name }}
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-indices">
-
-                                                    Paris
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-alimentation">
-
-                                                    Paris
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-logement">
-
-                                                    Paris
-
-                                                </div>
-
-                                                <div class="citiesLeftPanelinside-vetement">
-
-                                                    Paris
-
-                                                </div>
-
-
-                                            </div>
-
-
-                                        </div>
-
-<!--
-
-                                </div>
+                               <div class="customvalign">
+                                   -->
+            <div class="citiesContainer">
+                <div class="citiesLeftPanel">
+                    <div class="citiesLeftPanelinside">
+                        <div class="citiesLeftPanelinside-name">
+                            <span>Paris, France</span>
+                        </div>
+                        <div class="citiesLeftPanelinside-alimentation">
+                            <h3>Alimentation</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><span>Un miche de pain</span>{{ paris_prices['bred'] }} EUR</li>
+                                <li class="list-group-item"><span>Une bière locale</span>{{ paris_prices['beer'] }} EUR</li>
+                                <li class="list-group-item"><span>Un litre de lait</span>{{ paris_prices['milk'] }} EUR</li>
+                                <li class="list-group-item"><span>Un pack d'oeufs</span>{{ paris_prices['egg'] }} EUR</li>
+                                <li class="list-group-item"><span>Un restaurant pour deux</span>{{ paris_prices['resto'] }} EUR</li>
+                            </ul>
+                        </div>
+                        <div class="citiesLeftPanelinside-logementtransport">
+                            <h3>Logement et transport</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><span>Un ticket de transport publique</span>{{ paris_prices['pubtransport'] }} EUR</li>
+                                <li class="list-group-item"><span>Un jerrican de gasoil</span>{{ paris_prices['gaso'] }} EUR</li>
+                                <li class="list-group-item"><span>Un loyer dans le centre ville</span>{{ paris_prices['appart'] }} EUR</li>
+                            </ul>
+                        </div>
+                        <div class="citiesLeftPanelinside-vetementloisir">
+                            <h3>Vêtements et loisirs</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><span>Un jeans</span>{{ paris_prices['jean'] }} EUR</li>
+                                <li class="list-group-item"><span>Une paire de chaussure</span>{{ paris_prices['shoe'] }} EUR</li>
+                                <li class="list-group-item"><span>Un abonnement fitness</span>{{ paris_prices['fitness'] }} EUR</li>
+                                <li class="list-group-item"><span>Une place de cinéma</span>{{ paris_prices['cine'] }} EUR</li>
+                            </ul>
+                        </div>
                     </div>
-                    -->
                 </div>
-
+                <div class="citiesRightPanel">
+                    <div class="citiesLeftPanelinside">
+                        <div class="citiesLeftPanelinside-name">
+                            <span>{{ random_name }}</span>
+                        </div>
+                        <div class="citiesLeftPanelinside-alimentation">
+                            <h3>Alimentation</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><span>Un miche de pain</span>{{ random_prices['bred'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Une bière locale</span>{{ random_prices['beer'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Un litre de lait</span>{{ random_prices['milk'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Un pack d'oeufs</span>{{ random_prices['egg'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Un restaurant pour deux</span>{{ random_prices['resto'] }} {{ random_curr }}</li>
+                            </ul>
+                        </div>
+                        <div class="citiesLeftPanelinside-logementtransport">
+                            <h3>Logement et transport</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><span>Un ticket de transport publique</span>{{ random_prices['pubtransport'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Un jerrican de gasoil</span>{{ random_prices['gaso'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Un loyer dans le centre ville</span>{{ random_prices['appart'] }} {{ random_curr }}</li>
+                            </ul>
+                        </div>
+                        <div class="citiesLeftPanelinside-vetementloisir">
+                            <h3>Vêtements et loisirs</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><span>Un jeans</span>{{ random_prices['jean'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Une paire de chaussure</span>{{ random_prices['shoe'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Un abonnement fitness</span>{{ random_prices['fitness'] }} {{ random_curr }}</li>
+                                <li class="list-group-item"><span>Une place de cinéma</span>{{ random_prices['cine'] }} {{ random_curr }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                   </div>
+                   </div>
+                   -->
             </div>
+        </div>
     </div>
 </div>
+
+<div class="compfooter">
+
+    <div class="">
+
+        <button class="animated fadeInDown btn btn-default btnpelican"> <a class="nav__item active" href="{{ path('home') }}"> Découvrir le projet le Pélican </a> </button>
+
+    </div>
+
+</div>
+
+
 
 {% include 'tpl/footercity.html.twig' %}

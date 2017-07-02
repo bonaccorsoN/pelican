@@ -7,19 +7,26 @@ $(document).ready(function() {
      */
 
 
-    $('#fullpage').fullpage({});
+    /*
+    $('#fullpage').fullpage({
+        autoScrolling: false,
+        fitToSection: false
+    });
+    */
 
 
     /*
      *      slide down
      */
 
+    /*
 
     $('#cityNext').on('click', function(){
 
         $.fn.fullpage.moveSectionDown();
 
     });
+    */
 
 
 });

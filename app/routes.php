@@ -808,7 +808,6 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
 // mail
 $app->post('/city', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
 
-    // \Swift_Mailer $mailer
 
     /*
      *      0 - Décalaration des variables
@@ -824,52 +823,25 @@ $app->post('/city', function (\Symfony\Component\HttpFoundation\Request $request
     $formulairecity_name = $request->get('formulairecity_name');
     $formulairerestaurant_price_index = $request->get('formulairerestaurant_price_index');
 
+    //var_dump($formulairecity_name);
+    //die();
+
+
 
     /*
-     *      1 - ICI il faut gérer l'envoie du mail
+     *      1 - API CALLS
      */
 
-    /*
-    $message = \Swift_Message::newInstance()
-        ->setSubject('Feedback')
-        ->setFrom(array('llnttwsl@llntrlln.com'))
-        ->setTo(array('lilian.tourillon@gmail.com'))
-        ->setBody('bonjouro');
 
-    $app['mailer']->send($message);
-    */
+    $formulairecity_namePROPER = explode(',', $formulairecity_name);
+    $formulairecity_namePROPERDEUX = str_replace(' ', '%20', $formulairecity_namePROPER[0]);
 
-    /*
-    $app['mailer']->send(\Swift_Message::newInstance()
-        ->setSubject('bonjourmabite')
-        ->setFrom(array('lilian.tourillon@gmail.com')) // replace with your own
-        ->setTo(array('lilian.tourillon@gmail.com'))   // replace with email recipient
-        ->setBody('mabite')
-    );
-    */
+    //var_dump($formulairecity_name);
+    //die();
 
-    /*
-
-    $from = new SendGrid\Email("Example User", "test@example.com");
-    $subject = "Sending with SendGrid is Fun";
-    $to = new SendGrid\Email("Example User", "test@example.com");
-    $content = new SendGrid\Content("text/plain", "and easy to do anywhere, even with PHP");
-    $mail = new SendGrid\Mail($from, $subject, $to, $content);
-    $apiKey = getenv('SENDGRID_API_KEY');
-    $sg = new \SendGrid($apiKey);
-    $response = $sg->client->mail()->send()->post($mail);
-    echo $response->statusCode();
-    print_r($response->headers());
-    echo $response->body();
-
-    */
-
-    //API call for prices of the first city
-
-    /*
-    $curl_prices_country_one = curl_init();
-    curl_setopt_array($curl_prices_country_one, array(
-        CURLOPT_URL => "http://www.numbeo.com:8008/api/city_prices?api_key=peumbwlgafjj3y&city_id=".$formulaireCityId,
+    $curl_prices_city_one = curl_init();
+    curl_setopt_array($curl_prices_city_one, array(
+        CURLOPT_URL => "https://www.numbeo.com/api/city_prices?api_key=peumbwlgafjj3y&query=".$formulairecity_namePROPERDEUX,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
@@ -878,13 +850,218 @@ $app->post('/city', function (\Symfony\Component\HttpFoundation\Request $request
             "cache-control: no-cache"
         ),
     ));
-    $response_prices_one = curl_exec($curl_prices_country_one);
-    $err = curl_error($curl_prices_country_one);
-    curl_close($curl_prices_country_one);
+    $response_city_one = curl_exec($curl_prices_city_one);
+    $err = curl_error($curl_prices_city_one);
+    curl_close($curl_prices_city_one);
+
+
+    $curl_prices_paris = curl_init();
+    curl_setopt_array($curl_prices_paris, array(
+        CURLOPT_URL => "https://www.numbeo.com/api/city_prices?api_key=peumbwlgafjj3y&query=Paris",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+    $response_prices_paris = curl_exec($curl_prices_paris);
+    $err = curl_error($curl_prices_paris);
+    curl_close($curl_prices_paris);
+
+
+    $decodePARIS = json_decode($response_prices_paris);
+    $decodeCITY = json_decode($response_city_one);
+
+
+    //var_dump($decodePARIS);
+    //var_dump($decodeCITY);
+    //var_dump(property_exists($decodeCITY, 'error'));
+    //die();
+
+
+
+    /*
+     *      PREPARE DATA PARIS
+     */
+
+    $pricePARIS = array(
+
+        'bred' => 'bred',
+        'beer' => 'Beer',
+        'resto' => 'Resto',
+        'milk' => 'milk',
+        'egg' => 'egg',
+        'pubtransport' => 'pubtransport',
+        'gaso' => 'gaso',
+        'appart' => 'appart',
+        'jean' => 'jean',
+        'shoe' => 'shoe',
+        'fitness' => 'fitness',
+        'cine' => 'cine',
+
+    );
+
+    foreach ($decodePARIS->prices as $decodePARISprice_key => $decodePARISprice_value){
+
+        switch ($decodePARISprice_value->item_name) {
+
+            case 'Domestic Beer (0.5 liter draught), Restaurants':
+                $pricePARIS['beer'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Meal for 2 People, Mid-range Restaurant, Three-course, Restaurants':
+                $pricePARIS['resto'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Milk (regular), (1 liter), Markets':
+                $pricePARIS['milk'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Loaf of Fresh White Bread (500g), Markets':
+                $pricePARIS['bred'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Eggs (12), Markets':
+                $pricePARIS['egg'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Apartment (1 bedroom) in City Centre, Rent Per Month':
+                $pricePARIS['appart'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Fitness Club, Monthly Fee for 1 Adult, Sports And Leisure':
+                $pricePARIS['fitness'] = $decodePARISprice_value->average_price;
+                break;
+            case '1 Pair of Jeans (Levis 501 Or Similar), Clothing And Shoes':
+                $pricePARIS['jean'] = $decodePARISprice_value->average_price;
+                break;
+            case '1 Pair of Men Leather Business Shoes, Clothing And Shoes':
+                $pricePARIS['shoe'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Cinema, International Release, 1 Seat, Sports And Leisure':
+                $pricePARIS['cine'] = $decodePARISprice_value->average_price;
+                break;
+            case 'Gasoline (1 liter), Transportation':
+                $pricePARIS['gaso'] = $decodePARISprice_value->average_price;
+                break;
+            case 'One-way Ticket (Local Transport), Transportation':
+                $pricePARIS['pubtransport'] = $decodePARISprice_value->average_price;
+                break;
+        }
+
+    }
+
+
+    /*
+     *      PREPARE DATA VILLE RANDOM
+     */
+
+    if(property_exists($decodeCITY, 'error')){
+
+        $nameRANDOM = $formulairecity_name;
+        $currRANDOM = 'no informations';
+        $priceRANDOM = array(
+
+            'bred' => 'no informations',
+            'beer' => 'no informations',
+            'resto' => 'no informations',
+            'milk' => 'no informations',
+            'egg' => 'no informations',
+            'pubtransport' => 'no informations',
+            'gaso' => 'no informations',
+            'appart' => 'no informations',
+            'jean' => 'no informations',
+            'shoe' => 'no informations',
+            'fitness' => 'no informations',
+            'cine' => 'no informations',
+
+        );
+
+    }else{
+
+        $nameRANDOM = $formulairecity_name;
+        $currRANDOM = $decodeCITY->currency;
+
+        $priceRANDOM = array(
+
+            'bred' => 'bred',
+            'beer' => 'Beer',
+            'resto' => 'Resto',
+            'milk' => 'milk',
+            'egg' => 'egg',
+            'pubtransport' => 'pubtransport',
+            'gaso' => 'gaso',
+            'appart' => 'appart',
+            'jean' => 'jean',
+            'shoe' => 'shoe',
+            'fitness' => 'fitness',
+            'cine' => 'cine',
+
+        );
+
+        foreach ($decodeCITY->prices as $priceRANDOMprice_key => $priceRANDOMprice_value){
+
+            switch ($priceRANDOMprice_value->item_name) {
+
+                case 'Domestic Beer (0.5 liter draught), Restaurants':
+                    $priceRANDOM['beer'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Meal for 2 People, Mid-range Restaurant, Three-course, Restaurants':
+                    $priceRANDOM['resto'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Milk (regular), (1 liter), Markets':
+                    $priceRANDOM['milk'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Loaf of Fresh White Bread (500g), Markets':
+                    $priceRANDOM['bred'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Eggs (12), Markets':
+                    $priceRANDOM['egg'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Apartment (1 bedroom) in City Centre, Rent Per Month':
+                    $priceRANDOM['appart'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Fitness Club, Monthly Fee for 1 Adult, Sports And Leisure':
+                    $priceRANDOM['fitness'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case '1 Pair of Jeans (Levis 501 Or Similar), Clothing And Shoes':
+                    $priceRANDOM['jean'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case '1 Pair of Men Leather Business Shoes, Clothing And Shoes':
+                    $priceRANDOM['shoe'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Cinema, International Release, 1 Seat, Sports And Leisure':
+                    $priceRANDOM['cine'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'Gasoline (1 liter), Transportation':
+                    $priceRANDOM['gaso'] = $priceRANDOMprice_value->average_price;
+                    break;
+                case 'One-way Ticket (Local Transport), Transportation':
+                    $priceRANDOM['pubtransport'] = $priceRANDOMprice_value->average_price;
+                    break;
+            }
+
+        }
+
+    }
+
+
+
+    //var_dump($pricePARIS);
+    //var_dump($priceRANDOM);
+    //die();
+
+
+    /*
+     * THROWING THE TPL
+     */
 
     return $app['twig']->render('city.html.twig', array(
-        'formulairecity_name' => $formulairecity_name
+
+        //random
+        'random_name' => $nameRANDOM,
+        'random_curr' => $currRANDOM,
+        'random_prices' => $priceRANDOM,
+        //paris
+        'paris_prices' => $pricePARIS
+
     ));
-    */
+
 
 })->bind('city');
