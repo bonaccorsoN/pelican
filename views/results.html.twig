@@ -1,7 +1,7 @@
 {% include 'tpl/head.html.twig' %}
 <!-- TEMPLATE RESULTS -->
 <!-- GLOBAL MENU -->
-<div id="find_global_menu" class="container-fluid">
+<div id="find_global_menu_bis" class="container-fluid">
     <div class="row">
         <div class="find_menu animated fadeInDown">
             <!--
@@ -43,31 +43,51 @@
     </div>
 </div>
 <!-- FULLPAGE -->
-<div id="fullpage">
+<div id="fullpage" class="fullpageresults">
     <!-- SECTION EMAIL -->
     <div class="section">
-        <div style="" class="slide" data-anchor="">
             <div class="insideslide_container">
-                <div class="insideslide_inside home">
+                <div class="insideslide_inside">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-2">
+                            </div>
+
+                            <div class="col-md-8">
                                 <div class="customvalign">
-                                    <h2 class="centertext animated fadeInDown"> RESULTATS </h2>
-                                    <h2 class="centertext animated fadeInDown"> {{ city_name }} </h2>
+                                    <h2 class="centertext animated fadeInDown"> <strong> Le Pélican a <span>1</span> ville pour vous !</strong> </h2>
+                                    <h2 class="centertext animated fadeInDown">Entrez votre adresse email pour la découvrir</h2>
+
+                                    <form class="animated fadeInDown" action="{{ path('mail') }}" method="POST" id="formulaireResults">
+
+                                        <input type="hidden" name="formulaireCityId" value="{{ city_id }}">
+                                        <input type="hidden" name="formulairehealth_care_index" value="{{ health_care_index }}">
+                                        <input type="hidden" name="formulairecrime_index" value="{{ crime_index }}">
+                                        <input type="hidden" name="formulairecpi_index" value="{{ cpi_index }}">
+                                        <input type="hidden" name="formulairequality_of_life_index" value="{{ quality_of_life_index }}">
+                                        <input type="hidden" name="formulairegroceries_index" value="{{ groceries_index }}">
+                                        <input type="hidden" name="formulairecity_name" value="{{ city_name }}">
+                                        <input type="hidden" name="formulairerestaurant_price_index" value="{{ restaurant_price_index }}">
+
+                                        <input type="text" name="formulaireMailClient" class="form-control" placeholder="Entrez votre email ici"/>
+                                        <button type="submit" name="formulaireResultsSubmit" class="btn btn-default btnpelican"> Recevoir l'analyse! </button>
+
+                                    </form>
                                 </div>
+                            </div>
+
+                            <div class="col-md-2">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
     <!-- SECTION CONCEPT -->
+    <!--
     <div class="section">
-        <div style="" class="slide" data-anchor="">
             <div class="insideslide_container">
-                <div class="insideslide_inside home">
+                <div class="insideslide_inside">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
@@ -79,8 +99,8 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
+    -->
 </div>
 
 {% include 'tpl/footerresults.html.twig' %}

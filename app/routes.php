@@ -804,3 +804,47 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
     ));
 
 })->bind('results');
+
+// mail
+$app->post('/mail', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
+
+    // \Swift_Mailer $mailer
+
+    /*
+     *      0 - Décalaration des variables
+     */
+
+    $formulaireCityId =$request->get('formulaireCityId');
+    $formulaireMailClient = $request->get('formulaireMailClient');
+    $formulairehealth_care_index = $request->get('formulairehealth_care_index');
+    $formulairecrime_index = $request->get('formulairecrime_index');
+    $formulairecpi_index = $request->get('formulairecpi_index');
+    $formulairequality_of_life_index = $request->get('formulairequality_of_life_index');
+    $formulairegroceries_index = $request->get('formulairegroceries_index');
+    $formulairecity_name = $request->get('formulairecity_name');
+    $formulairerestaurant_price_index = $request->get('formulairerestaurant_price_index');
+
+
+    /*
+     *      1 - ICI il faut gérer l'envoie du mail
+     */
+
+    /*
+    $message = \Swift_Message::newInstance()
+        ->setSubject('Feedback')
+        ->setFrom(array('llnttwsl@llntrlln.com'))
+        ->setTo(array('lilian.tourillon@gmail.com'))
+        ->setBody('bonjouro');
+
+    $app['mailer']->send($message);
+    */
+
+    $app['mailer']->send(\Swift_Message::newInstance()
+        ->setSubject('bonjourmabite')
+        ->setFrom(array('llnttwsl')) // replace with your own
+        ->setTo(array('lilian.tourillon@gmail.com'))   // replace with email recipient
+        ->setBody('mabite'));
+
+    return $app['twig']->render('mail.html.twig');
+
+})->bind('mail');
