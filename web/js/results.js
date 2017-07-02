@@ -9,4 +9,16 @@ $(document).ready(function() {
 
     $('#fullpage').fullpage({});
 
+    /*
+     *      Prevent going to city page without mail
+     */
+
+    $('#formulaireMailClient').on('change', function(){
+
+        console.log('prout');
+
+    });
+
+
+
 });

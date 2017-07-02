@@ -43,8 +43,8 @@ $app['dao.cityIndice'] = function ($app) {
 $app['swiftmailer.options'] = array(
     'host' => 'smtp.sendgrid.net',
     'port' => '465',
-    'username' => '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',
-    'password' => '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',
+    'username' => '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',
+    'password' => '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',
     'encryption' => 'ssl',
     'auth_mode' => 'login'
 );

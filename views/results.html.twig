@@ -58,7 +58,7 @@
                                     <h2 class="centertext animated fadeInDown"> <strong> Le Pélican a <span>1</span> ville pour vous !</strong> </h2>
                                     <h2 class="centertext animated fadeInDown">Entrez votre adresse email pour la découvrir</h2>
 
-                                    <form class="animated fadeInDown" action="{{ path('mail') }}" method="POST" id="formulaireResults">
+                                    <form class="animated fadeInDown" action="{{ path('city') }}" method="POST" id="formulaireResults">
 
                                         <input type="hidden" name="formulaireCityId" value="{{ city_id }}">
                                         <input type="hidden" name="formulairehealth_care_index" value="{{ health_care_index }}">
@@ -69,8 +69,8 @@
                                         <input type="hidden" name="formulairecity_name" value="{{ city_name }}">
                                         <input type="hidden" name="formulairerestaurant_price_index" value="{{ restaurant_price_index }}">
 
-                                        <input type="text" name="formulaireMailClient" class="form-control" placeholder="Entrez votre email ici"/>
-                                        <button type="submit" name="formulaireResultsSubmit" class="btn btn-default btnpelican"> Recevoir l'analyse! </button>
+                                        <input type="text" id="formulaireMailClient" name="formulaireMailClient" class="form-control" placeholder="Entrez votre email ici" required>
+                                        <button type="submit" name="formulaireResultsSubmit" class="btn btn-default btnpelican"> Voir ma destination! </button>
 
                                     </form>
                                 </div>

@@ -9,6 +9,8 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '3f8bdd3b35094c73a26f0106e3c0f8b2' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/SendGrid.php',
+        '9dda55337a76a24e949fbcc5d905a2c7' => __DIR__ . '/..' . '/sendgrid/sendgrid/lib/helpers/mail/Mail.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -32,6 +34,7 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
             'Symfony\\Component\\Asset\\' => 24,
             'Symfony\\Bridge\\Twig\\' => 20,
             'Silex\\' => 6,
+            'SendGrid\\' => 9,
         ),
         'P' => 
         array (
@@ -40,6 +43,7 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
         'D' => 
         array (
             'Doctrine\\Common\\Cache\\' => 22,
+            'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
         ),
     );
@@ -93,6 +97,10 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
         array (
             0 => __DIR__ . '/..' . '/silex/silex/src/Silex',
         ),
+        'SendGrid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendgrid/php-http-client/lib',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -100,6 +108,10 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
         'Doctrine\\Common\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Doctrine\\Common\\Annotations\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
         ),
         'Doctrine\\Common\\' => 
         array (
@@ -139,10 +151,6 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
             'Doctrine\\Common\\Collections\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/collections/lib',
-            ),
-            'Doctrine\\Common\\Annotations\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/annotations/lib',
             ),
         ),
     );

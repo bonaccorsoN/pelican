@@ -806,7 +806,7 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
 })->bind('results');
 
 // mail
-$app->post('/mail', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
+$app->post('/city', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
 
     // \Swift_Mailer $mailer
 
@@ -839,12 +839,52 @@ $app->post('/mail', function (\Symfony\Component\HttpFoundation\Request $request
     $app['mailer']->send($message);
     */
 
+    /*
     $app['mailer']->send(\Swift_Message::newInstance()
         ->setSubject('bonjourmabite')
-        ->setFrom(array('llnttwsl')) // replace with your own
+        ->setFrom(array('lilian.tourillon@gmail.com')) // replace with your own
         ->setTo(array('lilian.tourillon@gmail.com'))   // replace with email recipient
-        ->setBody('mabite'));
+        ->setBody('mabite')
+    );
+    */
 
-    return $app['twig']->render('mail.html.twig');
+    /*
 
-})->bind('mail');
+    $from = new SendGrid\Email("Example User", "test@example.com");
+    $subject = "Sending with SendGrid is Fun";
+    $to = new SendGrid\Email("Example User", "test@example.com");
+    $content = new SendGrid\Content("text/plain", "and easy to do anywhere, even with PHP");
+    $mail = new SendGrid\Mail($from, $subject, $to, $content);
+    $apiKey = getenv('SENDGRID_API_KEY');
+    $sg = new \SendGrid($apiKey);
+    $response = $sg->client->mail()->send()->post($mail);
+    echo $response->statusCode();
+    print_r($response->headers());
+    echo $response->body();
+
+    */
+
+    //API call for prices of the first city
+
+    /*
+    $curl_prices_country_one = curl_init();
+    curl_setopt_array($curl_prices_country_one, array(
+        CURLOPT_URL => "http://www.numbeo.com:8008/api/city_prices?api_key=peumbwlgafjj3y&city_id=".$formulaireCityId,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+    $response_prices_one = curl_exec($curl_prices_country_one);
+    $err = curl_error($curl_prices_country_one);
+    curl_close($curl_prices_country_one);
+
+    return $app['twig']->render('city.html.twig', array(
+        'formulairecity_name' => $formulairecity_name
+    ));
+    */
+
+})->bind('city');
