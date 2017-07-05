@@ -2,12 +2,12 @@
 
 
 // homepage
-$app->get('/', function () use ($app) {
+$app->get('/manifesto', function () use ($app) {
     return $app['twig']->render('homepage.html.twig');
 })->bind('home');
 
 // assitant
-$app->get('/assistant', function () use ($app) {
+$app->get('/', function () use ($app) {
     return $app['twig']->render('assistant.html.twig');
 })->bind('assistant');
 

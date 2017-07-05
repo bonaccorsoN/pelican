@@ -30,10 +30,10 @@
                     <div class="col-md-12">
                         <div class="find_menu_inside">
                             <div class="find_menu_logo">
-                                <a class="" href="{{ path('home') }}"><img src="{{ asset('/img/logo.png') }}" alt="Pélicanlogo" /></a>
+                                <a id="city_logo"class="" href="{{ path('assistant') }}"><img src="{{ asset('/img/logo.png') }}" alt="Pélicanlogo" /></a>
                             </div>
                             <div class="find_menu_manifesto">
-                                <a href="#">Le Pélican</a>
+                                <a id="city_lepelican" href="{{ path('home') }}">Le Pélican</a>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
 
     <div class="">
 
-        <button class="animated fadeInDown btn btn-default btnpelican"> <a class="nav__item active" href="{{ path('home') }}"> Découvrir le projet le Pélican </a> </button>
+        <button class="animated fadeInDown btn btn-default btnpelican"> <a id="city_decouvrirprojet" class="nav__item active" href="{{ path('home') }}"> Découvrir le projet le Pélican </a> </button>
 
     </div>
 

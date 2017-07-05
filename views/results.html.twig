@@ -30,10 +30,10 @@
                     <div class="col-md-12">
                         <div class="find_menu_inside">
                             <div class="find_menu_logo">
-                                <a class="" href="{{ path('home') }}"><img src="{{ asset('/img/logo.png') }}" alt="Pélicanlogo" /></a>
+                                <a id="results_logo" class="" href="{{ path('assistant') }}"><img src="{{ asset('/img/logo.png') }}" alt="Pélicanlogo" /></a>
                             </div>
                             <div class="find_menu_manifesto">
-                                <a href="#">Le Pélican</a>
+                                <a id="results_lepelican" href="{{ path('home') }}">Le Pélican</a>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                         <input type="hidden" name="formulairerestaurant_price_index" value="{{ restaurant_price_index }}">
 
                                         <input type="text" id="formulaireMailClient" name="formulaireMailClient" class="form-control" placeholder="Entrez votre email ici" required>
-                                        <button type="submit" name="formulaireResultsSubmit" class="btn btn-default btnpelican"> Voir ma destination! </button>
+                                        <button id="results_voirdestination" type="submit" name="formulaireResultsSubmit" class="btn btn-default btnpelican"> Voir ma destination! </button>
 
                                     </form>
                                 </div>

@@ -26,9 +26,15 @@ $(document).ready(function() {
         anchors: ['find'],
         afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
 
+            //console.log(slideIndex);
+            //console.log(index);
+
             /*
              *      navigation changes from slide to slide
              */
+
+            //changing navigation numbers
+            $('#slide_counter').html(slideIndex);
 
             // changing active navigation dot
             $('.nav__item.active').removeClass('active');
@@ -61,6 +67,11 @@ $(document).ready(function() {
         },
 
         onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex) {
+
+            /*
+            console.log(slideIndex);
+            console.log(index);
+            */
 
         },
         afterRender: function() {

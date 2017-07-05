@@ -30,10 +30,28 @@
                     <div class="col-md-12">
                         <div class="find_menu_inside">
                             <div class="find_menu_logo">
-                                <a class="" href="{{ path('assistant') }}"><img src="{{ asset('/img/logo.png') }}" alt="Pélicanlogo" /></a>
+                                <a id="assistant_logo" class="" href="{{ path('assistant') }}"><img src="{{ asset('/img/logo.png') }}" alt="Pélicanlogo" /></a>
                             </div>
+                            <!--
                             <div class="find_menu_manifesto">
-                                <a href="#">Le Pélican</a>
+                                <a id="assistant_lepelican" href="{{ path('home') }}">Le Pélican</a>
+                            </div>
+                            -->
+                            <div id="find_slides_menu" class="">
+                                    <div class="find_slides_menu animated fadeInUp">
+
+                                                    <ul class="find_slides_menu_list">
+                                                        <li class="slides_button slides_active"> <span id="slide_counter">1</span>/6 </li>
+                                                        <li class="slides_button slides_active"> <a id="assistant_nav_q1" class="nav__item active" href="#find/q1"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                                                        <li class="slides_button slides_inactive"> <a id="assistant_nav_q2" class="nav__item" href="#find/q2"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                                                        <li class="slides_button slides_inactive"> <a id="assistant_nav_q3" class="nav__item" href="#find/q3"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                                                        <li class="slides_button slides_inactive"> <a id="assistant_nav_q4" class="nav__item" href="#find/q4"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                                                        <li class="slides_button slides_inactive"> <a id="assistant_nav_q5" class="nav__item" href="#find/q5"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                                                        <li class="slides_button slides_inactive"> <a id="assistant_nav_q6" class="nav__item" href="#find/q6"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                                                    </ul>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,6 +61,7 @@
     </div>
 </div>
 <!-- SLIDES MENU -->
+<!--
 <div id="find_slides_menu" class="container-fluid">
     <div class="row">
         <div class="find_slides_menu animated fadeInUp">
@@ -50,12 +69,12 @@
                 <div class="row">
                     <div class="col-ms-12">
                         <ul class="find_slides_menu_list">
-                            <li class="slides_button slides_active"> <a class="nav__item active" href="#find/q1"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
-                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q2"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
-                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q3"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
-                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q4"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
-                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q5"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
-                            <li class="slides_button slides_inactive"> <a class="nav__item" href="#find/q6"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_active"> <a id="assistant_nav_q1" class="nav__item active" href="#find/q1"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a id="assistant_nav_q2" class="nav__item" href="#find/q2"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a id="assistant_nav_q3" class="nav__item" href="#find/q3"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a id="assistant_nav_q4" class="nav__item" href="#find/q4"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a id="assistant_nav_q5" class="nav__item" href="#find/q5"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
+                            <li class="slides_button slides_inactive"> <a id="assistant_nav_q6" class="nav__item" href="#find/q6"><i class="fa fa-circle" aria-hidden="true"></i></a> </li>
                         </ul>
                     </div>
                 </div>
@@ -63,6 +82,7 @@
         </div>
     </div>
 </div>
+-->
 <!-- FULLPAGE -->
 <div id="fullpage">
     <div class="section">
@@ -76,7 +96,8 @@
                                 <div class="customvalign">
                                     <h2 class="centertext animated fadeInDown">Le Pélican sélectionne pour vous les endroits qui vous ressemblent. </h2>
                                     <h1 class="centertext animated fadeInDown">Découvrez dès maintenant la destination <br class="titleseparator"> où vous pourriez vivre!</h1>
-                                    <button class="animated fadeInDown btn btn-default btnpelican"> <a class="nav__item active" href="#find/q1"> Commencer le test </a> </button>
+                                    <button class="animated fadeInDown btn btn-default btnpelican"> <a id="assistant_start" class="nav__item active" href="#find/q1"> Commencer le test </a> </button>
+                                    <p class="centertext animated fadeInDown"><a href="{{ path('home') }}">Qui sommes nous ?</a></p>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +106,7 @@
             </div>
         </div>
         <!-- SLIDE GENDER -->
-        <div style="" class="slide" data-anchor="q1">
+        <div style="" class="slide slide1" data-anchor="q1">
             <div class="container">
                 <div class="row">
                     <div class="insideslide_container">
@@ -131,7 +152,7 @@
             </div>
         </div>
         <!-- SLIDE AGE -->
-        <div style="" class="slide" data-anchor="q2">
+        <div style="" class="slide slide2" data-anchor="q2">
             <div class="container">
                 <div class="row">
                     <div class="insideslide_container">
@@ -252,7 +273,7 @@
             </div>
         </div>
         <!-- SLIDE AVIS -->
-        <div style="" class="slide" data-anchor="q3">
+        <div style="" class="slide slide3" data-anchor="q3">
             <div class="container">
                 <div class="row">
                     <div class="insideslide_container">
@@ -268,7 +289,7 @@
                                         <div class="radio radioAVIS">
                                             <label id="">
                                                 <input class="optionAVIS" type="radio" name="optionAVIS" id="" value="eclater">
-                                                <img src="{{ asset('/img/chill.png') }}" alt="chill.png" />
+                                                <img src="{{ asset('/img/alcohol.png') }}" alt="chill.png" />
                                                 <span>S'éclater en profitant de mes économies</span>
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             </label>
@@ -306,7 +327,7 @@
             </div>
         </div>
         <!-- SLIDE DISTANCE -->
-        <div style="" class="slide" data-anchor="q4">
+        <div style="" class="slide slide4" data-anchor="q4">
             <div class="container">
                 <div class="row">
                     <div class="insideslide_container">
@@ -322,7 +343,7 @@
                                         <div class="radio radioDISTANCE">
                                             <label id="">
                                                 <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="autour">
-                                                <img src="{{ asset('/img/beach.png') }}" alt="chill.png" />
+                                                <img src="{{ asset('/img/near.png') }}" alt="chill.png" />
                                                 <span>Autour de la mer méditérannée</span>
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             </label>
@@ -330,7 +351,7 @@
                                         <div class="radio radioDISTANCE">
                                             <label id="">
                                                 <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="loin">
-                                                <img src="{{ asset('/img/pin.png') }}" alt="chill.png" />
+                                                <img src="{{ asset('/img/far.png') }}" alt="chill.png" />
                                                 <span>Loin mais <br class="titleseparatorbis"> pas trop</span>
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             </label>
@@ -338,7 +359,7 @@
                                         <div class="radio radioDISTANCE">
                                             <label id="">
                                                 <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="tresloin">
-                                                <img src="{{ asset('/img/mapmonde.png') }}" alt="chill.png" />
+                                                <img src="{{ asset('/img/far_far.png') }}" alt="chill.png" />
                                                 <span>Très loin à l'autre bout du monde</span>
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             </label>
@@ -346,7 +367,7 @@
                                         <div class="radio radioDISTANCE">
                                             <label id="">
                                                 <input class="optionDISTANCE" type="radio" name="optionDISTANCE" id="" value="peuimporte">
-                                                <img src="{{ asset('/img/plan.png') }}" alt="chill.png" />
+                                                <img src="{{ asset('/img/interro.png') }}" alt="chill.png" />
                                                 <span>Peu importe la distance</span>
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             </label>
@@ -360,7 +381,7 @@
             </div>
         </div>
         <!-- SLIDE CLIMAT -->
-        <div style="" class="slide" data-anchor="q5">
+        <div style="" class="slide slide5" data-anchor="q5">
             <div class="container">
                 <div class="row">
                     <div class="insideslide_container">
@@ -393,7 +414,7 @@
                                             <label id="">
                                                 <input class="optionCLIMAT" type="radio" name="optionCLIMAT" id="" value="saison">
                                                 <img src="{{ asset('img/nuage.png') }}" alt="chill.png" />
-                                                <span> Uniquement l'été, je tiens aux saison </span>
+                                                <span> Uniquement l'été, je tiens aux saisons </span>
                                                 <i class="fa fa-angle-right" aria-hidden="true"></i>
                                             </label>
                                         </div>
@@ -414,7 +435,7 @@
             </div>
         </div>
         <!-- SLIDE BUDGET -->
-        <div style="" class="slide" data-anchor="q6">
+        <div style="" class="slide slide6" data-anchor="q6">
             <div class="container">
                 <div class="row">
                     <div class="insideslide_container">
@@ -442,7 +463,7 @@
                                 <input type="hidden" id="finder_budget" name="finder_budget" value="2000">
                                 <div class="form-group">
                                     <div class="controls">
-                                        <button type="submit" id="finder_submit" name="finder_submit" class="animated fadeInDown btn btn-default btnpelican"> Découvrir les résultats de l'assistant !  </button>
+                                        <button type="submit" id="finder_submit" name="finder_submit" class="animated fadeInDown btn btn-default btnpelican">Voir mes résultats</button>
                                     </div>
                                 </div>
                             </form>

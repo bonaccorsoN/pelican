@@ -1,20 +1,20 @@
 {% include 'tpl/head.html.twig' %}
 <!-- TEMPLATE HOMEPAGE (MANIFESTO) -->
-<div id="manifesto_header" class="manifesto_header animated fadeInDown">
+<div id="manifesto_header" class="manifesto_header animated">
     <div class="manifesto_header_inside">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 manifesto_header_container">
                     <div class="manifesto_header_logo">
                         <figure>
-                            <img src="{{ asset('/img/logo.png') }}" alt="logo.png" />
+                            <a id="manifesto_logo" href="{{ path('home') }}"><img src="{{ asset('/img/logo.png') }}" alt="logo.png" /></a>
                         </figure>
                     </div>
                     <ul class="">
-                        <li><a href="#service">Le service</a></li>
-                        <li><a href="#assistant">L'assistant</a></li>
-                        <li><a href="#genese">La genèse</a></li>
-                        <li class="manifesto_header_cta"><a href="{{ path('assistant') }}">Faire le test</a></li>
+                        <li><a id="manifesto_menu_service" href="#service">Le service</a></li>
+                        <li><a id="manifesto_menu_assistant" href="#assistant">L'assistant</a></li>
+                        <li><a id="manifesto_menu_genese" href="#genese">La genèse</a></li>
+                        <li id="manifesto_menu_cta" class="manifesto_header_cta"><a href="{{ path('assistant') }}">Faire le test</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,13 +33,12 @@
                                     <img src="{{ asset('/img/logotypo.png') }}" alt="logotypo.png" />
                                 </figure>
                             </div>
-                            <div id="punchline_scroll_mark" class="manifesto_jumbo_punchline animated fadeInDown">
+                            <div id="anchor_menu" class="manifesto_jumbo_punchline animated fadeInDown">
                                 <p>Il serait peut être temps de</p>
                                 <p><strong>changer votre routine...</strong></p>
                             </div>
                             <div class="manifesto_jumbo_cta animated fadeInDown">
-                                <a href="#explainer" data-toggle="modal" data-target="#modal_video">voir la vidéo <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </a>
+                                <a id="manifesto_video" class="btn btn-default btnpelican" href="#explainer" data-toggle="modal" data-target="#modal_video">Voir la vidéo</a>
                             </div>
                         </div>
                     </div>
@@ -61,39 +60,36 @@
                     </div>
                 </div>
             </div>
+            <!--
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="manifesto_explainer_icon_container">
                             <hr>
                             <div class="col-md-3">
-                                <div class="manifesto_explainer_icon">
-                                    <img src="{{ asset('/img/manifestocoeur.png') }}" alt=""/>
-                                </div>
+
                             </div>
                             <div class="col-md-3">
-                                <div class="manifesto_explainer_icon">
-                                    <img src="{{ asset('/img/manifestopin.png') }}" alt=""/>
-                                </div>
+
                             </div>
                             <div class="col-md-3">
-                                <div class="manifesto_explainer_icon">
-                                    <img src="{{ asset('/img/manifestoinfo.png') }}" alt=""/>
-                                </div>
+
                             </div>
                             <div class="col-md-3">
-                                <div class="manifesto_explainer_icon">
-                                    <img src="{{ asset('/img/manifestomail.png') }}" alt=""/>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+                -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
                             <div class="manifesto_explainer_txt_container">
                                 <div class="col-md-3">
+                                    <div class="manifesto_explainer_icon">
+                                        <img src="{{ asset('/img/manifestocoeurblue.png') }}" alt=""/>
+                                    </div>
                                     <div class="manifesto_explainer_title section_sub_title">
                                         Choisissez vos critères
                                     </div>
@@ -103,10 +99,13 @@
                                         le pays qui vous correspond le plus
                                     </div>
                                     <div class="manifesto_explainer_cta section_cta">
-                                        <a href="" data-toggle="modal" data-target="#modal_mail">Choisir mes critères <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <a id="manifesto_critere" href="" data-toggle="modal" data-target="#modal_mail">Choisir mes critères <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <div class="manifesto_explainer_icon">
+                                        <img src="{{ asset('/img/manifestopinblue.png') }}" alt=""/>
+                                    </div>
                                     <div class="manifesto_explainer_title section_sub_title">
                                         Préparez votre départ
                                     </div>
@@ -116,10 +115,14 @@
                                         ou d’achats sur place
                                     </div>
                                     <div class="manifesto_explainer_cta section_cta">
-                                        <a href="" data-toggle="modal" data-target="#modal_mail">Voir les offres <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <a id="manifesto_offres" href="" data-toggle="modal" data-target="#modal_mail">Voir les offres <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
+
+                                    <div class="manifesto_explainer_icon">
+                                        <img src="{{ asset('/img/manifestoinfoblue.png') }}" alt=""/>
+                                    </div>
                                     <div class="manifesto_explainer_title section_sub_title">
                                         Partez serein
                                     </div>
@@ -129,10 +132,13 @@
                                         dont vous avez besoin
                                     </div>
                                     <div class="manifesto_explainer_cta section_cta">
-                                        <a href="" data-toggle="modal" data-target="#modal_mail">Obtenir un renseignement <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <a id="manifesto_renseignement" href="" data-toggle="modal" data-target="#modal_mail">Obtenir un renseignement <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <div class="manifesto_explainer_icon">
+                                        <img src="{{ asset('/img/manifestomailblue.png') }}" alt=""/>
+                                    </div>
                                     <div class="manifesto_explainer_title section_sub_title">
                                         Vivez enfin
                                     </div>
@@ -142,7 +148,7 @@
                                         grâce à l’envoi de bons plans
                                     </div>
                                     <div class="manifesto_explainer_cta section_cta">
-                                        <a href="" data-toggle="modal" data-target="#modal_mail">Recevoir mes bons plans locaux <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        <a id="manifesto_bonplan" href="" data-toggle="modal" data-target="#modal_mail">Recevoir mes bons plans locaux <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -153,7 +159,7 @@
         </div>
     </div>
 </div>
-<div id="assistant" class="manifesto_section manifesto_assistant overflowhidden">
+<div id="assistant" class="manifesto_section manifesto_assistant">
     <div class="manifesto_assistant_inside">
         <div class="container">
             <div class="row">
@@ -161,6 +167,9 @@
                     <div class="manifesto_assistant_desc">
                         <div class="manifesto_assistant_desc_inside">
                             <div class="manifesto_assistant_desc_title section_title">
+                                <!--
+                                <p><img src="{{ asset('/img/messengericon.png') }}" alt="icon"></p>
+                                -->
                                 Votre assistant avec vous, partout.
                             </div>
                             <div class="manifesto_assistant_desc_txt section_txt">
@@ -171,18 +180,33 @@
                                 Un vrai assistant personnel, mais dans votre poche.
                             </div>
                             <div class="manifesto_assistant_desc_cta section_cta">
-                                <a href="" data-toggle="modal" data-target="#modal_mail">Je veux recevoir mes offres sur Messenger <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a id="manifesto_offres_messenger" href="" data-toggle="modal" data-target="#modal_mail">Je veux recevoir mes offres sur Messenger <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                             </div>
                             <div class="manifesto_assistant_desc_cta section_cta">
-                                <a href="" data-toggle="modal" data-target="#modal_mail">Je préfère les recevoir par mail <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a id="manifesto_offres_mail" href="" data-toggle="modal" data-target="#modal_mail">Je préfère les recevoir par mail <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-4 manifesto_assistant_img_container">
                     <div class="manifesto_assistant_img">
                         <div class="manifesto_assistant_img_inside">
-                            <img src="{{ asset('img/imessagesthree.png') }}" alt="" />
+
+                            <div class="manifesto_genese_mockup">
+
+                                <div class="manifesto_genese_mockup_inside">
+                                    <img src="{{ asset('/img/ihponextraclean.png') }}" alt=""/>
+                                    <!--
+                                    <div class="screen-content">
+                                    </div>
+                                    -->
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -212,15 +236,16 @@
                                 Enfin, c’était avant Le Pélican  ...
                             </div>
                             <div class="manifesto_genese_desc_cta section_cta">
-                                <a href="" data-toggle="modal" data-target="#modal_mail">Rejoindre la communauté Pélican sur Facebook <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a id="manifesto_rejoindrefb" target="_blank" href="https://www.facebook.com/lepelican.eu/">Rejoindre la communauté Pélican sur Facebook <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                             </div>
                             <div class="manifesto_assistant_desc_cta section_cta">
-                                <a href="" data-toggle="modal" data-target="#modal_mail">Aidez-nous à développer notre service  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a id="manifesto_help" href="" data-toggle="modal" data-target="#modal_mail">Aidez-nous à développer notre service  <i class="fa fa-angle-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
+
 
                 </div>
             </div>
@@ -233,8 +258,21 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="manifesto_footer_others">
-                        <p>© Tout droits réservés Le Pélican - Mentions légales</p>
-                        <p>Télécharger le kit presse <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+                        <p>© Tout droits réservés Le Pélican - <a id="manifesto_mention" data-toggle="modal" data-target="#modal_mention" href="">Mentions légales</a></p>
+                        <p>
+                            <a id="manifesto_mailto" target="_blank" href="mailto:contact@le-pelican.eu">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </a>
+                            <a id="manifesto_facebook" target="_blank" href="https://www.facebook.com/lepelican.eu/">
+                                <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                            </a>
+                            <a id="manifesto_twitter" target="_blank" href="https://twitter.com/Le__Pelican">
+                                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                            </a>
+
+                            <a id="manifesto_kitpresse" href="{{ asset('/img/cdp.pdf') }}">Télécharger le kit presse <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                        </p>
                     </div>
                 </div>
             </div>
@@ -242,23 +280,14 @@
     </div>
 </div>
 <!-- MODALS -->
-<!-- Modal video-->
-<div class="modal fade" id="modal_video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="questionscontainer_videocontainer">
-                    <video id="explainervideo" src="{{ asset('/video/landing.mp4') }}" poster="{{ asset('/img/thumb.png') }}" controls="true">
-                    </video>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- Modal mail-->
 <div class="modal fade" id="modal_mail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+
+            <i id="modal_close" class="fa fa-times-circle" aria-hidden="true"></i>
+
             <div class="modal-body">
                 <div class="modal_mail_inside">
                     <div class="section_title">Cette fonctionnalité n'est pas disponible</div>
@@ -270,7 +299,7 @@
                                 <div class="mc-field-group form-group">
                                     <label for="mce-EMAIL"></label>
                                     <div class="controls">
-                                        <input placeholder="Votre Email" type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL">
+                                        <input placeholder="Votre Email" type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" required>
                                     </div>
                                 </div>
                                 <!--
@@ -295,4 +324,86 @@
         </div>
     </div>
 </div>
-{% include 'tpl/footer.html.twig' %}
+<!-- Modal video-->
+<div class="modal fade" id="modal_video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="questionscontainer_videocontainer">
+                    <video id="explainervideo" src="{{ asset('/video/landing.mp4') }}" poster="{{ asset('/img/thumb.png') }}" controls="true">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal mention -->
+<div class="modal fade" id="modal_mention" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <strong>La seule contrepartie à l'utilisation de ces mentions légales, est l'engagement total à laisser le lien crédit subdelirium sur cette page de mentions légales.</strong><br />
+            Vos mentions légales :
+            <h2>Informations légales</h2>
+            <h3>1. Présentation du site.</h3>
+            <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :</p>
+            <p><strong>Propriétaire</strong> : SHIFTTEAM –  – Paris<br />
+                <strong>Créateur</strong>  : <a href="www.le-pelican.eu">SHIFTTEAM</a><br />
+                <strong>Responsable publication</strong> : SHIFTTEAM – SHIFTTEAM<br />
+                Le responsable publication est une personne physique ou une personne morale.<br />
+                <strong>Webmaster</strong> : SHIFTTEAM – SHIFTTEAM<br />
+                <strong>Hébergeur</strong> : PLANETHOSTER – Paris<br />
+                Crédits : <br />
+                Les mentions légales ont été générées et offertes par Subdelirium <a target="_blank" href="http://www.subdelirium.com/generateur-de-mentions-legales/" alt="rédaction des mentions légales">Générateur de mentions légales</a></p>
+
+            <h3>2. Conditions générales d’utilisation du site et des services proposés.</h3>
+            <p>L’utilisation du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> implique l’acceptation pleine et entière des conditions générales d’utilisation ci-après décrites. Ces conditions d’utilisation sont susceptibles d’être modifiées ou complétées à tout moment, les utilisateurs du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> sont donc invités à les consulter de manière régulière.</p>
+            <p>Ce site est normalement accessible à tout moment aux utilisateurs. Une interruption pour raison de maintenance technique peut être toutefois décidée par SHIFTTEAM, qui s’efforcera alors de communiquer préalablement aux utilisateurs les dates et heures de l’intervention.</p>
+            <p>Le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> est mis à jour régulièrement par SHIFTTEAM. De la même façon, les mentions légales peuvent être modifiées à tout moment : elles s’imposent néanmoins à l’utilisateur qui est invité à s’y référer le plus souvent possible afin d’en prendre connaissance.</p>
+            <h3>3. Description des services fournis.</h3>
+            <p>Le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> a pour objet de fournir une information concernant l’ensemble des activités de la société.</p>
+            <p>SHIFTTEAM s’efforce de fournir sur le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> des informations aussi précises que possible. Toutefois, il ne pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.</p>
+            <p>Tous les informations indiquées sur le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.</p>
+            <h3>4. Limitations contractuelles sur les données techniques.</h3>
+            <p>Le site utilise la technologie JavaScript.</p>
+            <p>Le site Internet ne pourra être tenu responsable de dommages matériels liés à l’utilisation du site. De plus, l’utilisateur du site s’engage à accéder au site en utilisant un matériel récent, ne contenant pas de virus et avec un navigateur de dernière génération mis-à-jour</p>
+            <h3>5. Propriété intellectuelle et contrefaçons.</h3>
+            <p>SHIFTTEAM est propriétaire des droits de propriété intellectuelle ou détient les droits d’usage sur tous les éléments accessibles sur le site, notamment les textes, images, graphismes, logo, icônes, sons, logiciels.</p>
+            <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de : SHIFTTEAM.</p>
+            <p>Toute exploitation non autorisée du site ou de l’un quelconque des éléments qu’il contient sera considérée comme constitutive d’une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de Propriété Intellectuelle.</p>
+            <h3>6. Limitations de responsabilité.</h3>
+            <p>SHIFTTEAM ne pourra être tenue responsable des dommages directs et indirects causés au matériel de l’utilisateur, lors de l’accès au site www.le-pelican.eu, et résultant soit de l’utilisation d’un matériel ne répondant pas aux spécifications indiquées au point 4, soit de l’apparition d’un bug ou d’une incompatibilité.</p>
+            <p>SHIFTTEAM ne pourra également être tenue responsable des dommages indirects (tels par exemple qu’une perte de marché ou perte d’une chance) consécutifs à l’utilisation du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a>.</p>
+            <p>Des espaces interactifs (possibilité de poser des questions dans l’espace contact) sont à la disposition des utilisateurs. SHIFTTEAM se réserve le droit de supprimer, sans mise en demeure préalable, tout contenu déposé dans cet espace qui contreviendrait à la législation applicable en France, en particulier aux dispositions relatives à la protection des données. Le cas échéant, SHIFTTEAM se réserve également la possibilité de mettre en cause la responsabilité civile et/ou pénale de l’utilisateur, notamment en cas de message à caractère raciste, injurieux, diffamant, ou pornographique, quel que soit le support utilisé (texte, photographie…).</p>
+            <h3>7. Gestion des données personnelles.</h3>
+            <p>En France, les données personnelles sont notamment protégées par la loi n° 78-87 du 6 janvier 1978, la loi n° 2004-801 du 6 août 2004, l'article L. 226-13 du Code pénal et la Directive Européenne du 24 octobre 1995.</p>
+            <p>A l'occasion de l'utilisation du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a>, peuvent êtres recueillies : l'URL des liens par l'intermédiaire desquels l'utilisateur a accédé au site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a>, le fournisseur d'accès de l'utilisateur, l'adresse de protocole Internet (IP) de l'utilisateur.</p>
+            <p> En tout état de cause SHIFTTEAM ne collecte des informations personnelles relatives à l'utilisateur que pour le besoin de certains services proposés par le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a>. L'utilisateur fournit ces informations en toute connaissance de cause, notamment lorsqu'il procède par lui-même à leur saisie. Il est alors précisé à l'utilisateur du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> l’obligation ou non de fournir ces informations.</p>
+            <p>Conformément aux dispositions des articles 38 et suivants de la loi 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, tout utilisateur dispose d’un droit d’accès, de rectification et d’opposition aux données personnelles le concernant, en effectuant sa demande écrite et signée, accompagnée d’une copie du titre d’identité avec signature du titulaire de la pièce, en précisant l’adresse à laquelle la réponse doit être envoyée.</p>
+            <p>Aucune information personnelle de l'utilisateur du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> n'est publiée à l'insu de l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule l'hypothèse du rachat de SHIFTTEAM et de ses droits permettrait la transmission des dites informations à l'éventuel acquéreur qui serait à son tour tenu de la même obligation de conservation et de modification des données vis à vis de l'utilisateur du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a>.</p>
+            <p>Le site n'est pas déclaré à la CNIL car il ne recueille pas d'informations personnelles. .</p>
+            <p>Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998 transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.</p>
+            <h3>8. Liens hypertextes et cookies.</h3>
+            <p>Le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> contient un certain nombre de liens hypertextes vers d’autres sites, mis en place avec l’autorisation de SHIFTTEAM. Cependant, SHIFTTEAM n’a pas la possibilité de vérifier le contenu des sites ainsi visités, et n’assumera en conséquence aucune responsabilité de ce fait.</p>
+            <p>La navigation sur le site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> est susceptible de provoquer l’installation de cookie(s) sur l’ordinateur de l’utilisateur. Un cookie est un fichier de petite taille, qui ne permet pas l’identification de l’utilisateur, mais qui enregistre des informations relatives à la navigation d’un ordinateur sur un site. Les données ainsi obtenues visent à faciliter la navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de fréquentation.</p>
+            <p>Le refus d’installation d’un cookie peut entraîner l’impossibilité d’accéder à certains services. L’utilisateur peut toutefois configurer son ordinateur de la manière suivante, pour refuser l’installation des cookies :</p>
+            <p>Sous Internet Explorer : onglet outil (pictogramme en forme de rouage en haut a droite) / options internet. Cliquez sur Confidentialité et choisissez Bloquer tous les cookies. Validez sur Ok.</p>
+            <p>Sous Firefox : en haut de la fenêtre du navigateur, cliquez sur le bouton Firefox, puis aller dans l'onglet Options. Cliquer sur l'onglet Vie privée.
+                Paramétrez les Règles de conservation sur :  utiliser les paramètres personnalisés pour l'historique. Enfin décochez-la pour  désactiver les cookies.</p>
+            <p>Sous Safari : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par un rouage). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section "Confidentialité", cliquez sur Paramètres de contenu. Dans la section "Cookies", vous pouvez bloquer les cookies.</p>
+            <p>Sous Chrome : Cliquez en haut à droite du navigateur sur le pictogramme de menu (symbolisé par trois lignes horizontales). Sélectionnez Paramètres. Cliquez sur Afficher les paramètres avancés. Dans la section "Confidentialité", cliquez sur préférences.  Dans l'onglet "Confidentialité", vous pouvez bloquer les cookies.</p>
+
+            <h3>9. Droit applicable et attribution de juridiction.</h3>
+            <p>Tout litige en relation avec l’utilisation du site <a href="http://www.le-pelican.eu/">www.le-pelican.eu</a> est soumis au droit français. Il est fait attribution exclusive de juridiction aux tribunaux compétents de Paris.</p>
+            <h3>10. Les principales lois concernées.</h3>
+            <p>Loi n° 78-17 du 6 janvier 1978, notamment modifiée par la loi n° 2004-801 du 6 août 2004 relative à l'informatique, aux fichiers et aux libertés.</p>
+            <p> Loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.</p>
+            <h3>11. Lexique.</h3>
+            <p>Utilisateur : Internaute se connectant, utilisant le site susnommé.</p>
+            <p>Informations personnelles : « les informations qui permettent, sous quelque forme que ce soit, directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4 de la loi n° 78-17 du 6 janvier 1978).</p>
+
+        </div>
+    </div>
+</div>
+{% include 'tpl/footerhome.html.twig' %}
