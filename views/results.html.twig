@@ -60,6 +60,13 @@
 
                                     <form class="animated fadeInDown" action="{{ path('city') }}" method="POST" id="formulaireResults">
 
+                                        <input type="hidden" name="q1finder_gender" value="{{ q1finder_gender }}">
+                                        <input type="hidden" name="q2finder_age" value="{{ q2finder_age }}">
+                                        <input type="hidden" name="q3finder_avis" value="{{ q3finder_avis }}">
+                                        <input type="hidden" name="q4finder_distance" value="{{ q4finder_distance }}">
+                                        <input type="hidden" name="q5finder_climat" value="{{ q5finder_climat }}">
+                                        <input type="hidden" name="q6finder_budget" value="{{ q6finder_budget }}">
+
                                         <input type="hidden" name="formulaireCityId" value="{{ city_id }}">
                                         <input type="hidden" name="formulairehealth_care_index" value="{{ health_care_index }}">
                                         <input type="hidden" name="formulairecrime_index" value="{{ crime_index }}">

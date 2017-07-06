@@ -4015,6 +4015,13 @@ border: none;
 margin-left: 25px
 }
 
+.manifesto_jumbo_content .section_cta{
+    text-align: left;
+}
+.manifesto_jumbo_content .section_cta a{
+ font-size: 2.5em;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 1);
+}
 /*explainer*/
 
 .manifesto_explainer{
@@ -4218,21 +4225,26 @@ margin-left: 25px
 
 .manifesto_assistant{
 
-    background: #0089e9;
+    background: #cce8fb;
+    //opacity: .2;
 }
 
 .manifesto_assistant .section_title{
     text-align: left;
     margin-bottom: 50px;
+    color:#0089e9;
 }
 .manifesto_assistant .section_sub_title{
     text-align: left;
     margin-bottom: 50px;
+    color:#0089e9;
+
 }
 .manifesto_assistant .section_txt{
     text-align: left;
     line-height: 2em;
     margin-bottom: 50px;
+    color:#58595b;
 
 }
 .manifesto_assistant .section_cta{

@@ -48,10 +48,48 @@ class UserDAO
      * @return \landingSILEX\Custom\User
      */
     private function buildUser(array $row) {
+
         $user = new User();
         $user->setId($row['id']);
         $user->setidVille($row['idVille']);
+        $user->setvilleName($row['villeName']);
         $user->setmailUser($row['mailUser']);
+        $user->setresq1($row['reponseq1']);
+        $user->setresq2($row['reponseq2']);
+        $user->setresq3($row['reponseq3']);
+        $user->setresq4($row['reponseq4']);
+        $user->setresq5($row['reponseq5']);
+        $user->setresq6($row['reponseq6']);
         return $user;
+
     }
+
+    /*
+    /**
+     * Saves a comment into the database.
+     *
+     * @param \landingSILEX\Custom\User $user the user to save
+     */
+    /*
+    public function save(User $user) {
+        $userData= array(
+            'user_mail' => $user->getmailUser(),
+            'city_name' => $user->getvilleName()
+        );
+
+        /*
+        if ($comment->getId()) {
+            // The comment has already been saved : update it
+            $this->getDb()->update('t_comment', $commentData, array('com_id' => $comment->getId()));
+        } else {
+            // The comment has never been saved : insert it
+            $this->getDb()->insert('t_comment', $commentData);
+            // Get the id of the newly created comment and set it on the entity.
+            $id = $this->getDb()->lastInsertId();
+            $comment->setId($id);
+        }
+        */
+    /*}
+    */
+
 }

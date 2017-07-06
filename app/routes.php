@@ -35,6 +35,7 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
     var_dump($finder_budget);
     */
 
+
     /*
      *      1 - On récupère les villes des 6 pays les plus attractifs de notre bdd dans un tab
      *          Canada - Portugal - Espagne - Maroc - Thailande - Indonésie
@@ -779,6 +780,13 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
 
     return $app['twig']->render('results.html.twig', array(
 
+        'q1finder_gender' => $finder_gender,
+        'q2finder_age' => $finder_age,
+        'q3finder_avis' => $request->get('finder_avis'),
+        'q4finder_distance' => $request->get('finder_distance'),
+        'q5finder_climat' => $request->get('finder_climat'),
+        'q6finder_budget' => $request->get('finder_budget'),
+
         'city_id' => $finalCity['city_id'],
         'gmap_id' => $finalCity['gmap_id'],
         'gmap_formatted_address' => $finalCity['gmap_formatted_address'],
@@ -805,8 +813,51 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
 
 })->bind('results');
 
-// mail
+// city
 $app->post('/city', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
+
+
+    //var_dump($request);
+
+    /*
+     *      ON RENTRE DANS LA BASE
+     */
+
+    $app['db']->insert('user', array(
+            'villeName' => $request->get('formulairecity_name'),
+            'mailUser' => $request->get('formulaireMailClient'),
+            'reponseq1' => $request->get('q1finder_gender'),
+            'reponseq2' => $request->get('q2finder_age'),
+            'reponseq3' => $request->get('q3finder_avis'),
+            'reponseq4' => $request->get('q4finder_distance'),
+            'reponseq5' => $request->get('q5finder_climat'),
+            'reponseq6' => $request->get('q6finder_budget')
+        )
+    );
+
+    //die();
+
+    // you can fetch the EntityManager via $this->getDoctrine()
+    // or you can add an argument to your action: createAction(EntityManagerInterface $em)
+    /*
+    $em = $app['dao.user']->get('doctrine')->getManager();
+
+    $user = new landingSILEX\Custom\User();
+
+    $user->setvilleName($request->get('formulairecity_name'));
+    $user->setmailUser($request->get('formulaireMailClient'));
+    $user->setresq1($request->get('q1finder_gender'));
+    $user->setresq2($request->get('q2finder_age'));
+    $user->setresq3($request->get('q3finder_avis'));
+    $user->setresq4($request->get('q4finder_distance'));
+    $user->setresq5($request->get('q5finder_climat'));
+    $user->setresq6($request->get('q6finder_budget'));
+
+    $em->persist($user);
+
+    $em->flush();
+    */
+
 
 
     /*
