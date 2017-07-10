@@ -151,8 +151,46 @@ $(document).ready(function() {
     $('.previousnumber_one').on('click', function(e) {
         console.log('click select number');
 
+
+
     });
 
+
+    // second question validation -> AGE 2
+
+    $('#formselectage').on('change', function(){
+
+        //console.log($(this).attr('name'));
+        //$('#buttonage').html();
+
+        //console.log($(this));
+
+        var optionSelected = $("option:selected", this);
+        var valueSelected = this.value;
+
+        console.log(optionSelected);
+        console.log(valueSelected);
+
+        $('#buttonage').html(valueSelected);
+
+
+    });
+
+    $('#buttonagevalid').on('click', function(){
+
+
+        console.log('clickagevalidaiton');
+
+        // writing answer in final form
+        $('#finder_gender').attr('value', $('#buttonage').html());
+
+        console.log($('#finder_gender'));
+
+        // go to the other slide
+        /*$.fn.fullpage.moveSlideRight();*/
+
+
+    });
 
     // THIRD question validation -> AVIS
 
@@ -163,6 +201,7 @@ $(document).ready(function() {
             // go to the other slide
             $.fn.fullpage.moveSlideRight();
         }
+
     });
 
     $('.optionAVIS').on('change', function(e) {

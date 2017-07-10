@@ -17,25 +17,39 @@ class Ville
     private $id;
 
     /**
-     * Ville IdPays.
-     *
-     * @var integer
-     */
-    private $IdPays;
-
-    /**
-     * Ville nomVille.
-     *
-     * @var string
-     */
-    private $nomVille;
-
-    /**
-     * Ville coutMensuelVille.
+     * Ville longitude.
      *
      * @var float
      */
-    private $coutMensuelVille;
+    private $longitude;
+
+    /**
+     * Ville latitude.
+     *
+     * @var float
+     */
+    private $latitude;
+
+    /**
+     * Ville idNumbeo.
+     *
+     * @var int
+     */
+    private $idNumbeo;
+
+    /**
+     * Ville nomNumbeo.
+     *
+     * @var string
+     */
+    private $nomNumbeo;
+
+    /**
+     * Ville nomPaysNumbeo.
+     *
+     * @var string
+     */
+    private $nomPaysNumbeo;
 
     public function getId() {
         return $this->id;
@@ -46,30 +60,48 @@ class Ville
         return $this;
     }
 
-    public function getIdPays() {
-        return $this->IdPays;
+    public function getlongitude() {
+        return $this->longitude;
     }
 
-    public function setIdPays($IdPays) {
-        $this->IdPays = $IdPays;
+    public function setlongitude($longitude) {
+        $this->longitude = $longitude;
         return $this;
     }
 
-    public function getnomVille() {
-        return $this->nomVille;
+    public function getlatitude() {
+        return $this->latitude;
     }
 
-    public function setnomVille($nomVille) {
-        $this->nomVille = $nomVille;
+    public function setlatitude($latitude) {
+        $this->latitude = $latitude;
         return $this;
     }
 
-    public function getcoutMensuelVille() {
-        return $this->coutMensuelVille;
+    public function getidNumbeo() {
+        return $this->idNumbeo;
     }
 
-    public function setcoutMensuelVille($coutMensuelVille) {
-        $this->coutMensuelVille = $coutMensuelVille;
+    public function setidNumbeo($idNumbeo) {
+        $this->idNumbeo = $idNumbeo;
+        return $this;
+    }
+
+    public function getnomNumbeo() {
+        return $this->nomNumbeo;
+    }
+
+    public function setnomNumbeo($nomNumbeo) {
+        $this->nomNumbeo = $nomNumbeo;
+        return $this;
+    }
+
+    public function getnomPaysNumbeo() {
+        return $this->nomPaysNumbeo;
+    }
+
+    public function setnomPaysNumbeo($nomPaysNumbeo) {
+        $this->nomPaysNumbeo = $nomPaysNumbeo;
         return $this;
     }
 

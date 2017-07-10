@@ -48,11 +48,15 @@ class VilleDAO
      * @return \landingSILEX\Custom\Ville
      */
     private function buildVille(array $row) {
+
         $ville = new Ville();
         $ville->setId($row['id']);
-        $ville->setIdPays($row['IdPays']);
-        $ville->setnomVille($row['nomVille']);
-        $ville->setcoutMensuelVille($row['coutMensuelVille']);
+        $ville->setlongitude($row['longitude']);
+        $ville->setlatitude($row['latitude']);
+        $ville->setidNumbeo($row['idNumbeo']);
+        $ville->setnomNumbeo($row['nomNumbeo']);
+        $ville->setnomPaysNumbeo($row['nomPaysNumbeo']);
         return $ville;
+
     }
 }

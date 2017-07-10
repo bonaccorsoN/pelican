@@ -1,5 +1,226 @@
 <?php
 
+// recommendation
+$app->get('/recommendation', function () use ($app) {
+    return $app['twig']->render('recommendation.html.twig');
+})->bind('recommendation');
+
+// recommendationResults
+$app->post('/recommendationResults', function (Symfony\Component\HttpFoundation\Request $request) use ($app) {
+
+    /*
+     *      BUILDING USER SCORE
+     */
+
+    $user_score_eclater = intval($request->request->get('score_eclate'));
+    $user_score_investir = intval($request->request->get('score_investir'));
+    $user_score_culture = intval($request->request->get('score_culture'));
+    $user_score_humanitaire = intval($request->request->get('score_humanitaire'));
+
+    $user_score_total = $user_score_eclater + $user_score_investir + $user_score_culture + $user_score_humanitaire;
+
+    $user_score_ratio = array(
+
+        'éclater' => ($user_score_eclater/$user_score_total)*100,
+        'investir' => ($user_score_investir/$user_score_total)*100,
+        'culture' => ($user_score_culture/$user_score_total)*100,
+        'humanitaire' => ($user_score_humanitaire/$user_score_total)*100
+
+    );
+
+    /*
+     *      CITIES WE NEED
+     */
+
+    $allcities = $app['dao.ville']->findAll();
+    foreach ($allcities as $allcities_key => $allcities_value){
+        if($allcities_value->getnomPaysNumbeo() === "Canada"){
+            var_dump($allcities_value);
+        }
+        if($allcities_value->getnomPaysNumbeo() === "Thailand"){
+            var_dump($allcities_value);
+        }
+        if($allcities_value->getnomPaysNumbeo() === "Indonesia"){
+            var_dump($allcities_value);
+        }
+    }
+
+    die();
+
+    return $app['twig']->render('recommendationResults.html.twig', array(
+
+        'user_score_ratio' => $user_score_ratio
+
+    ));
+
+})->bind('recommendationResults');
+
+
+// insert
+$app->get('/insert', function () use ($app) {
+
+
+    /*
+    $curl_ville = curl_init();
+    curl_setopt_array($curl_ville, array(
+        CURLOPT_URL => "https://www.numbeo.com/api/cities?api_key=peumbwlgafjj3y",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+    $response_curl_ville = curl_exec($curl_ville);
+    $err = curl_error($curl_ville);
+    curl_close($curl_ville);
+
+    $response_curl_ville_decode = json_decode($response_curl_ville);
+    //var_dump($response_curl_ville_decode->cities);
+
+    foreach ($response_curl_ville_decode->cities as $response_curl_ville_decode_key => $response_curl_ville_decode_value){
+
+        if(isset($response_curl_ville_decode_value->longitude) && isset($response_curl_ville_decode_value->latitude) && isset($response_curl_ville_decode_value->city_id) && isset($response_curl_ville_decode_value->city) && isset($response_curl_ville_decode_value->country)){
+
+        }
+    }
+    */
+
+
+    /*
+    $curl_ville = curl_init();
+    curl_setopt_array($curl_ville, array(
+        CURLOPT_URL => "https://www.numbeo.com/api/city_prices?api_key=peumbwlgafjj3y&city_id=1",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+    $response_curl_ville = curl_exec($curl_ville);
+    $err = curl_error($curl_ville);
+    curl_close($curl_ville);
+
+    $response_curl_ville_decode = json_decode($response_curl_ville);
+    var_dump($response_curl_ville_decode);
+    */
+
+
+    $allCities = $app['dao.ville']->findAll();
+    $party_array = array();
+
+    foreach ($allCities as $allCities_key => $allCities_value){
+
+        //var_dump($allCities_value['']);
+        //var_dump($allCities_value->getidNumbeo());
+
+        $curl_ville = curl_init();
+        curl_setopt_array($curl_ville, array(
+            CURLOPT_URL => "https://www.numbeo.com/api/city_prices?api_key=peumbwlgafjj3y&city_id=".$allCities_value->getidNumbeo(),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache"
+            ),
+        ));
+        $response_curl_ville = curl_exec($curl_ville);
+        $err = curl_error($curl_ville);
+        curl_close($curl_ville);
+        $response_curl_ville_decode = json_decode($response_curl_ville);
+
+        if(empty($response_curl_ville_decode->prices)){
+            //var_dump('no prices');
+        }else{
+
+
+
+            //var_dump($response_curl_ville_decode);
+            //die();
+
+
+
+            $idNumbeo = $allCities_value->getId();
+            $nomNumbeo = $response_curl_ville_decode->name;
+            $currency = $response_curl_ville_decode->currency;
+            $price_fastfood = 'no informations';
+            $price_beermarket = 'no informations';
+            $price_winemarket = 'no informations';
+            $price_transportmonthly = 'no informations';
+            $price_transportonway = 'no informations';
+            $price_taxi = 'no informations';
+
+            foreach ($response_curl_ville_decode->prices as $response_curl_ville_decode_prices_key => $response_curl_ville_decode_prices_value){
+                if($response_curl_ville_decode_prices_value->item_name === "Domestic Beer (0.5 liter draught), Restaurants") {
+                    $price_beermarket = $response_curl_ville_decode_prices_value->average_price;
+                }
+                if($response_curl_ville_decode_prices_value->item_name === "McMeal at McDonalds (or Equivalent Combo Meal), Restaurants") {
+                    $price_fastfood = $response_curl_ville_decode_prices_value->average_price;
+                }
+                if($response_curl_ville_decode_prices_value->item_name === "Bottle of Wine (Mid-Range), Markets") {
+                    $price_winemarket = $response_curl_ville_decode_prices_value->average_price;
+                }
+                if($response_curl_ville_decode_prices_value->item_name === "Monthly Pass (Regular Price), Transportation") {
+                    $price_transportmonthly = $response_curl_ville_decode_prices_value->average_price;
+                }
+                if($response_curl_ville_decode_prices_value->item_name === "One-way Ticket (Local Transport), Transportation") {
+                    $price_transportonway = $response_curl_ville_decode_prices_value->average_price;
+                }
+                if($response_curl_ville_decode_prices_value->item_name === "Taxi Start (Normal Tariff), Transportation") {
+                    $price_taxi = $response_curl_ville_decode_prices_value->average_price;
+                }
+            }
+
+
+            /*
+            var_dump($idNumbeo);
+            var_dump($nomNumbeo);
+            var_dump($currency);
+            var_dump($price_fastfood);
+            var_dump($price_beermarket);
+            var_dump($price_winemarket);
+            var_dump($price_transportmonthly);
+            var_dump($price_transportonway);
+            var_dump($price_taxi);
+            */
+
+
+            $app['db']->insert('prices_party', array(
+                    'idNumbeo' => $idNumbeo,
+                    'nomNumbeo' => $nomNumbeo,
+                    'currency' => $currency,
+                    'price_fastfood' => $price_fastfood,
+                    'price_beermarket' => $price_beermarket,
+                    'price_winemarket' => $price_winemarket,
+                    'price_transportmonthly' => $price_transportmonthly,
+                    'price_transportonway' => $price_transportonway,
+                    'price_taxi' => $price_taxi
+                )
+            );
+
+            //die();
+
+
+            /*
+            var_dump($response_curl_ville_decode);
+            var_dump($response_curl_ville_decode->prices);
+            */
+
+
+        }
+
+    }
+
+    die();
+
+
+    return 'insert page';
+
+})->bind('insert');
 
 // homepage
 $app->get('/manifesto', function () use ($app) {
@@ -26,6 +247,7 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
     $finder_climat = $request->get('finder_climat');
     $finder_budget = $request->get('finder_budget');
 
+
     /*
     var_dump($finder_gender);
     var_dump($finder_age);
@@ -34,6 +256,7 @@ $app->post('/results', function (Symfony\Component\HttpFoundation\Request $reque
     var_dump($finder_climat);
     var_dump($finder_budget);
     */
+
 
 
     /*

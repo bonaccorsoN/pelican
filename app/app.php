@@ -40,6 +40,10 @@ $app['dao.cityIndice'] = function ($app) {
     return new landingSILEX\DAO\CityIndiceDAO($app['db']);
 };
 
+$app['dao.ville'] = function ($app) {
+    return new landingSILEX\DAO\VilleDAO($app['db']);
+};
+
 $app['swiftmailer.options'] = array(
     'host' => 'smtp.sendgrid.net',
     'port' => '465',

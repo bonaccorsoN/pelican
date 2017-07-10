@@ -2050,7 +2050,7 @@ button.btnpelican:hover{
     .insideslide_container{
         height:100%;
         //padding: 20px;
-        padding-top: 59px;
+        padding-top: 100px;
         padding-bottom:50px;
         position: relative;
     }
@@ -2075,6 +2075,8 @@ button.btnpelican:hover{
 @media(max-width: 991px) {
     .insideslide_container .insideslide_inside {
         display: block;
+
+        padding-top:60px;
 
     }
 }
@@ -2484,6 +2486,16 @@ right: 35px;
     /*
     * Q2 - AGE
     */
+
+.formselectage{
+    margin-bottom: 0px;
+}
+
+
+.formselectage select{
+    height: 50px;
+}
+
 
     #ticker {
         width: 100%;
@@ -3644,7 +3656,7 @@ background: #0062ef;
 @media(max-width:991px){
 
     .insideslide_validate{
-        bottom:70px;
+        bottom:10px;
 
     }
 
@@ -3949,7 +3961,7 @@ border: none;
     position: relative;
     height: 100%;
     padding: 20px;
-    background-image: url('../img/bgamdoula.png');
+    background-image: url('../img/backgroundhomenew.png');
     background-size: cover;
     background-position: center;
 }
@@ -4448,6 +4460,39 @@ margin-left: 25px
  * RESULTS
  */
 
+@media(max-width: 991px){
+    .fullpageresults .customvalign{
+        padding-top: 0px !important;
+
+    }
+
+    .fullpageresults h1{
+        font-size: 2em !important;
+    }
+    .fullpageresults h2{
+        font-size: 1.5em!important;
+    }
+}
+
+
+.fullpageresults .insideslide_container{
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 100px;
+}
+.fullpageresults .insideslide_container{
+
+}
+
+.fullpageresults .customvalign{
+    padding-top: 0px;
+}
+
+.fullpageresults .customvalign{
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
 .fullpageresults div.section{
     background: #23c0ff;
 }
@@ -4689,6 +4734,37 @@ margin-bottom: 15px;
     display: flex;
 }
 
+@media(max-width: 991px){
+
+    .compcontainer .citiesContainer{
+        display: block;
+    }
+
+    .compcontainer .citiesContainer > div:first-child{
+        padding-right: 0px;
+        padding-left: 10px;
+    }
+
+    .compcontainer .citiesContainer > div:last-child{
+        padding-right: 10px;
+        padding-left:0px;
+
+    }
+
+    .fullpageresults form{
+        margin-top:25px;
+        margin-bottom:25px;
+
+    }
+
+    .fullpageresults form input[type='text']{
+
+        margin-top:25px;
+        margin-bottom:25px;
+    }
+
+}
+
 .compcontainer .sectionComp .insideslide_container{
     padding-bottom: 0;
 }
@@ -4781,6 +4857,20 @@ float:left;
     padding-top: 100px;
     padding-bottom: 100px;
 }
+
+@media(max-width: 991px){
+    .compfooter button.btnpelican{
+
+        padding:10px !important;
+    }
+    .compfooter{
+        background:  #23c0ff;
+
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+}
+
 
 .overflowhidden{
     overflow:hidden!important;

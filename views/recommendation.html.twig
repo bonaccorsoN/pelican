@@ -1,0 +1,154 @@
+{% include 'tpl/head.html.twig' %}
+<!-- RECO -->
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Parlez-nous un peu de vous</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="artvivre" value="artvivre">
+                                    Arts de vivre
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="solidarite" value="solidarite">
+                                    Solidarité
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="bienetre" value="bienetre">
+                                    Bien être
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="divertissement" value="divertissement">
+                                    Divertissement
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="histoireculture" value="histoireculture">
+                                    Histoire et culture
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="amoureux" value="amoureux">
+                                    En amoureux
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="arts" value="arts">
+                                    Arts
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="sports" value="sports">
+                                    Sports
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="vienocturne" value="vienocturne">
+                                    Vie nocturne
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="aventure" value="aventure">
+                                    Aventure
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input class="recoInput" type="checkbox" name="affaires" value="affaires">
+                                    Affaires
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <form action="{{ path('recommendationResults') }}" method="POST">
+
+                                <input class="recoPost" type="hidden" name="artvivre" value="notchecked">
+                                <input class="recoPost" type="hidden" name="solidarite" value="notchecked">
+                                <input class="recoPost" type="hidden" name="bienetre" value="notchecked">
+                                <input class="recoPost" type="hidden" name="divertissement" value="notchecked">
+                                <input class="recoPost" type="hidden" name="histoireculture" value="notchecked">
+                                <input class="recoPost" type="hidden" name="amoureux" value="notchecked">
+                                <input class="recoPost" type="hidden" name="arts" value="notchecked">
+                                <input class="recoPost" type="hidden" name="sports" value="notchecked">
+                                <input class="recoPost" type="hidden" name="vienocturne" value="notchecked">
+                                <input class="recoPost" type="hidden" name="aventure" value="notchecked">
+                                <input class="recoPost" type="hidden" name="affaires" value="notchecked">
+
+                                <input id="eclatPost" type="hidden" name="score_eclate" value="0">
+                                <input id="investPost" type="hidden" name="score_investir" value="0">
+                                <input id="culturePost" type="hidden" name="score_culture" value="0">
+                                <input id="humaPost" type="hidden" name="score_humanitaire" value="0">
+
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <input type="submit" class="form-control btn btn-default" value="voir" name="submitrecommendation">
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- /RECO -->
+{% include 'tpl/footerreco.html.twig' %}
