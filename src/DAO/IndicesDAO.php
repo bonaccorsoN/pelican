@@ -3,9 +3,9 @@
 namespace landingSILEX\DAO;
 
 use Doctrine\DBAL\Connection;
-use landingSILEX\Custom\CityIndice;
+use landingSILEX\Custom\Indices;
 
-class CityIndiceDAO
+class IndicesDAO
 {
     /**
      * Database connection
@@ -45,10 +45,10 @@ class CityIndiceDAO
      * Creates an pays object based on a DB row.
      *
      * @param array $row The DB row containing pays data.
-     * @return \landingSILEX\Custom\CityIndice
+     * @return \landingSILEX\Custom\Indices
      */
     private function buildCityIndice(array $row) {
-        $city_indice = new CityIndice();
+        $city_indice = new Indices();
         $city_indice->setcity_id($row['city_id']);
         $city_indice->setgmap_id($row['gmap_id']);
         $city_indice->setgmap_formatted_address($row['gmap_formatted_address']);

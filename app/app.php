@@ -37,7 +37,7 @@ $app['dao.user'] = function ($app) {
     return new landingSILEX\DAO\UserDAO($app['db']);
 };
 $app['dao.cityIndice'] = function ($app) {
-    return new landingSILEX\DAO\CityIndiceDAO($app['db']);
+    return new landingSILEX\DAO\IndicesDAO($app['db']);
 };
 
 $app['dao.ville'] = function ($app) {

@@ -51,6 +51,34 @@ class Ville
      */
     private $nomPaysNumbeo;
 
+    /**
+     * Ville score_fete.
+     *
+     * @var float
+     */
+    private $score_fete;
+
+    /**
+     * Ville score_culture.
+     *
+     * @var float
+     */
+    private $score_culture;
+
+    /**
+     * Ville score_human.
+     *
+     * @var float
+     */
+    private $score_human;
+
+    /**
+     * Ville score_invest.
+     *
+     * @var float
+     */
+    private $score_invest;
+
     public function getId() {
         return $this->id;
     }
@@ -105,4 +133,38 @@ class Ville
         return $this;
     }
 
+    public function getscore_fete() {
+        return $this->score_fete;
+    }
+
+    public function setscore_fete($score_fete) {
+        $this->score_fete = $score_fete;
+        return $this;
+    }
+
+    public function getscore_culture() {
+        return $this->score_culture;
+    }
+
+    public function setscore_culture($score_culture) {
+        $this->score_culture = $score_culture;
+        return $this;
+    }
+
+    public function getscore_human() {
+        return $this->score_human;
+    }
+
+    public function setscore_human($score_human) {
+        $this->score_human = $score_human;
+        return $this;
+    }
+        public function getscore_invest() {
+            return $this->score_invest;
+        }
+
+        public function setscore_invest($score_invest) {
+            $this->score_invest = $score_invest;
+            return $this;
+        }
 }
