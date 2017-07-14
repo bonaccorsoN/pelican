@@ -91,6 +91,15 @@ class Indices
         return $this;
     }
 
+    public function getcpi_index() {
+        return $this->cpi_index;
+    }
+
+    public function setcpi_index($cpi_index) {
+        $this->cpi_index = $cpi_index;
+        return $this;
+    }
+
     public function getcrime_index() {
         return $this->crime_index;
     }

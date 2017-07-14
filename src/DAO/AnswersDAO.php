@@ -1,11 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: nicola
+ * Date: 13/07/2017
+ * Time: 15:37
+ */
+
+use landingSILEX\Custom\answers;
+use Doctrine\DBAL\Connection;
 
 namespace landingSILEX\DAO;
 
-use Doctrine\DBAL\Connection;
-use landingSILEX\Custom\Indices;
 
-class IndicesDAO
+use landingSILEX\Custom\answers;
+
+class AnswersDAO
 {
     /**
      * Database connection
@@ -29,14 +38,14 @@ class IndicesDAO
      * @return array A list of all city indice.
      */
     public function findAll() {
-        $sql = "SELECT * FROM indices";
+        $sql = "SELECT * FROM answers";
         $result = $this->db->fetchAll($sql);
 
         // Convert query result to an array of domain objects
-        $indices = array();
+        $answers = array();
         foreach ($result as $row) {
-            $indicesID = $row['id'];
-            $indices[$indicesID] = $this->buildCityIndice($row);
+            $answersID = $row['id'];
+            $answers[$answersID] = $this->buildCityIndice($row);
         }
         return $indices;
     }
@@ -48,16 +57,16 @@ class IndicesDAO
      * @return \landingSILEX\Custom\Indices
      */
     private function buildCityIndice(array $row) {
-        $indices = new Indices();
-        $indices->setid($row['id']);
-        $indices->setidNumbeo($row['idNumbeo']);
-        $indices->sethealth_care_index($row['health_care_index']);
-        $indices->setcrime_index($row['crime_index']);
-        $indices->setdrinking_water_quality_accessibility($row['drinking_water_quality_accessibility']);
-        $indices->setwater_pollution($row['water_pollution']);
-        $indices->setcpi_index($row['cpi_index']);
-        $indices->setpollution_index($row['pollution_index']);
-        $indices->setair_quality($row['air_quality']);
-        return $indices;
+        $answers = new answers();
+        $answers->setid($row['id']);
+        $answers->setuser_id($row['user_id']);
+        $answers->setage($row['age']);
+        $answers->setsexe($row['sexe']);
+        $answers->setnuage_lifestyle($row['nuage_lifestyle']);
+        $answers->setscore_fete($row['score_fete']);
+        $answers->setscore_human($row['cscore_human']);
+        $answers->setscore_culture($row['score_culture']);
+        $answers->setscore_invest($row['score_invest']);
+        return $answers;
     }
 }
