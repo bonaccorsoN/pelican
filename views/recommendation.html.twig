@@ -1,11 +1,350 @@
 {% include 'tpl/head.html.twig' %}
 <!-- RECO -->
 
+
+    <!-- TAGS BAR -->
+    <div class="tagsBarContainer animated fadeInDown">
+        <div id="tagsBarInside" class="tagsBarInside ">
+            <div class="tagsBarItem tagsBarItemEmpty">
+                <p class="tagsBarItemP"> Choisissez votre premier critère </p>
+            </div>
+            <div class="tagsBarItem tagsBarItemEmpty">
+            </div>
+            <div class="tagsBarItem tagsBarItemEmpty">
+            </div>
+            <div class="tagsBarItem tagsBarItemEmpty">
+            </div>
+            <div class="tagsBarItem tagsBarItemEmpty">
+            </div>
+        </div>
+        <div class="tagsBarFade">
+        </div>
+        <div class="tagsBarNext tagsBarNextDisable">
+
+            <form action="{{ path('recommendationResults') }}" method="POST">
+
+                <input class="recoPost" type="hidden" name="artvivre" value="notchecked">
+                <input class="recoPost" type="hidden" name="solidarite" value="notchecked">
+                <input class="recoPost" type="hidden" name="bienetre" value="notchecked">
+                <input class="recoPost" type="hidden" name="divertissement" value="notchecked">
+                <input class="recoPost" type="hidden" name="histoireculture" value="notchecked">
+                <input class="recoPost" type="hidden" name="amoureux" value="notchecked">
+                <input class="recoPost" type="hidden" name="arts" value="notchecked">
+                <input class="recoPost" type="hidden" name="sports" value="notchecked">
+                <input class="recoPost" type="hidden" name="vienocturne" value="notchecked">
+                <input class="recoPost" type="hidden" name="aventure" value="notchecked">
+                <input class="recoPost" type="hidden" name="affaires" value="notchecked">
+
+                <input id="eclatPost" type="hidden" name="score_eclate" value="0">
+                <input id="investPost" type="hidden" name="score_investir" value="0">
+                <input id="culturePost" type="hidden" name="score_culture" value="0">
+                <input id="humaPost" type="hidden" name="score_humanitaire" value="0">
+
+                <input id="submitUserScore" type="submit" class="form-control btn btn-default" value="5 Restants" name="submitrecommendation">
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- TAGS SELECTOR -->
+
+    <div class="container tagsSelectorContainer ">
+        <div class="rowSelector">
+            <div class="tagsSelectorContainerInside tagsSelectorContainerInsideIntro animated fadeInDown">
+                <div class="tagsSelector tagsSelectorIntro ">
+                    <div class="tagsSelectorInside">
+                        <span>Définissez vos critères</span>
+                         <p>
+                             Afin de vous recommander la meilleur destination sélectionnez les activités qui vous correspondent
+                         </p>
+                    </div>
+                </div>
+            </div>
+            <div class="tagsSelectorContainerInside tagsSelectorContainerInsideIntroBlocs">
+                <div class="rowSelector">
+                    <div class="tagsSelectorContainerInside">
+                        <div class="tagsSelector pillSelector animated fadeInDown">
+                            <div class="tagsSelectorInside tagsSelectorInsideAventures">
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="recoInput" type="checkbox" name="aventure" value="aventure">
+                                        <div class="tagsFilter">
+
+                                        </div>
+                                        <div class="tagsTitle ">
+                                            Aventure
+                                        </div>
+                                        <div class="tagsValidate">
+                                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                        </div>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tagsSelectorContainerInside">
+                        <div class="tagsSelector pillSelector animated fadeInDown">
+                            <div class="tagsSelectorInside tagsSelectorInsideAffaires">
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="recoInput" type="checkbox" name="affaires" value="affaires">
+                                        <div class="tagsFilter">
+                                        </div>
+                                        <div class="tagsTitle ">
+                                            Affaires
+                                        </div>
+                                        <div class="tagsValidate">
+                                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                        </div>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rowSelector">
+                    <div class="tagsSelectorContainerInside">
+                        <div class="tagsSelector pillSelector animated fadeInDown">
+                            <div class="tagsSelectorInside tagsSelectorInsideNocturne">
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="recoInput" type="checkbox" name="vienocturne" value="vienocturne">
+                                        <div class="tagsFilter">
+                                        </div>
+                                        <div class="tagsTitle ">
+                                            Vie nocturne
+                                        </div>
+                                        <div class="tagsValidate">
+                                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                        </div>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tagsSelectorContainerInside">
+                        <div class="tagsSelector pillSelector animated fadeInDown">
+                            <div class="tagsSelectorInside tagsSelectorInsideHistoire">
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input class="recoInput" type="checkbox" name="histoireculture" value="histoireculture">
+                                        <div class="tagsFilter">
+                                        </div>
+                                        <div class="tagsTitle ">
+                                            Histoire et Culture
+                                        </div>
+                                        <div class="tagsValidate">
+                                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                        </div>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rowSelector">
+
+            <div class="tagsSelectorContainerInside">
+                <div class="tagsSelector pillSelector animated fadeInDown">
+                    <div class="tagsSelectorInside tagsSelectorInsideDivertissement">
+
+                        <div class="checkbox">
+                            <label>
+                                <input class="recoInput" type="checkbox" name="divertissement" value="divertissement">
+                                <div class="tagsFilter">
+                                </div>
+                                <div class="tagsTitle ">
+                                    Divertissement
+                                </div>
+                                <div class="tagsValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tagsSelectorContainerInside">
+                <div class="tagsSelector pillSelector animated fadeInDown">
+                    <div class="tagsSelectorInside tagsSelectorInsideSports">
+
+                        <div class="checkbox">
+                            <label>
+                                <input class="recoInput" type="checkbox" name="sports" value="sports">
+                                <div class="tagsFilter">
+                                </div>
+                                <div class="tagsTitle ">
+                                    Sports
+                                </div>
+                                <div class="tagsValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tagsSelectorContainerInside">
+                <div class="tagsSelector pillSelector animated fadeInDown">
+                    <div class="tagsSelectorInside tagsSelectorInsideArts">
+
+                        <div class="checkbox">
+                            <label>
+                                <input class="recoInput" type="checkbox" name="arts" value="arts">
+                                <div class="tagsFilter">
+                                </div>
+                                <div class="tagsTitle ">
+                                    Arts
+                                </div>
+                                <div class="tagsValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tagsSelectorContainerInside">
+                <div class="tagsSelector pillSelector animated fadeInDown">
+                    <div class="tagsSelectorInside tagsSelectorInsideAmoureux">
+
+                        <div class="checkbox">
+                            <label>
+                                <input class="recoInput" type="checkbox" name="amoureux" value="amoureux">
+                                <div class="tagsFilter">
+                                </div>
+                                <div class="tagsTitle ">
+                                    En amoureux
+                                </div>
+                                <div class="tagsValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="rowSelector">
+
+            <div class="tagsSelectorContainerInside">
+                <div class="tagsSelector pillSelector animated fadeInDown">
+                    <div class="tagsSelectorInside tagsSelectorInsideArtvivre">
+
+                        <div class="checkbox">
+                            <label>
+                                <input class="recoInput" type="checkbox" name="artvivre" value="artvivre">
+                                <div class="tagsFilter">
+                                </div>
+                                <div class="tagsTitle ">
+                                    Arts de vivre
+                                </div>
+                                <div class="tagsValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tagsSelectorContainerInside">
+                <div class="tagsSelector pillSelector animated fadeInDown">
+                    <div class="tagsSelectorInside tagsSelectorInsideSolidarite">
+
+                        <div class="checkbox">
+                            <label>
+                                <input class="recoInput" type="checkbox" name="solidarite" value="solidarite">
+                                <div class="tagsFilter">
+                                </div>
+                                <div class="tagsTitle ">
+                                    Solidarité
+                                </div>
+                                <div class="tagsValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tagsSelectorContainerInside">
+                <div class="tagsSelector pillSelector animated fadeInDown">
+                    <div class="tagsSelectorInside tagsSelectorInsideBienetre">
+
+                        <div class="checkbox">
+                            <label>
+                                <input class="recoInput" type="checkbox" name="bienetre" value="bienetre">
+                                <div class="tagsFilter">
+                                </div>
+                                <div class="tagsTitle ">
+                                    Bien être
+                                </div>
+                                <div class="tagsValidate">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!--
+    <p class="pillSelector" id="item1">item1</p>
+    <p class="pillSelector" id="item2">item2</p>
+    <p class="pillSelector" id="item3">item3</p>
+    <p class="pillSelector"id="item4">item4</p>
+    <p class="pillSelector" id="item5">item5</p>
+    <p class="pillSelector" id="item6">item6</p>
+    <p class="pillSelector" id="item7">item7</p>
+    <p class="pillSelector" id="item8">item8</p>
+    <p class="pillSelector" id="item9">item9</p>
+    <p class="pillSelector" id="item10">item10</p>
+    <p class="pillSelector" id="item11">item11</p>
+    <p class="pillSelector" id="item12">item12</p>
+    <p class="pillSelector" id="item13">item13</p>
+    <p class="pillSelector" id="item14">item14</p>
+    <p class="pillSelector" id="item15">item15</p>
+    <p class="pillSelector" id="item16">item16</p>
+    <p class="pillSelector" id="item17">item17</p>
+    <p class="pillSelector" id="item18">item18</p>
+    <p class="pillSelector" id="item19">item19</p>
+    <p class="pillSelector" id="item20">item20</p>
+    -->
+
+
+
+<!--
     <div class="container">
 
         <div class="row">
             <div class="col-md-12">
-                <h1>Parlez-nous un peu de vous</h1>
+
+
+
             </div>
         </div>
 
@@ -149,6 +488,8 @@
         </div>
 
     </div>
+
+    -->
 
 <!-- /RECO -->
 {% include 'tpl/footerreco.html.twig' %}

@@ -6,7 +6,7 @@ $app['db.options'] = array(
     'charset'  => 'utf8',
     'host'     => 'localhost',
     'port'     => '3306',
-    'dbname'   => 'pelican',
+    'dbname'   => 'pelican_new',
     'user'     => 'admin_PELICAN',
     'password' => 'pass_PELICAN',
 );

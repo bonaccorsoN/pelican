@@ -5,10 +5,30 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h1>user score</h1>
 
-            <div id="userscore">
-            </div>
+            <h1>villes pouvant vous interesser</h1>
+
+            {% for city_info in cities_infos %}
+
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+
+                        <p><strong>{{ city_info['city_name'] }}</strong></p>
+                        <p>{{ city_info['city_country_name'] }}</p>
+
+                        <form action="{{ path('recommendationDetail') }}" method="POST">
+
+                            <input type="hidden" name="city_id" value="{{ city_info['city_id_numbeo'] }}">
+                            <input type="submit" value="voir la ville" name="voirVilleSubmit">
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
 
         </div>
     </div>
@@ -16,13 +36,6 @@
 </div>
 
 <script>
-
-    /*
-    var user_score_eclater = {% if user_score_ratio is defined %}{{ user_score_ratio['éclater'] }}{% else %}null{% endif %}
-    var user_score_investir = {% if user_score_ratio is defined %}{{ user_score_ratio['investir'] }}{% else %}null{% endif %}
-    var user_score_culture = {% if user_score_ratio is defined %}{{ user_score_ratio['culture'] }}{% else %}null{% endif %}
-    var user_score_humanitaire = {% if user_score_ratio is defined %}{{ user_score_ratio['humanitaire'] }}{% else %}null{% endif %}
-    */
 
 </script>
 

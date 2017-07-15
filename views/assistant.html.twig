@@ -96,7 +96,11 @@
                                 <div class="customvalign">
                                     <h2 class="centertext animated fadeInDown">Le Pélican sélectionne pour vous les endroits qui vous ressemblent. </h2>
                                     <h1 class="centertext animated fadeInDown">Découvrez dès maintenant la destination <br class="titleseparator"> où vous pourriez vivre!</h1>
-                                    <button class="animated fadeInDown btn btn-default btnpelican"> <a id="assistant_start" class="nav__item active" href="#find/q1"> Commencer le test </a> </button>
+
+                                    <!-- <button class="animated fadeInDown btn btn-default btnpelican"> <a id="assistant_start" class="nav__item active" href="#find/q1"> Commencer le test </a> </button> -->
+
+                                    <button class="animated fadeInDown btn btn-default btnpelican"> <a id="assistant_start" class="nav__item active" href="{{ path('recommendation') }}"> Commencer le test </a> </button>
+
                                     <p class="centertext animated fadeInDown"><a href="{{ path('home') }}">Qui sommes nous ?</a></p>
                                 </div>
                             </div>

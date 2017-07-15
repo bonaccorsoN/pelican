@@ -1,5 +1,314 @@
 <?php
 
+// gplaces
+$app->get('/gplaces', function () use ($app) {
+
+
+    // request page one
+    $curl_places = curl_init();
+    curl_setopt_array($curl_places, array(
+        CURLOPT_URL => "https://maps.googleapis.com/maps/api/place/nearbysearch/json?type=bar&key=AIzaSyBHKrTMXenHkW-acn_NOt-dGzboSg-p32E&location=48.866667,2.333333&radius=20000",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+    $response_curl_places = curl_exec($curl_places);
+    $err = curl_error($curl_places);
+    curl_close($curl_places);
+
+    //reponse page one
+    $response_curl_places_decode = json_decode($response_curl_places);
+    //var_dump($response_curl_places_decode);
+
+    //var_dump($response_curl_places_decode->next_page_token);
+
+    foreach ($response_curl_places_decode->results as $response_curl_places_decode_key => $response_curl_places_decode_value){
+
+        var_dump($response_curl_places_decode_value->name);
+
+    }
+
+    // request page two
+
+    /*
+    $curl_places_second = curl_init();
+    curl_setopt_array($curl_places_second, array(
+        CURLOPT_URL => "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyBHKrTMXenHkW-acn_NOt-dGzboSg-p32E&pagetoken=".$response_curl_places_decode->next_page_token,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+    $response_curl_places_second = curl_exec($curl_places_second);
+    $err = curl_error($curl_places_second);
+    curl_close($curl_places_second);
+    */
+
+    // response page two
+
+    /*
+    $response_curl_places_second_decode = json_decode($response_curl_places_second);
+    var_dump($response_curl_places_second_decode);
+    */
+
+
+    die();
+
+    //return $app['twig']->render('assistant.html.twig');
+})->bind('gplaces');
+
+// insertbis
+$app->get('/insertbis', function () use ($app) {
+
+    var_dump('insert');
+    die();
+
+    /*
+    $curl_ville = curl_init();
+    curl_setopt_array($curl_ville, array(
+        CURLOPT_URL => "https://www.numbeo.com/api/city_prices?api_key=peumbwlgafjj3y&city_id=1",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+    $response_curl_ville = curl_exec($curl_ville);
+    $err = curl_error($curl_ville);
+    curl_close($curl_ville);
+
+    $response_curl_ville_decode = json_decode($response_curl_ville);
+    */
+
+    /*
+    $curl_items_prices = curl_init();
+    curl_setopt_array($curl_items_prices, array(
+        CURLOPT_URL => "https://www.numbeo.com/api/city_prices?api_key=peumbwlgafjj3y&query=Paris",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "cache-control: no-cache"
+        ),
+    ));
+
+    $response_curl_items_prices = curl_exec($curl_items_prices);
+    $err = curl_error($curl_items_prices);
+    curl_close($curl_items_prices);
+    $response_curl_items_prices_decode = json_decode($response_curl_items_prices);
+    var_dump($response_curl_items_prices_decode);
+    die();
+    */
+
+
+    $fiveCountries = $app['dao.ville']->findFiveCountries();
+    //var_dump($fiveCountries);
+
+    foreach ($fiveCountries as $fiveCountries_key => $fiveCountries_value){
+
+        //var_dump($fiveCountries_value->getidNumbeo());
+        $curl_items_prices = curl_init();
+        curl_setopt_array($curl_items_prices, array(
+            CURLOPT_URL => "https://www.numbeo.com/api/city_prices?api_key=peumbwlgafjj3y&city_id=".$fiveCountries_value->getidNumbeo(),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "cache-control: no-cache"
+            ),
+        ));
+
+        $response_curl_items_prices = curl_exec($curl_items_prices);
+        $err = curl_error($curl_items_prices);
+        curl_close($curl_items_prices);
+        $response_curl_items_prices_decode = json_decode($response_curl_items_prices);
+
+        $data_prices_to_insert = array(
+
+                'city_idNumbeo' => $fiveCountries_value->getidNumbeo(),
+                'city_name' => '',
+                'city_currency' => '',
+                'price_cheap_restaurant' => '',
+                'price_expensive_restaurant' => '',
+                'price_beer_domestic_restaurant' => '',
+                'price_beer_imported_restaurant' => '',
+                'price_wine' => '',
+                'price_beer_domestic' => '',
+                'price_beer_imported' => '',
+                'price_transport_one_way' => '',
+                'price_transport_monthly' => '',
+                'price_taxi_start' => '',
+                'price_taxi_one_miles' => '',
+                'price_taxi_one_hours_wait' => '',
+                'price_basics' => '',
+                'price_cinema' => '',
+                'price_fitness_club' => '',
+                'apartment_one' => '',
+                'apartment_three' => '',
+                'apartment_square_feet' => '',
+
+        );
+
+        if(!empty($response_curl_items_prices_decode->name)){
+            $data_prices_to_insert['city_name'] = $response_curl_items_prices_decode->name;
+        }
+
+        if(!empty($response_curl_items_prices_decode->currency)){
+            $data_prices_to_insert['city_currency'] = $response_curl_items_prices_decode->currency;
+        }
+
+
+        foreach ($response_curl_items_prices_decode->prices as $response_curl_items_prices_decode_key => $response_curl_items_prices_decode_value){
+
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Meal, Inexpensive Restaurant, Restaurants'){
+                $data_prices_to_insert['price_cheap_restaurant'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Meal for 2 People, Mid-range Restaurant, Three-course, Restaurants'){
+                $data_prices_to_insert['price_expensive_restaurant'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Domestic Beer (0.5 liter draught), Restaurants'){
+                $data_prices_to_insert['price_beer_domestic_restaurant'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Imported Beer (0.33 liter bottle), Restaurants'){
+                $data_prices_to_insert['price_beer_imported_restaurant'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Bottle of Wine (Mid-Range), Markets'){
+                $data_prices_to_insert['price_wine'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Domestic Beer (0.5 liter bottle), Markets'){
+                $data_prices_to_insert['price_beer_domestic'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Imported Beer (0.33 liter bottle), Markets'){
+                $data_prices_to_insert['price_beer_imported'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'One-way Ticket (Local Transport), Transportation'){
+                $data_prices_to_insert['price_transport_one_way'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Monthly Pass (Regular Price), Transportation'){
+                $data_prices_to_insert['price_transport_monthly'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Taxi Start (Normal Tariff), Transportation'){
+                $data_prices_to_insert['price_taxi_start'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Taxi 1km (Normal Tariff), Transportation'){
+                $data_prices_to_insert['price_taxi_one_miles'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Taxi 1hour Waiting (Normal Tariff), Transportation'){
+                $data_prices_to_insert['price_taxi_one_hours_wait'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Basic (Electricity, Heating, Water, Garbage) for 85m2 Apartment, Utilities (Monthly)'){
+                $data_prices_to_insert['price_basics'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Cinema, International Release, 1 Seat, Sports And Leisure'){
+                $data_prices_to_insert['price_cinema'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Fitness Club, Monthly Fee for 1 Adult, Sports And Leisure'){
+                $data_prices_to_insert['price_fitness_club'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Apartment (1 bedroom) in City Centre, Rent Per Month'){
+                $data_prices_to_insert['apartment_one'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Apartment (3 bedrooms) in City Centre, Rent Per Month'){
+                $data_prices_to_insert['apartment_three'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+            if(!empty($response_curl_items_prices_decode_value->item_name) && $response_curl_items_prices_decode_value->item_name === 'Price per Square Meter to Buy Apartment in City Centre, Buy Apartment Price'){
+                $data_prices_to_insert['apartment_square_feet'] = $response_curl_items_prices_decode_value->average_price;
+            }
+
+
+        }
+
+        if(!empty($data_prices_to_insert['price_cheap_restaurant'])
+            && !empty($data_prices_to_insert['price_expensive_restaurant'])
+            && !empty($data_prices_to_insert['price_beer_domestic_restaurant'])
+            && !empty($data_prices_to_insert['price_beer_imported_restaurant'])
+            && !empty($data_prices_to_insert['price_wine'])
+            && !empty($data_prices_to_insert['price_beer_domestic'])
+            && !empty($data_prices_to_insert['price_beer_imported'])
+            && !empty($data_prices_to_insert['price_transport_one_way'])
+            && !empty($data_prices_to_insert['price_transport_monthly'])
+            && !empty($data_prices_to_insert['price_taxi_start'])
+            && !empty($data_prices_to_insert['price_taxi_one_miles'])
+            && !empty($data_prices_to_insert['price_taxi_one_hours_wait'])
+            && !empty($data_prices_to_insert['price_basics'])
+            && !empty($data_prices_to_insert['price_cinema'])
+            && !empty($data_prices_to_insert['price_fitness_club'])
+            && !empty($data_prices_to_insert['apartment_one'])
+            && !empty($data_prices_to_insert['apartment_three'])
+            && !empty($data_prices_to_insert['apartment_square_feet'])){
+
+
+            //var_dump($data_prices_to_insert);
+            //die();
+
+
+            $app['db']->insert('prices', array(
+
+                    'idNumbeo' => $data_prices_to_insert['city_idNumbeo'],
+                    'currency' => $data_prices_to_insert['city_currency'],
+                    'price_cheap_restaurant' => $data_prices_to_insert['price_cheap_restaurant'],
+                    'price_expensive_restaurant' => $data_prices_to_insert['price_expensive_restaurant'],
+                    'price_beer_domestic_restaurant' => $data_prices_to_insert['price_beer_domestic_restaurant'],
+                    'price_beer_imported_restaurant' => $data_prices_to_insert['price_beer_imported_restaurant'],
+                    'price_wine' => $data_prices_to_insert['price_wine'],
+                    'price_beer_domestic' => $data_prices_to_insert['price_beer_domestic'],
+                    'price_beer_imported' => $data_prices_to_insert['price_beer_imported'],
+                    'price_transport_one_way' => $data_prices_to_insert['price_transport_one_way'],
+                    'price_transport_monthly' => $data_prices_to_insert['price_transport_monthly'],
+                    'price_taxi_start' => $data_prices_to_insert['price_taxi_start'],
+                    'price_taxi_one_miles' => $data_prices_to_insert['price_taxi_one_miles'],
+                    'price_taxi_one_hours_wait' => $data_prices_to_insert['price_taxi_one_hours_wait'],
+                    'price_basics' => $data_prices_to_insert['price_taxi_one_hours_wait'],
+                    'price_cinema' => $data_prices_to_insert['price_cinema'],
+                    'price_fitness_club' => $data_prices_to_insert['price_fitness_club'],
+                    'apartment_one' => $data_prices_to_insert['apartment_one'],
+                    'apartment_three' => $data_prices_to_insert['apartment_three'],
+                    'apartment_square_feet' => $data_prices_to_insert['apartment_square_feet']
+
+                )
+            );
+
+        }
+
+        //var_dump($data_prices_to_insert);
+        //die();
+
+
+    }
+
+    //die();
+
+});
+
 // recommendation
 $app->get('/recommendation', function () use ($app) {
     return $app['twig']->render('recommendation.html.twig');
@@ -7,6 +316,10 @@ $app->get('/recommendation', function () use ($app) {
 
 // recommendationResults
 $app->post('/recommendationResults', function (Symfony\Component\HttpFoundation\Request $request) use ($app) {
+
+
+    var_dump($request);
+    die();
 
     /*
      *      BUILDING USER SCORE
@@ -19,6 +332,15 @@ $app->post('/recommendationResults', function (Symfony\Component\HttpFoundation\
 
     $user_score_total = $user_score_eclater + $user_score_investir + $user_score_culture + $user_score_humanitaire;
 
+    $user_score_tab = array(
+
+        'éclater' => $user_score_eclater,
+        'investir' => $user_score_investir,
+        'culture' => $user_score_culture,
+        'humanitaire' => $user_score_humanitaire
+
+    );
+
     $user_score_ratio = array(
 
         'éclater' => ($user_score_eclater/$user_score_total)*100,
@@ -28,33 +350,357 @@ $app->post('/recommendationResults', function (Symfony\Component\HttpFoundation\
 
     );
 
+    $user_score_maj_numb = max($user_score_tab);
+    $user_score_maj_type = array_search(max($user_score_tab), $user_score_tab);
+
     /*
-     *      CITIES WE NEED
+    var_dump($user_score_tab);
+    var_dump($user_score_maj_numb);
+    var_dump($user_score_ratio);
+    die();
+    */
+
+    //var_dump()
+
+    /*
+     *      QUERY GLOBALE
      */
 
-    $allcities = $app['dao.ville']->findAll();
-    foreach ($allcities as $allcities_key => $allcities_value){
-        if($allcities_value->getnomPaysNumbeo() === "Canada"){
-            var_dump($allcities_value);
+    $allPrices = $app['dao.prices']->findAll();
+    $cities_scores = array();
+    $cities_retained = array();
+
+    foreach ($allPrices as $allPrices_key => $allPrices_value){
+
+
+        $city_score = array(
+
+            'city_id' => $allPrices_value->getidNumbeo(),
+            'eclater' => '',
+            'culture' => '',
+            'invest' => '',
+            'humanitaire' => 0
+
+        );
+
+
+        /*
+         * eclater
+         */
+
+        //$score_eclater = 12;
+        $score_eclater = 0;
+        $score_to_eclater_to_substract = array();
+
+        $currency = $allPrices_value->getcurrency();
+        $price_cheap_restaurant = $allPrices_value->getprice_cheap_restaurant();
+        $price_beer_domestic_restaurant = $allPrices_value->getprice_beer_domestic_restaurant();
+        $price_beer_imported_restaurant = $allPrices_value->getprice_beer_imported_restaurant();
+        $price_wine = $allPrices_value->getprice_wine();
+        $price_beer_domestic = $allPrices_value->getprice_beer_domestic();
+        $price_beer_imported = $allPrices_value->getprice_beer_imported();
+        $price_transport_one_way = $allPrices_value->getprice_transport_one_way();
+        $price_transport_monthly = $allPrices_value->getprice_transport_monthly();
+        $price_taxi_start = $allPrices_value->getprice_taxi_start();
+        $price_taxi_one_miles = $allPrices_value->getprice_taxi_one_miles();
+        $price_taxi_one_hours_wait = $allPrices_value->getprice_taxi_one_hours_wait();
+        $price_fitness_club = $allPrices_value->getprice_fitness_club();
+
+        switch ($currency){
+            case 'MAD':
+                $price_cheap_restaurant_to_euro = $price_cheap_restaurant*0.0908344;
+                $price_beer_domestic_restaurant_to_euro = $price_beer_domestic_restaurant*0.0908344;
+                $price_beer_imported_restaurant_to_euro = $price_beer_imported_restaurant*0.0908344;
+                $price_wine_to_euro = $price_wine*0.0908344;
+                $price_beer_domestic_to_euro = $price_beer_domestic*0.0908344;
+                $price_beer_imported_to_euro = $price_beer_imported*0.0908344;
+                $price_transport_one_way_to_euro = $price_transport_one_way*0.0908344;
+                $price_transport_monthly_to_euro = $price_transport_monthly*0.0908344;
+                $price_taxi_start_to_euro = $price_taxi_start*0.0908344;
+                $price_taxi_one_miles_to_euro = $price_taxi_one_miles*0.0908344;
+                $price_taxi_one_hours_wait_to_euro = $price_taxi_one_hours_wait*0.0908344;
+                $price_fitness_club_to_euro = $price_fitness_club*0.0908344;
+                break;
+            case 'IDR':
+                $price_cheap_restaurant_to_euro = $price_cheap_restaurant*0.0000656999;
+                $price_beer_domestic_restaurant_to_euro = $price_beer_domestic_restaurant*0.0000656999;
+                $price_beer_imported_restaurant_to_euro = $price_beer_imported_restaurant*0.0000656999;
+                $price_wine_to_euro = $price_wine*0.0000656999;
+                $price_beer_domestic_to_euro = $price_beer_domestic*0.0000656999;
+                $price_beer_imported_to_euro = $price_beer_imported*0.0000656999;
+                $price_transport_one_way_to_euro = $price_transport_one_way*0.0000656999;
+                $price_transport_monthly_to_euro = $price_transport_monthly*0.0000656999;
+                $price_taxi_start_to_euro = $price_taxi_start*0.0000656999;
+                $price_taxi_one_miles_to_euro = $price_taxi_one_miles*0.0000656999;
+                $price_taxi_one_hours_wait_to_euro = $price_taxi_one_hours_wait*0.0000656999;
+                $price_fitness_club_to_euro = $price_fitness_club*0.0000656999;
+                break;
+            case 'CAD':
+                $price_cheap_restaurant_to_euro = $price_cheap_restaurant*0.687987;
+                $price_beer_domestic_restaurant_to_euro = $price_beer_domestic_restaurant*0.687987;
+                $price_beer_imported_restaurant_to_euro = $price_beer_imported_restaurant*0.687987;
+                $price_wine_to_euro = $price_wine*0.687987;
+                $price_beer_domestic_to_euro = $price_beer_domestic*0.687987;
+                $price_beer_imported_to_euro = $price_beer_imported*0.687987;
+                $price_transport_one_way_to_euro = $price_transport_one_way*0.687987;
+                $price_transport_monthly_to_euro = $price_transport_monthly*0.687987;
+                $price_taxi_start_to_euro = $price_taxi_start*0.687987;
+                $price_taxi_one_miles_to_euro = $price_taxi_one_miles*0.687987;
+                $price_taxi_one_hours_wait_to_euro = $price_taxi_one_hours_wait*0.687987;
+                $price_fitness_club_to_euro = $price_fitness_club*0.687987;
+                break;
+            case 'THB':
+                $price_cheap_restaurant_to_euro = $price_cheap_restaurant*0.0258710782;
+                $price_beer_domestic_restaurant_to_euro = $price_beer_domestic_restaurant*0.0258710782;
+                $price_beer_imported_restaurant_to_euro = $price_beer_imported_restaurant*0.0258710782;
+                $price_wine_to_euro = $price_wine*0.0258710782;
+                $price_beer_domestic_to_euro = $price_beer_domestic*0.0258710782;
+                $price_beer_imported_to_euro = $price_beer_imported*0.0258710782;
+                $price_transport_one_way_to_euro = $price_transport_one_way*0.0258710782;
+                $price_transport_monthly_to_euro = $price_transport_monthly*0.0258710782;
+                $price_taxi_start_to_euro = $price_taxi_start*0.0258710782;
+                $price_taxi_one_miles_to_euro = $price_taxi_one_miles*0.0258710782;
+                $price_taxi_one_hours_wait_to_euro = $price_taxi_one_hours_wait*0.0258710782;
+                $price_fitness_club_to_euro = $price_fitness_club*0.0258710782;
+                break;
+            default:
+                $price_cheap_restaurant_to_euro = $price_cheap_restaurant*1;
+                $price_beer_domestic_restaurant_to_euro = $price_beer_domestic_restaurant*1;
+                $price_beer_imported_restaurant_to_euro = $price_beer_imported_restaurant*1;
+                $price_wine_to_euro = $price_wine*1;
+                $price_beer_domestic_to_euro = $price_beer_domestic*1;
+                $price_beer_imported_to_euro = $price_beer_imported*1;
+                $price_transport_one_way_to_euro = $price_transport_one_way*1;
+                $price_transport_monthly_to_euro = $price_transport_monthly*1;
+                $price_taxi_start_to_euro = $price_taxi_start*1;
+                $price_taxi_one_miles_to_euro = $price_taxi_one_miles*1;
+                $price_taxi_one_hours_wait_to_euro = $price_taxi_one_hours_wait*1;
+                $price_fitness_club_to_euro = $price_fitness_club*1;
+                break;
         }
-        if($allcities_value->getnomPaysNumbeo() === "Thailand"){
-            var_dump($allcities_value);
+
+        if($price_cheap_restaurant_to_euro < 14){
+            array_push($score_to_eclater_to_substract, '1');
         }
-        if($allcities_value->getnomPaysNumbeo() === "Indonesia"){
-            var_dump($allcities_value);
+        if($price_beer_domestic_restaurant_to_euro < 6){
+            array_push($score_to_eclater_to_substract, '1');
         }
+        if($price_beer_imported_restaurant_to_euro < 6){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_wine_to_euro < 6.75){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_beer_domestic_to_euro < 1.89){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_beer_imported_to_euro < 2.14){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_transport_one_way_to_euro < 1.90){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_transport_monthly_to_euro < 73){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_taxi_start_to_euro < 4){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_taxi_one_miles_to_euro < 2.09){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_taxi_one_hours_wait_to_euro < 35){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+        if($price_fitness_club_to_euro < 47.80){
+            array_push($score_to_eclater_to_substract, '1');
+        }
+
+        $city_final_score_eclater = $score_eclater + count($score_to_eclater_to_substract);
+
+        /*
+         * culture
+         */
+
+        //$score_culture = 3;
+        $score_culture = 0;
+        $score_to_substract_to_culture = array();
+
+        $currency = $allPrices_value->getcurrency();
+        $price_expensive_restaurant = $allPrices_value->getprice_expensive_restaurant();
+        $price_cinema = $allPrices_value->getprice_cinema();
+        $price_fitness_club = $allPrices_value->getprice_fitness_club();
+
+
+        switch ($currency){
+            case 'MAD':
+                $price_expensive_restaurant_to_euro = $price_expensive_restaurant*0.0908344;
+                $price_cinema_to_euro = $price_cinema*0.0908344;
+                $price_fitness_club_to_euro = $price_fitness_club*0.0908344;
+                break;
+            case 'IDR':
+                $price_expensive_restaurant_to_euro = $price_expensive_restaurant*0.0000656999;
+                $price_cinema_to_euro = $price_cinema*0.0000656999;
+                $price_fitness_club_to_euro = $price_fitness_club*0.0000656999;
+                break;
+            case 'CAD':
+                $price_expensive_restaurant_to_euro = $price_expensive_restaurant*0.687987;
+                $price_cinema_to_euro = $price_cinema*0.687987;
+                $price_fitness_club_to_euro = $price_fitness_club*0.687987;
+                break;
+            case 'THB':
+                $price_expensive_restaurant_to_euro = $price_expensive_restaurant*0.0258710782;
+                $price_cinema_to_euro = $price_cinema*0.0258710782;
+                $price_fitness_club_to_euro = $price_fitness_club*0.0258710782;
+                break;
+            default:
+                $price_expensive_restaurant_to_euro = $price_expensive_restaurant*1;
+                $price_cinema_to_euro = $price_cinema*1;
+                $price_fitness_club_to_euro = $price_fitness_club*1;
+                break;
+        }
+
+        if($price_expensive_restaurant_to_euro < 50){
+            array_push($score_to_substract_to_culture, '1');
+        }
+        if($price_cinema_to_euro < 11){
+            array_push($score_to_substract_to_culture, '1');
+        }
+        if($price_fitness_club_to_euro < 47.80){
+            array_push($score_to_substract_to_culture, '1');
+        }
+
+        $city_final_score_culture = $score_culture + count($score_to_substract_to_culture);
+
+        /*
+         * invest
+         */
+
+        //$score_invest = 4;
+        $score_invest = 0;
+        $score_to_substract_to_invest = array();
+
+        $currency = $allPrices_value->getcurrency();
+        $price_basics = $allPrices_value->getprice_basics();
+        $apartment_one = $allPrices_value->getapartment_one();
+        $apartment_three = $allPrices_value->getapartment_three();
+        $apartment_square_feet = $allPrices_value->getapartment_square_feet();
+
+        switch ($currency){
+            case 'MAD':
+                $price_basics_to_euro = $price_basics*0.0908344;
+                $apartment_one_euro = $apartment_one*0.0908344;
+                $apartment_three_to_euro = $apartment_three*0.0908344;
+                $apartment_square_feet_to_euro = $apartment_square_feet*0.0908344;
+                break;
+            case 'IDR':
+                $price_basics_to_euro = $price_basics*0.0000656999;
+                $apartment_one_euro = $apartment_one*0.0000656999;
+                $apartment_three_to_euro = $apartment_three*0.0000656999;
+                $apartment_square_feet_to_euro = $apartment_square_feet*0.0000656999;
+                break;
+            case 'CAD':
+                $price_basics_to_euro = $price_basics*0.687987;
+                $apartment_one_euro = $apartment_one*0.687987;
+                $apartment_three_to_euro = $apartment_three*0.687987;
+                $apartment_square_feet_to_euro = $apartment_square_feet*0.687987;
+                break;
+            case 'THB':
+                $price_basics_to_euro = $price_basics*0.0258710782;
+                $apartment_one_euro = $apartment_one*0.0258710782;
+                $apartment_three_to_euro = $apartment_three*0.0258710782;
+                $apartment_square_feet_to_euro = $apartment_square_feet*0.0258710782;
+                break;
+            default:
+                $price_basics_to_euro = $price_basics*1;
+                $apartment_one_euro = $apartment_one*1;
+                $apartment_three_to_euro = $apartment_three*1;
+                $apartment_square_feet_to_euro = $apartment_square_feet*1;
+                break;
+        }
+
+
+        if($price_basics_to_euro < 160.96){
+            array_push($score_to_substract_to_invest, '1');
+        }
+        if($apartment_one_euro < 1094.62){
+            array_push($score_to_substract_to_invest, '1');
+        }
+        if($apartment_three_to_euro < 2275.00){
+            array_push($score_to_substract_to_invest, '1');
+        }
+        if($apartment_square_feet_to_euro < 894.63){
+            array_push($score_to_substract_to_invest, '1');
+        }
+
+        $city_final_score_invest = $score_invest + count($score_to_substract_to_invest);
+
+
+
+
+        $city_score['eclater'] = $city_final_score_eclater.'/12';
+        $city_score['culture'] = $city_final_score_culture.'/3';
+        $city_score['invest'] = $city_final_score_invest.'/5';
+
+        /*
+        $city_score['eclater'] = $city_final_score_eclater_ratio = ($city_final_score_eclater/20)*100;
+        $city_score['culture'] = $city_final_score_culture_ratio = ($city_final_score_culture/20)*100;
+        $city_score['invest'] = $city_final_score_invest_ratio = ($city_final_score_invest/20)*100;
+        */
+
+        array_push($cities_scores, $city_score);
+
+
     }
 
+    var_dump($user_score_tab);
+    var_dump($user_score_ratio);
+    var_dump($cities_scores);
     die();
+
+
+    /*
+    $cities_infos = array();
+    $allCities = $app['dao.ville']->findAll();
+    foreach ($allCities as $allCities_key => $allCity_value){
+
+        if(in_array($allCity_value->getidNumbeo(), $cities_retained)){
+
+            $city_infos = array(
+                'city_id_numbeo' => $allCity_value->getidNumbeo(),
+                'city_name' => $allCity_value->getnomNumbeo(),
+                'city_country_name' => $allCity_value->getnomPaysNumbeo()
+            );
+
+            array_push($cities_infos, $city_infos);
+
+        }
+
+    }
+    */
+
+    /*
+    var_dump($cities_infos);
+    die();
+    */
 
     return $app['twig']->render('recommendationResults.html.twig', array(
 
-        'user_score_ratio' => $user_score_ratio
+        'cities_infos' => $cities_infos
 
     ));
 
 })->bind('recommendationResults');
 
+// recommendationDetail
+$app->post('/recommendationDetail', function (\Symfony\Component\HttpFoundation\Request $request) use ($app) {
+
+    $city_id = intval($request->request->get('city_id'));
+    return $app['twig']->render('recommendationDetail.html.twig', array(
+        'city_id' => $city_id
+    ));
+
+})->bind('recommendationDetail');
 
 // insert
 $app->get('/insert', function () use ($app) {

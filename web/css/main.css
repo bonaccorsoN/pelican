@@ -4876,6 +4876,703 @@ float:left;
     overflow:hidden!important;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *      RECOMMENDATION PAGE
+ */
+
+    /*
+     *      TAGS
+     */
+
+/*
+::-webkit-scrollbar {
+    display: none;
+}
+*/
+
+.tagsSelectorContainer{
+
+    margin-bottom: 50px;
+    margin-top: 100px;
+
+}
+
+.tagsBarContainer{
+
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    //margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    top:0;
+
+    background: #0072ff;
+
+}
+.tagsBarContainer .tagsBarInside{
+
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+    overflow: auto;
+    box-sizing: border-box;
+
+}
+
+#tagsBarInside::-webkit-scrollbar {
+    display: none;
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem{
+    //min-width: 100px;
+    //background: red;
+    width: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+
+    border-radius: 9999px;
+    box-sizing: border-box;
+    //background: #34495e;
+    color:#0072ff;
+    text-align: center;
+    border: 1px #fff dashed;
+    background: #fff; /* For browsers that do not support gradients */
+
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+
+
+}
+.tagsBarContainer .tagsBarInside .tagsBarItem.tagsBarItemEmpty{
+
+    background: transparent;
+    border: 1px #fff dashed;
+    box-shadow: none;
+    min-width: 110px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+    min-height: 42px;
+
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem p{
+    margin: 0;
+    padding: 10px 25px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+}
+.tagsBarItem:hover{
+    cursor: pointer;
+}
+.tagsBarItem:hover p{
+    text-decoration: line-through;
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem.tagsBarItemEmpty p{
+
+    color: #fff;
+    text-decoration: none;
+
+}
+
+.tagsBarNext{
+    z-index: 999;
+    height: 62px;
+    text-align: right;
+    position: absolute;
+    /* top: 0; */
+    /* bottom: 0; */
+    top: 0;
+    right: 0;
+    /* padding: 0 10px; */
+    background: #0072ff;
+    line-height: 62px;
+    width: 120px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tagsBarNext form{
+    margin-bottom: 0;
+    height: 100%;
+    z-index: 999;
+    height: 62px;
+    text-align: right;
+    position: absolute;
+    /* top: 0; */
+    /* bottom: 0; */
+    top: 0;
+    right: 0;
+    /* padding: 0 10px; */
+    background: #0072ff;
+    line-height: 62px;
+    width: 120px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tagsBarNext.tagsBarNextDisable{
+    //cursor: not-allowed;
+}
+.tagsBarNext input[type='submit']{
+    //padding: 10px 25px;
+    /* background: #0072ff; */
+    /* border-radius: 0px; */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    color: white;
+    /* position: absolute; */
+    /* right: 10px; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+
+    /*
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    */
+
+    position: absolute;
+    top:50%;
+    //left: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    //margin-left: 10px;
+    //margin-right: 10px;
+    //width: 100%;
+    border-radius: 0px;
+    max-width: 100px;
+
+}
+
+.tagsBarNext.tagsBarNextDisable input[type='submit']{
+    background: #fff;
+    //border:1px #bbb solid;
+    color: #0072ff;
+    font-weight: 700;
+    //text-transform: uppercase;
+    cursor: not-allowed;
+
+
+}
+
+.tagsBarNext.tagsBarNextDisable input[type='submit'].nextGo{
+    cursor: pointer;
+}
+
+.tagsBarFade{
+    //background-image: linear-gradient(90deg,rgba(54,70,93,0),#00c6ff);
+
+    background-image: linear-gradient(90deg,rgba(54,70,93,0),#0072ff);
+    height: 62px;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    right: 120px;
+    z-index: 999;
+}
+
+
+.tagsSelectorContainer{
+
+
+
+}
+
+.tagsSelectorContainer .rowSelector{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+
+
+.tagsSelectorContainer .tagsSelectorContainerInside{
+
+    width: 50%;
+    margin-right: 20px;
+
+}
+
+.tagsSelectorContainer .tagsSelectorContainerInside:last-child{
+    margin-left: 0;
+}
+
+.tagsSelectorContainer .tagsSelectorContainerInside:first-child{
+    //margin-right: 30px;
+}
+.tagsSelectorContainer .tagsSelectorContainerInside:last-child{
+    margin-right: 0px;
+}
+
+.tagsSelectorContainer .tagsSelectorContainerInside.tagsSelectorContainerInsideIntro{
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 5px;
+
+    position: relative;
+}
+
+.tagsSelectorContainerInsideIntroBlocs .rowSelector:last-child{
+
+    margin-bottom: 0px;
+
+}
+
+
+.tagsSelector{
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 5px;
+    //margin-bottom: 30px;
+    height: 260px;
+    overflow: hidden;
+
+}
+.tagsSelector .tagsSelectorInside{
+
+}
+
+.tagsSelectorIntro{
+
+    box-shadow:none;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    height: auto;
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 350px;
+    max-width: 350px;
+    transform: translate(-50%, -50%);
+
+}
+
+.tagsSelectorIntro .tagsSelectorInside{
+    /*
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 25px;
+    padding-left: 25px;
+    */
+
+
+}
+
+.tagsSelectorIntro .tagsSelectorInside span{
+
+    font-size: 3em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    max-width: 350px;
+    margin: 0 auto 25px auto;
+    line-height: 1.2em;
+    color: white;
+}
+
+.tagsSelectorIntro .tagsSelectorInside p{
+
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    max-width: 350px;
+    margin: 0 auto;
+    line-height: 1.5em;
+    color: #fff;
+    opacity: .6;
+
+}
+
+
+.tagsSelector .tagsSelectorInside{
+
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+.tagsSelector .tagsSelectorInside .tagsTitle{
+
+    position: absolute;
+    //width: 100%;
+    text-align: center;
+    left:50%;
+    top:75%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    z-index: 100;
+    color: white;
+    font-size: 1.2em;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector .tagsSelectorInside .tagsFilter{
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+    opacity:.4;
+    border-radius: 5px;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector .tagsSelectorInside .tagsValidate{
+
+    position: absolute;
+    top:60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 2.5em;
+    color: white;
+}
+
+
+.tagsSelectorInsideSolidarite{
+    background: url('../img/tags/solidarite.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+}
+.tagsSelectorInsideAffaires{
+    background: url('../img/tags/affaires.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideAmoureux{
+    background: url('../img/tags/amoureux.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideArts{
+    background: url('../img/tags/arts.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideArtvivre{
+    background: url('../img/tags/artvivre.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideSports{
+    background: url('../img/tags/sports.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideBienetre{
+    background: url('../img/tags/bienetre.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideDivertissement{
+    background: url('../img/tags/divertissement.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideHistoire{
+    background: url('../img/tags/histoireculture.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideNocturne{
+    background: url('../img/tags/vienocturne.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideAventures{
+    background: url('../img/tags/aventure.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+
+
+.tagsSelector:hover{
+    cursor: pointer;
+}
+
+.tagsSelector:hover .tagsTitle{
+
+
+    //left:50%;
+    top: 40%;
+    transform: translateX(-50%);
+    //bottom: auto;
+
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector:hover .tagsValidate{
+    opacity: 1;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+}
+
+.tagsSelector:hover .tagsFilter {
+    opacity: .8;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+.tagsSelector:hover .tagsSelectorInside{
+    transform: scale(1.2);
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+
+
+.tagsSelector.tagSelect{
+    cursor: pointer;
+}
+
+.tagsSelector.tagSelect .tagsTitle{
+
+
+//left:50%;
+    top: 40%;
+    transform: translateX(-50%);
+//bottom: auto;
+
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector.tagSelect .tagsValidate{
+    opacity: 1;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+}
+
+.tagsSelector.tagSelect .tagsFilter {
+    opacity: .8;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+.tagsSelector.tagSelect .tagsSelectorInside{
+    transform: scale(1.2);
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+
+.tagsSelectorIntro:hover{
+    cursor: auto;
+}
+
+
+.tagsSelectorIntro:hover .tagsSelectorInside{
+    transform: scale(1);
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+
+.tagsSelectorInside .checkbox{
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    //transform: scale(1);
+
+}
+
+.tagsSelectorInside .checkbox label{
+    padding: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    //visibility: hidden;
+    opacity: 1;
+    color: white;
+}
+.tagsSelectorInside .checkbox label input{
+    margin: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    //visibility: hidden;
+    opacity: 0;
+}
+
+
+@media(max-width: 991px){
+    .tagsBarContainer{
+        //display: none;
+    }
+    .tagsSelectorContainer{
+        margin-top: 75px;
+        margin-bottom: 15px;
+    }
+    .tagsSelectorContainer .tagsSelectorContainerInside.tagsSelectorContainerInsideIntro{
+        display: block;
+    }
+    .tagsSelectorIntro{
+        position: static;
+        top:auto;
+        left:auto;
+        transform: translate(0, 0);
+        height: auto !important;
+        width: 100%;
+        max-width: 100%;
+        padding-top:100px;
+        padding-bottom:50px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 15px;
+
+    }
+
+    .tagsSelectorContainer .rowSelector{
+        display: block;
+        margin : 0;
+    }
+    .tagsSelectorContainer .tagsSelectorContainerInside{
+        width: 100%;
+        margin: 0;
+    }
+
+    .tagsSelector {
+        height: auto;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .tagsSelectorIntro.tagsSelector .tagsSelectorInside{
+        height: auto;
+    }
+
+    .tagsSelector .tagsSelectorInside .tagsTitle{
+        position: static;
+        top: auto;
+        left: auto;
+        transform: translate(0, 0);
+        line-height: 50px;
+        text-align: left;
+        padding-left: 25px;
+    }
+
+    .tagsSelector .tagsSelectorInside .tagsValidate{
+        top:50%;
+        transform: translateY(-50%);
+        opacity: 1;
+    right: 25px;
+        left: auto;
+    }
+
+    .tagsBarContainer .tagsBarInside{
+        display: none;
+    }
+    .tagsBarFade{
+        display: none;
+    }
+    .tagsBarContainer{
+        height: auto;
+        width: 100%;
+    }
+    .tagsBarNext{
+        width: 100%;
+        position: static;
+        top:auto;
+        left:auto;
+        right: auto;
+        transform: translate(0%, 0%);
+        display: block;
+        height: auto;
+
+    }
+
+    .tagsBarNext form{
+        width: 100%;
+        position: relative;
+        height: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .tagsBarNext form input[type='submit']{
+        width: 100%;
+        position: static;
+        top:auto;
+        left:auto;
+        right: auto;
+        transform: translate(0%, 0%);
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+        background: white;
+    }
+
+    .tagsSelector.tagSelect .tagsSelectorInside{
+
+        transform: scale(1);
+
+    }
+
+
+}
+
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
