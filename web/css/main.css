@@ -4876,9 +4876,1759 @@ float:left;
     overflow:hidden!important;
 }
 
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *      RECOMMENDATION PAGE
+ */
+
+    /*
+     *      TAGS
+     */
+
+/*
+::-webkit-scrollbar {
+    display: none;
+}
+*/
+
+.tagsSelectorContainer{
+
+    margin-bottom: 50px;
+    margin-top: 125px;
+
+}
+
+.tagsBarContainer{
+
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    //margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top:0;
+
+    background: #0072ff;
+
+}
+.tagsBarContainer .tagsBarInside{
+
+    display: flex;
+    position: relative;
+    white-space: nowrap;
+    overflow: auto;
+    box-sizing: border-box;
+
+}
+
+#tagsBarInside::-webkit-scrollbar {
+    display: none;
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem{
+    //min-width: 100px;
+    //background: red;
+    width: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+
+    border-radius: 9999px;
+    box-sizing: border-box;
+    //background: #34495e;
+    color:#0072ff;
+    text-align: center;
+    border: 1px #fff dashed;
+    background: #fff; /* For browsers that do not support gradients */
+
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+
+
+}
+.tagsBarContainer .tagsBarInside .tagsBarItem.tagsBarItemEmpty{
+
+    background: transparent;
+    border: 1px #fff dashed;
+    box-shadow: none;
+    min-width: 110px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+    min-height: 42px;
+
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem.tagsBarItemEmpty:hover{
+    cursor: default;
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem p{
+    margin: 0;
+    padding: 10px 25px;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+}
+.tagsBarItem:hover{
+    cursor: pointer;
+}
+.tagsBarItem:hover p{
+    text-decoration: line-through;
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem.tagsBarItemEmpty p{
+
+    color: #fff;
+    text-decoration: none;
+
+}
+
+.tagsBarNext{
+    z-index: 999;
+    height: 62px;
+    text-align: right;
+    position: absolute;
+    /* top: 0; */
+    /* bottom: 0; */
+    top: 0;
+    right: 0;
+    /* padding: 0 10px; */
+    background: #0072ff;
+    line-height: 62px;
+    width: 150px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tagsBarNext form{
+    margin-bottom: 0;
+    height: 100%;
+    z-index: 999;
+    height: 62px;
+    text-align: right;
+    position: absolute;
+    /* top: 0; */
+    /* bottom: 0; */
+    top: 0;
+    right: 0;
+    /* padding: 0 10px; */
+    background: #0072ff;
+    line-height: 62px;
+    width: 120px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.tagsBarNext.tagsBarNextDisable{
+    //cursor: not-allowed;
+}
+.tagsBarNext input[type='submit']{
+    //padding: 10px 25px;
+    /* background: #0072ff; */
+    /* border-radius: 0px; */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    color: white;
+    /* position: absolute; */
+    /* right: 10px; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+
+    /*
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    */
+
+    position: absolute;
+    top:50%;
+    //left: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    //margin-left: 10px;
+    //margin-right: 10px;
+    //width: 100%;
+    border-radius: 0px;
+    max-width: 150px;
+
+    border: none;
+    opacity: 1;
+    border: none;
+    background: white;
+    color: #0072ff;
+
+}
+
+.tagsBarNext a{
+//padding: 10px 25px;
+    /* background: #0072ff; */
+    /* border-radius: 0px; */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    color: white;
+    /* position: absolute; */
+    /* right: 10px; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+
+    /*
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    */
+
+    //position: absolute;
+    //top:50%;
+//left: 50%;
+    //right: 10px;
+    //transform: translateY(-50%);
+//margin-left: 10px;
+//margin-right: 10px;
+//width: 100%;
+    border-radius: 0px;
+    //max-width: 150px;
+
+    border: none;
+    opacity: 1;
+    border: none;
+    background: white;
+    color: #0072ff;
+    padding: 10px 25px;
+}
+
+.tagsBarNext.tagsBarNextDisable input[type='submit']{
+    background: #0072ff;
+    border:1px #fff solid;
+    color: #fff;
+    font-weight: 700;
+    //text-transform: uppercase;
+    cursor: not-allowed;
+    opacity: .6;
+
+    //text-transform: uppercase;
+
+
+}
+
+.tagsBarNext.tagsBarNextDisable a{
+    background: #0072ff;
+    border:1px #fff solid;
+    color: #fff;
+    font-weight: 700;
+//text-transform: uppercase;
+    cursor: not-allowed;
+    opacity: .6;
+
+//text-transform: uppercase;
+}
+
+.tagsBarNext.tagsBarNextDisable a.nextGo{
+    cursor: pointer;
+
+}
+
+.tagsBarNext.tagsBarNextDisable input[type='submit'].nextGo{
+    cursor: pointer;
+}
+
+.tagsBarFade{
+    //background-image: linear-gradient(90deg,rgba(54,70,93,0),#00c6ff);
+
+    background-image: linear-gradient(90deg,rgba(54,70,93,0),#0072ff);
+    height: 62px;
+    width: 60px;
+    position: absolute;
+    top: 0;
+    right: 150px;
+    z-index: 999;
+}
+
+
+.tagsSelectorContainer{
+
+
+
+}
+
+.tagsSelectorContainer .rowSelector{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+
+
+.tagsSelectorContainer .tagsSelectorContainerInside{
+
+    width: 50%;
+    margin-right: 20px;
+
+}
+
+.tagsSelectorContainer .tagsSelectorContainerInside:last-child{
+    margin-left: 0;
+}
+
+.tagsSelectorContainer .tagsSelectorContainerInside:first-child{
+    //margin-right: 30px;
+}
+.tagsSelectorContainer .tagsSelectorContainerInside:last-child{
+    margin-right: 0px;
+}
+
+.tagsSelectorContainer .tagsSelectorContainerInside.tagsSelectorContainerInsideIntro{
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 5px;
+
+    position: relative;
+}
+
+.tagsSelectorContainerInsideIntroBlocs .rowSelector:last-child{
+
+    margin-bottom: 0px;
+
+}
+
+
+.tagsSelector{
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 5px;
+    //margin-bottom: 30px;
+    height: 260px;
+    overflow: hidden;
+
+}
+.tagsSelector .tagsSelectorInside{
+
+}
+
+.tagsSelectorIntro{
+
+    box-shadow:none;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    height: auto;
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 350px;
+    max-width: 350px;
+    transform: translate(-50%, -50%);
+
+}
+
+.tagsSelectorIntro .tagsSelectorInside{
+    /*
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 25px;
+    padding-left: 25px;
+    */
+
+
+}
+
+.tagsSelectorIntro .tagsSelectorInside span{
+
+    font-size: 3em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    max-width: 350px;
+    margin: 0 auto 25px auto;
+    line-height: 1.2em;
+    color: white;
+}
+
+.tagsSelectorIntro .tagsSelectorInside p{
+
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    max-width: 350px;
+    margin: 0 auto;
+    line-height: 1.5em;
+    color: #fff;
+    opacity: .6;
+
+}
+
+
+.tagsSelector .tagsSelectorInside{
+
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+.tagsSelector .tagsSelectorInside .tagsTitle{
+
+    position: absolute;
+    //width: 100%;
+    text-align: center;
+    left:50%;
+    top:75%;
+    transform: translate(-50%, -50%);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    z-index: 100;
+    color: white;
+    font-size: 1.2em;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector .tagsSelectorInside .tagsFilter{
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+    opacity:.4;
+    border-radius: 5px;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector .tagsSelectorInside .tagsValidate{
+
+    position: absolute;
+    top:60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 2.5em;
+    color: white;
+}
+
+
+.tagsSelectorInsideSolidarite{
+    background: url('../img/tags/solidarite.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+}
+.tagsSelectorInsideAffaires{
+    background: url('../img/tags/affaires.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideAmoureux{
+    background: url('../img/tags/amoureux.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideArts{
+    background: url('../img/tags/arts.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideArtvivre{
+    background: url('../img/tags/artvivre.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideSports{
+    background: url('../img/tags/sports.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideBienetre{
+    background: url('../img/tags/bienetre.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideDivertissement{
+    background: url('../img/tags/divertissement.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideHistoire{
+    background: url('../img/tags/histoireculture.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideNocturne{
+    background: url('../img/tags/vienocturne.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+.tagsSelectorInsideAventures{
+    background: url('../img/tags/aventure.png') 50% 50%;
+    background-size: cover;
+    transform: scale(1.1);
+
+}
+
+
+.tagsSelector:hover{
+    cursor: pointer;
+}
+
+.tagsSelector:hover .tagsTitle{
+
+
+    //left:50%;
+    top: 40%;
+    transform: translateX(-50%);
+    //bottom: auto;
+
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector:hover .tagsValidate{
+    opacity: 1;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+}
+
+.tagsSelector:hover .tagsFilter {
+    opacity: .8;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+.tagsSelector:hover .tagsSelectorInside{
+    transform: scale(1.2);
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+
+
+.tagsSelector.tagSelect{
+    cursor: pointer;
+}
+
+.tagsSelector.tagSelect .tagsTitle{
+
+
+//left:50%;
+    top: 40%;
+    transform: translateX(-50%);
+//bottom: auto;
+
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+
+}
+
+.tagsSelector.tagSelect .tagsValidate{
+    opacity: 1;
+    transition: all 1s cubic-bezier(.25,.8,.25,1);
+
+}
+
+.tagsSelector.tagSelect .tagsFilter {
+    opacity: .8;
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+.tagsSelector.tagSelect .tagsSelectorInside{
+    transform: scale(1.2);
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+
+.tagsSelectorIntro:hover{
+    cursor: auto;
+}
+
+
+.tagsSelectorIntro:hover .tagsSelectorInside{
+    transform: scale(1);
+    transition: all 1s cubic-bezier(.25, .8, .25, 1);
+
+}
+
+
+
+.tagsSelectorInside .checkbox{
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    //transform: scale(1);
+
+}
+
+.tagsSelectorInside .checkbox label{
+    padding: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    //visibility: hidden;
+    opacity: 1;
+    color: white;
+}
+.tagsSelectorInside .checkbox label input{
+    margin: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    //visibility: hidden;
+    opacity: 0;
+}
+
+
+@media(max-width: 991px){
+    .tagsBarContainer{
+        //display: none;
+    }
+    .tagsSelectorContainer{
+        margin-top: 75px;
+        margin-bottom: 15px;
+    }
+    .tagsSelectorContainer .tagsSelectorContainerInside.tagsSelectorContainerInsideIntro{
+        display: block;
+    }
+    .tagsSelectorIntro{
+        position: static;
+        top:auto;
+        left:auto;
+        transform: translate(0, 0);
+        height: auto !important;
+        width: 100%;
+        max-width: 100%;
+        padding-top:100px;
+        padding-bottom:50px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 15px;
+
+    }
+
+    .tagsSelectorContainer .rowSelector{
+        display: block;
+        margin : 0;
+    }
+    .tagsSelectorContainer .tagsSelectorContainerInside{
+        width: 100%;
+        margin: 0;
+    }
+
+    .tagsSelector {
+        height: auto;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .tagsSelectorIntro.tagsSelector .tagsSelectorInside{
+        height: auto;
+    }
+
+    .tagsSelector .tagsSelectorInside .tagsTitle{
+        position: static;
+        top: auto;
+        left: auto;
+        transform: translate(0, 0);
+        line-height: 50px;
+        text-align: left;
+        padding-left: 25px;
+    }
+
+    .tagsSelector .tagsSelectorInside .tagsValidate{
+        top:50%;
+        transform: translateY(-50%);
+        opacity: 1;
+    right: 25px;
+        left: auto;
+    }
+
+    .tagsBarContainer .tagsBarInside{
+        display: none;
+    }
+    .tagsBarFade{
+        display: none;
+    }
+    .tagsBarContainer{
+        height: auto;
+        width: 100%;
+    }
+    .tagsBarNext{
+        width: 100%;
+        position: static;
+        top:auto;
+        left:auto;
+        right: auto;
+        transform: translate(0%, 0%);
+        display: block;
+        height: auto;
+
+    }
+
+    .tagsBarNext form{
+        width: 100%;
+        position: relative;
+        height: auto;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .tagsBarNext form input[type='submit']{
+        width: 100%;
+        position: static;
+        top:auto;
+        left:auto;
+        right: auto;
+        transform: translate(0%, 0%);
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+        background: white;
+    }
+
+    .tagsSelector.tagSelect .tagsSelectorInside{
+
+        transform: scale(1);
+
+    }
+
+
+}
+
+
+/*
+ *      RECO DETAIL JUMBO
+ */
+
+.recoDetailJumbo{
+
+    width: 100%;
+    //height: 100%;
+    //max-height: 600px;
+    //background: red;
+    //height: 800px;
+    //background: url('http://www.messagez.com/wp-content/gallery/lisbon/lisbon-portugal-magic-light-viewpoint-by-messagez-com_.jpg');
+    position: relative;
+
+}
+
+.recoDetailJumbo .recoDetailJumboFilter{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+    opacity:.6;
+
+    z-index: 50;
+
+}
+
+.recoDetailJumbo .recoDetailJumboInside{
+/*
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+*/
+
+    position: relative;
+    z-index: 100;
+
+}
+
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboPills{
+
+    width: 1170px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboPills ul{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboPills ul li{
+
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-right: 15px;
+    background: white;
+    text-align: center;
+    color: #0072ff;
+    padding: 10px 35px;
+    border-radius: 9999px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin-bottom: 15px;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboPills ul li a{
+    color: #0072ff;
+    text-decoration: none;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboPills ul li a:hover{
+    text-decoration: none;
+}
+
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboPills ul li:last-child{
+    margin-right: 0px;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboIntro{
+    text-align: center;
+    color:white;
+
+    padding-top: 25px;
+    padding-bottom: 50px;
+
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboIntro p{
+    font-family: 'Lato', sans-serif;
+    color:white;
+    margin: 0;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboIntro .recoDetailJumboIntroBlock:nth-child(2){
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboIntro .introSmallTxt{
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboIntro .introBigTxt{
+    font-size: 5em;
+    font-weight: 700;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboIntro .btn{
+
+    max-width: 200px;
+    color: #0072ff;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-top: 25px;
+
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter{
+
+    margin-top: 25px;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px white solid;
+
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter p{
+    margin: 0;
+    //padding: 25px 25px;
+    color:white;
+    width: 50%;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter a{
+    padding: 25px 25px;
+    display: block;
+    color:white;
+    text-align: center;
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter a:hover{
+    text-decoration: none;
+    background: white;
+    color: #0072ff;
+
+}
+
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter p:first-child a{
+
+    border-right: 1px white solid;
+    text-align: left;
+
+}
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter p:first-child a i{
+
+    padding-right: 10px;
+
+}
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter p:last-child a{
+
+text-align: right;
+}
+.recoDetailJumbo .recoDetailJumboInside .recoDetailJumboFooter p:last-child a i{
+
+    padding-left: 10px;
+}
+
+
+
+/*
+ *      RECO DETAIL MENU
+ */
+
+
+.recoDetailMenu{
+    //border-top: 1px #0072ff solid;
+    //border-bottom: 1px #0072ff solid;
+
+    background:#0072ff;
+}
+
+.recoDetailMenu .recoDetailMenuInside{
+
+
+}
+
+.recoDetailMenu .recoDetailMenuInside ul{
+    width: 1170px;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+}
+.recoDetailMenu .recoDetailMenuInside ul li{
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+.recoDetailMenu .recoDetailMenuInside ul li a{
+
+    //padding: 25px 35px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color:#fff;
+    //padding-top:15px;
+    //padding-bottom:15px;
+    //border-right:1px white solid;
+    //border-left:1px white solid;
+    padding:15px;
+    background:#0072ff;
+}
+
+
+
+
+/*
+ *      RECO DETAIL BODY
+ */
+
+
+.recoDetailBody{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.recoDetailBody .recoSectionTitle{
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+
+/*
+ *      RECO DETAIL DESC
+ */
+
+
+
+.recoDetailBody .recoDetailBodyDesc{
+
+    margin-bottom: 50px;
+
+}
+
+.recoDetailBody .recoDetailBodyDesc{
+
+    margin-bottom: 50px;
+
+}
+
+.recoDetailBody .recoDetailBodyDesc .container{
+
+
+
+
+}
+
+.desccontainer{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-radius: 5px;
+
+}
+
+.recoDetailBody .recoDetailBodyDesc .container p{
+    text-align: center;
+    line-height: 1.7em;
+    font-weight: 400;
+    color: #2b2b2b;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+
+
+
+/*
+ *      RECO DETAIL UTIL
+ */
+
+
+
+.recoDetailBody .recoDetailBodyUtil{
+    margin-bottom: 50px;
+
+}
+
+
+.recoDetailBody .recoDetailBodyUtil .recoDetailBodyUtilContainer{
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.recoDetailBody .recoDetailBodyUtil .recoDetailBodyUtilContainer .UtilBlock{
+
+    text-align: center;
+    width: 25%;
+    margin-bottom: 25px;
+
+
+}
+
+.recoDetailBody .recoDetailBodyUtil .recoDetailBodyUtilContainer .UtilBlock .UtilBlockImg{
+    margin-bottom: 25px;
+
+}
+
+.recoDetailBody .recoDetailBodyUtil .recoDetailBodyUtilContainer .UtilBlock .UtilBlockImg i{
+    font-size: 5em;
+    color:#3c3c3c;
+}
+
+.recoDetailBody .recoDetailBodyUtil .recoDetailBodyUtilContainer .UtilBlock .UtilBlockTxt{
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+
+/*
+ *      RECO DETAIL EXP
+ */
+
+.recoDetailBodyExp{
+    margin-bottom: 50px;
+
+}
+
+.recoDetailBodyExp .recoDetailBodyExpContainer{
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock{
+
+    text-align: center;
+    width: 25%;
+    margin-bottom: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    //overflow: hidden;
+
+}
+
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside{
+
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    overflow: hidden;
+
+}
+
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside .ExpBlockImg{
+
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside .ExpBlockImg .recoDetailJumboFilter{
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+    opacity:.4;
+
+    z-index: 50;
+
+}
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside .ExpBlockImg img{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform : translate(-50%, -50%);
+
+}
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside .ExpBlockTxt{
+    padding: 20px;
+    text-align: left;
+}
+
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside .ExpBlockTxt p{
+    margin: 0;
+}
+
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside .ExpBlockTxt p:first-child{
+    color: #0072ff;
+    font-weight: 700;
+}
+
+.recoDetailBodyExp .recoDetailBodyExpContainer .ExpBlock .ExpBlockInside .ExpBlockTxt p:last-child{
+    color: #2b2b2B;
+    font-weight: 400;
+}
+
+
+/*
+ *      RECO DETAIL MAP
+ */
+
+
+.recoDetailBodyMap{
+    margin-bottom: 50px;
+}
+
+.recoDetailBodyMap #city_map{
+    width: 100%;
+    height: 600px;
+}
+
+
+/*
+ *      RECO DETAIL PRICES
+ */
+
+.recoDetailBodyPrices .recoDetailBodyPricesContainer{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+}
+
+.recoDetailBodyPrices .PricesBlock{
+
+    padding: 10px;
+    width: 50%;
+
+}
+.recoDetailBodyPrices .PricesBlock .PricesBlockInside{
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    display: flex;
+    align-items: stretch;
+    border-radius: 5px;
+
+}
+
+
+.recoDetailBodyPrices .PricesBlock .PricesBlockInside .PricesBlockPrice{
+    width: 100px;
+    background: #0072ff;;
+    color: white;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 1.5em;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.recoDetailBodyPrices .PricesBlock .PricesBlockInside .PricesBlockTxt{
+
+    padding: 10px;
+
+}
+
+.recoDetailBodyPrices .PricesBlock .PricesBlockInside .PricesBlockTxt p{
+    margin: 0;
+}
+
+
+.recoDetailBodyPrices .PricesBlock .PricesBlockInside .PricesBlockTxt p:first-child{
+    color: #0072ff;
+    font-weight: 700;
+}
+
+.recoDetailBodyPrices .PricesBlock .PricesBlockInside .PricesBlockTxt p:last-child{
+    color: #2b2b2B;
+    font-weight: 400;
+}
+
+
+/*
+ *      RECO FOOTER
+ */
+
+.recoDetailFooter{
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    background: #0072ff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+
+.recoDetailFooter > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recoDetailFooter > div p:first-child{
+    margin-right: 25px;
+}
+
+.recoDetailFooter .recoSectionTitle{
+
+    font-size: 2em;
+    text-align: center;
+    font-weight: 700;
+    //margin-bottom: 25px;
+    color: white;
+
+}
+.recoDetailFooter .footerCTA a{
+
+    max-width: 200px;
+    color: #0072ff;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin-top: 25px;
+    padding: 10px 55px;
+
+}
+
+
+
+
+/*
+ *      RECO RESULTS
+ */
+
+.tagsBarContainerResults{
+
+
+
+}
+
+.tagsBarContainerResults .tagsBarFade{
+
+    right: 200px;
+
+}
+
+.tagsBarContainerResults .tagsBarNext{
+
+    text-align: right;
+    width: 200px;
+
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem:hover p{
+    text-decoration: none;
+}
+
+.tagsBarContainer .tagsBarInside .tagsBarItem p:hover{
+    text-decoration: none;
+}
+
+.tagsBarContainerResults .tagsBarNext a{
+
+    color: #0072ff;
+    background: white;
+    padding: 10px 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    font-weight: 400;
+
+}
+
+.tagsBarContainerResults .tagsBarNext a:hover{
+
+    //color: white;
+    //background: #0072ff;
+    text-decoration: none;
+
+}
+
+.recoresultsbody{
+
+    margin-top: 100px;
+
+}
+
+.recoresultsbody .recoresultsbanner{
+
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 5px;
+
+    position: relative;
+    padding: 50px;
+
+}
+
+
+.recoresultsbody .recoresultsbanner p:first-child{
+
+    /*
+    font-size: 3em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    max-width: 960px;
+    margin: 0 auto 25px auto;
+    line-height: 1.2em;
+    color: white;
+    */
+
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    max-width: 350px;
+    margin: 0 auto;
+    line-height: 1.5em;
+    color: #fff;
+    opacity: .6;
+    margin: 0 auto 25px auto;
+
+
+}
+
+.recoresultsbody .recoresultsbanner p:nth-child(2){
+
+    font-size: 3em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    max-width: 960px;
+    line-height: 1.2em;
+    color: white;
+    margin: 0 auto 25px auto;
+
+    /*
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    max-width: 350px;
+    margin: 0 auto;
+    line-height: 1.5em;
+    color: #fff;
+    opacity: .6;
+    */
+
+}
+
+.recoresultsbody .recoresultsbanner input[type="submit"]{
+
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #0072ff;
+
+}
+
+.recoresultsbody .recofollowupbanner p{
+
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.5em;
+    color: #000;
+    opacity: .6;
+    margin: 50px auto 50px auto;
+
+}
+
+.recofollowupWrap{
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.recofollowupContainer{
+
+    width: 50%;
+    padding: 10px;
+}
+.recofollowupContainer .recofollowupInside{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    //box-shadow: 0 1px 1px 0 rgba(31,45,61,.05);
+    border-radius: 5px;
+    padding: 25px;
+    //border-color: #e0e6ed;
+    //border-width: 1px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.recofollowupContainer .recofollowupInside p{
+    margin: 0;
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #0072ff;
+}
+.recofollowupContainer .recofollowupInside form{
+    margin: 0;
+}
+
+.recofollowupContainer .recofollowupInside form input[type='submit']{
+    /*
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #0072ff;
+    */
+}
+
+
+.recofooterreturn {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    background: #0072ff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(-90deg, #0072ff, #00c6ff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(-90deg, #0072ff, #00c6ff); /* Standard syntax */
+}
+
+.recofooterreturn .recofooterreturninside{
+    text-align: center;
+
+}
+
+.recofooterreturn .recofooterreturninside a{
+    margin: 0;
+    font-size: 1.5em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    opacity: .7;
+    color:white;
+    padding: 15px 45px;
+    border-radius: 5px;
+    border: 1px white solid;
+    text-align: center;
+}
+
+.recofooterreturn .recofooterreturninside a:hover{
+    text-decoration: none;
+    background: white;
+    color:#0072ff;
+}
+
+
+#modal_register_user{
+    z-index: 9999;
+    overflow: hidden;
+}
+#modal_register_user .modal-dialog{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    max-width: 600px;
+}
+
+#modal_register_user .modal-dialog .modal-content{
+    width: 960px;
+    background: #0072ff; /* For browsers that do not support gradients */
+}
+
+#modal_register_user .modal-dialog .modal-content .modal-header{
+    border:none;
+    color:white;
+    padding: 30px;
+}
+#modal_register_user .modal-dialog .modal-content .modal-header button{
+    opacity: 1;
+}
+ #modal_register_user .modal-dialog .modal-content .modal-header button span{
+    color:white;
+}
+
+#modal_register_user .modal-dialog .modal-content .modal-body{
+    padding: 30px;
+
+}
+
+
+.form-first-part{
+
+    display: flex;
+    align-items: stretch;
+    //justify-content: space-between;
+}
+
+.form-first-part > div{
+    width: 50%;
+}
+
+.form-first-part > div label{
+    color:white;
+    font-weight: 400;
+}
+
+.form-first-part .radio{
+    margin: 0;
+    //width: 50%;
+    margin-right: 15px;
+}
+
+.form-first-part .radioContainer{
+    display: flex;
+    align-items: center;
+}
+
+.form-first-part .radio label{
+    background: white;
+    color: #0072ff;
+    padding: 10px 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin: 0;
+}
+
+.form-first-part .radio label.radioHommeFemmeLabelChecked{
+    background: #132264;
+    color: #fff;
+
+}
+
+
+.form-first-part .radio input{
+    opacity: 0;
+    position: absolute;
+}
+
+.form-first-part .radio input:checked + label{
+    background: #0072ff;
+    color:white;
+}
+
+.form-first-part select{
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+}
+
+.form-first-part select{
+    height: 40px;
+}
+
+.form-second-part label{
+    color:white;
+    font-weight: 400;
+}
+
+.form-second-part input{
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    height: 40px;
+}
+
+.form-third-part input{
+    background: white;
+    color: #0072ff;
+    line-height: inherit;
+    padding: 5px;
+}
+
+
+.experienceContainerInside{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recoDetailBodyExp .panel{
+    border-radius: 0px;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+
+}
+
+.recoDetailBodyExp .panel-heading{
+    border-radius: 0px;
+    padding: 15px;
+    background:#0072ff;
+    color: #fff;
+    border: none;
+}
+
+.experienceContainer{
+    padding: 5px;
+}
+
+.experienceContainerInside{
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 10px;
+
+}
+
+.experianceName{
+    font-weight: 700;
+}
+
+
+.experianceRight{
+
+    display: flex;
+    align-items: center;
+
+}
+
+.experianceRating{
+    margin-right: 25px;
+}
+
+.experianceSee{
+
+    background:#0072ff;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 10px 35px;
+
+}
+
+.experianceSee a{
+    color: #fff;
+
+}
+
+    /* ==========================================================================
+       Helper classes
+       ========================================================================== */
 
 /*
  * Hide visually and from screen readers

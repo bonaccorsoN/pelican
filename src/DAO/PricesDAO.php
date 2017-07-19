@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nicola
- * Date: 13/07/2017
- * Time: 11:25
- */
+
+namespace landingSILEX\DAO;
 
 use landingSILEX\Custom\Prices;
 use Doctrine\DBAL\Connection;
-
-namespace landingSILEX\DAO;
 
 
 class PricesDAO
@@ -37,14 +31,14 @@ class PricesDAO
      * @return array A list of all city indice.
      */
     public function findAll() {
-        $sql = "SELECT * FROM PRICES";
+        $sql = "SELECT * FROM prices";
         $result = $this->db->fetchAll($sql);
 
         // Convert query result to an array of domain objects
         $prices = array();
         foreach ($result as $row) {
             $pricesID = $row['id'];
-            $prices[$pricesID] = $this->buildCityIndice($row);
+            $prices[$pricesID] = $this->buildPrices($row);
         }
         return $prices;
     }
@@ -53,12 +47,14 @@ class PricesDAO
      * Creates an pays object based on a DB row.
      *
      * @param array $row The DB row containing pays data.
-     * @return \landingSILEX\Custom\Indices
+     * @return \landingSILEX\Custom\Prices
      */
-    private function buildCityIndice(array $row) {
+    private function buildPrices(array $row) {
+
         $prices = new Prices();
         $prices->setid($row['id']);
         $prices->setidNumbeo($row['idNumbeo']);
+        $prices->setcurrency($row['currency']);
         $prices->setprice_cheap_restaurant($row['price_cheap_restaurant']);
         $prices->setprice_expensive_restaurant($row['price_expensive_restaurant']);
         $prices->setprice_beer_domestic_restaurant($row['price_beer_domestic_restaurant']);
@@ -70,10 +66,17 @@ class PricesDAO
         $prices->setprice_transport_monthly($row['price_transport_monthly']);
         $prices->setprice_taxi_start($row['price_taxi_start']);
         $prices->setprice_taxi_one_miles($row['price_taxi_one_miles']);
-        $prices->setprice_transport_monthly($row['price_taxi_one_hours_wait']);
+        $prices->setprice_taxi_one_hours_wait($row['price_taxi_one_hours_wait']);
         $prices->setprice_basics($row['price_basics']);
         $prices->setprice_cinema($row['price_cinema']);
-        $prices->setprice_cinema($row['price_fitness_club']);
+        $prices->setprice_fitness_club($row['price_fitness_club']);
+
+        $prices->setapartment_one($row['apartment_one']);
+        $prices->setapartment_three($row['apartment_three']);
+        $prices->setapartment_square_feet($row['apartment_square_feet']);
+
+
         return $prices;
+
     }
 }

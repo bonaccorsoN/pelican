@@ -37,12 +37,15 @@ $app['dao.user'] = function ($app) {
     return new landingSILEX\DAO\UserDAO($app['db']);
 };
 $app['dao.cityIndice'] = function ($app) {
-    return new landingSILEX\DAO\IndicesDAO($app['db']);
+    return new landingSILEX\DAO\CityIndiceDAO($app['db']);
 };
-
 $app['dao.ville'] = function ($app) {
     return new landingSILEX\DAO\VilleDAO($app['db']);
 };
+$app['dao.prices'] = function ($app) {
+    return new landingSILEX\DAO\PricesDAO($app['db']);
+};
+
 
 $app['swiftmailer.options'] = array(
     'host' => 'smtp.sendgrid.net',

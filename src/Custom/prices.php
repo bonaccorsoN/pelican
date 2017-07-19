@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by ElMagnifico
- * User: nicola
- * Date: 12/07/2017
- * Time: 17:24
- */
 
 namespace landingSILEX\Custom;
 
@@ -26,10 +20,17 @@ class prices
     private $idNumbeo;
 
     /**
- * Prices 	price_cheap_restaurant.
- *
- * @var float
- */
+     * Prices currency.
+     *
+     * @var string
+     */
+    private $currency;
+
+    /**
+     * Prices 	price_cheap_restaurant.
+     *
+     * @var float
+     */
     private $price_cheap_restaurant;
 
     /**
@@ -54,7 +55,7 @@ class prices
     private $price_beer_imported_restaurant;
 
     /**
-     * Prices 	price_wine.
+     * Prices   price_wine.
      *
      * @var float
      */
@@ -130,27 +131,58 @@ class prices
      */
     private $price_fitness_club;
 
+    /**
+     * Prices 	apartment_one.
+     *
+     * @var float
+     */
+    private $apartment_one;
+
+    /**
+     * Prices 	apartment_three.
+     *
+     * @var float
+     */
+    private $apartment_three;
+
+    /**
+     * Prices 	apartment_square_feet.
+     *
+     * @var float
+     */
+    private $apartment_square_feet;
+
+
     public function getId() {
         return $this->id;
     }
 
-    public function setidAnswer($id) {
+    public function setid($id) {
         $this->id = $id;
         return $this;
     }
 
     public function getidNumbeo() {
-    return $this->idNumbeo;
-}
+        return $this->idNumbeo;
+    }
 
     public function setidNumbeo($idNumbeo) {
         $this->idNumbeo = $idNumbeo;
         return $this;
     }
 
+    public function getcurrency() {
+        return $this->currency;
+    }
+
+    public function setcurrency($currency) {
+        $this->currency = $currency;
+        return $this;
+    }
+
     public function getprice_cheap_restaurant() {
-    return $this->price_cheap_restaurant;
-}
+        return $this->price_cheap_restaurant;
+    }
 
     public function setprice_cheap_restaurant($price_cheap_restaurant) {
         $this->price_cheap_restaurant = $price_cheap_restaurant;
@@ -252,7 +284,7 @@ class prices
     }
 
     public function setprice_taxi_one_hours_wait($price_taxi_one_hours_wait) {
-        $this->rice_taxi_one_hours_wait = $price_taxi_one_hours_wait;
+        $this->price_taxi_one_hours_wait = $price_taxi_one_hours_wait;
         return $this;
     }
 
@@ -282,4 +314,34 @@ class prices
         $this->price_fitness_club = $price_fitness_club;
         return $this;
     }
+
+
+
+    public function getapartment_one() {
+        return $this->apartment_one;
+    }
+
+    public function setapartment_one($apartment_one) {
+        $this->apartment_one = $apartment_one;
+        return $this;
+    }
+
+    public function getapartment_three() {
+        return $this->apartment_three;
+    }
+
+    public function setapartment_three($apartment_three) {
+        $this->apartment_three = $apartment_three;
+        return $this;
+    }
+
+    public function getapartment_square_feet() {
+        return $this->apartment_square_feet;
+    }
+
+    public function setapartment_square_feet($apartment_square_feet) {
+        $this->apartment_square_feet = $apartment_square_feet;
+        return $this;
+    }
+
 }

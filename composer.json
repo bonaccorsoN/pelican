@@ -7,7 +7,9 @@
         "symfony/asset": "~2.8|3.0.*",
         "symfony/console": "^2.7",
         "swiftmailer/swiftmailer": "^5.4",
-        "sendgrid/sendgrid": "~5.5"
+        "sendgrid/sendgrid": "~5.5",
+        "symfony/polyfill-mbstring": "~1.0",
+        "symfony/dom-crawler": "~3.3.4"
     },
     "autoload": {
         "psr-4": {"landingSILEX\\": "src"}

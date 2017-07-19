@@ -29,6 +29,7 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\EventDispatcher\\' => 34,
+            'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Asset\\' => 24,
@@ -39,6 +40,7 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Container\\' => 14,
         ),
         'D' => 
         array (
@@ -77,6 +79,10 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
+        'Symfony\\Component\\DomCrawler\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/dom-crawler',
+        ),
         'Symfony\\Component\\Debug\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
@@ -104,6 +110,10 @@ class ComposerStaticInit12349bf8a374f35527e2816f3725ae95
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
         ),
         'Doctrine\\Common\\Cache\\' => 
         array (

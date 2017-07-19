@@ -3,15 +3,140 @@ $(document).ready(function() {
     console.log('reco.js');
 
 
+    $('.radioHommeFemmeLabel').on('click', function(e){
+
+        $('.radioHommeFemmeLabel').each(function(index){
+            $(this).removeClass('radioHommeFemmeLabelChecked');
+        });
+
+        $(this).addClass('radioHommeFemmeLabelChecked');
+
+    });
+
+
+    /*
+     *  Building pills
+     */
+
+
+    // when click happen on pill
+
+    /*
+     $(window).on('click', function(e) {
+
+     if (e.target.classList.contains('tagsBarItemP')) {
+
+     if (e.target.parentNode.classList.contains('tagsBarItemEmpty')) {
+     return false;
+     } else {
+
+     var pillValo = e.target.innerHTML.trim();
+
+     $('.pillSelector.tagSelect').each(function(index, value) {
+     var selectorVallo = $(this).children().children()[0].innerHTML;
+
+     if (pillValo === selectorVallo.trim()) {
+
+     $(this).removeClass('tagSelect');
+
+     }
+
+     });
+
+     e.target.parentNode.remove();
+
+     }
+
+     }
+
+     });
+    */
+
+
+    // when a click happen on a pill selector
+
+    /*
+
+    $('.pillSelector').on('click', function(e){
+
+        //console.log('click selector');
+        var pillHTML = $(this).children().children().children().children()[2].innerHTML.trim();
+        //console.log(pillHTML);
+
+        // if selector is already selected -> delete it else add it
+        if($(this).hasClass('tagSelect')){
+
+            //$('#nextCounter').html(($('#nextCounter').html) - 1);
+            //console.log('already clicked');
+            // removing pull selector little class
+            $(this).removeClass('tagSelect');
+            // loop on filled pills
+            $('.tagsBarItem').each(function(index, value){
+                var pillValue = $(this).children().html();
+                if(typeof pillHTML !== "undefined" && typeof pillValue !== "undefined"){
+                    if(pillValue.trim() === pillHTML.trim()){
+                        $(this).remove();
+                    }
+                }
+            });
+
+        }else{
+
+            //console.log('no clicked');
+            // adding pull selector little class
+            $(this).addClass('tagSelect');
+            // loop on empty pills
+            $('.tagsBarItemEmpty').each(function(index, value){
+                // building the first empty pill on the list
+                if(index === 0){
+                    // remove empty class and build pill
+                    $(this).removeClass('tagsBarItemEmpty');
+                    $(this).html('<p class="tagsBarItemP">'+pillHTML+'</p>');
+                }
+            });
+        }
+
+        if($('.tagsBarItemEmpty').length === 0){
+            $('.tagsBarInside').append('<div class="tagsBarItem tagsBarItemEmpty"><p></p></div>');
+        }
+
+        // only one pill left -> put default text
+        */
+        /*
+        if($('.tagsBarItem').length === 1){
+            $('.tagsBarItem').children().html('Choisissez votre premier critère');
+        }
+        */
+
+
+
+    /*
+    });
+    */
+
+
+
+
+    /*
+     * prevent form post
+     */
+
+    $('#submitUserScorePop').on('click', function(e){
+        e.preventDefault();
+    });
+
+
+    var counterCheck = 0;
 
     /*
      *  Building recommendation form
      */
 
     $('.recoInput').on('change', function(e){
+
         if($(this).is(':checked')){
 
-            console.log($(this).attr('value') + ' is checked');
+            //console.log($(this).attr('value') + ' is checked');
             $recoInputValue = $(this).attr('value');
             $('.recoPost').each(function(index){
                 if($(this).attr('name') === $recoInputValue){
@@ -20,9 +145,49 @@ $(document).ready(function() {
                 }
             });
 
+            // style "selected for the selector
+            $(this).parent().parent().parent().parent().addClass('tagSelect');
+            var pillHTML = $(this).parent().children()[2].innerHTML.trim();
+            //building the pills
+            $('.tagsBarItemEmpty').each(function(index, value){
+                // building the first empty pill on the list
+                if(index === 0){
+                    // remove empty class and build pill
+                    $(this).removeClass('tagsBarItemEmpty');
+                    $(this).html('<p class="tagsBarItemP animated fadeIn">'+pillHTML+'</p>');
+                }
+            });
+
+            counterCheck = counterCheck + 1;
+            console.log(counterCheck);
+            if(counterCheck >= 5){
+                $('#submitUserScorePop').html('Suivant');
+                $('#submitUserScorePop').off('click');
+                $('#submitUserScorePop').addClass('nextGo');
+                console.log($('#submitUserScorePop').parent());
+                $('#submitUserScorePop').parent().removeClass('tagsBarNextDisable');
+
+                //#modal_register_user
+                //data-target
+                $('#submitUserScorePop').attr('data-target', '#modal_register_user');
+
+
+            }else if(counterCheck < 5){
+                $('#submitUserScorePop').html((5 - counterCheck)+' Restant');
+                $('#submitUserScorePop').removeClass('nextGo');
+                console.log($('#submitUserScore').parent());
+                $('#submitUserScorePop').parent().addClass('tagsBarNextDisable');
+
+                $('#submitUserScorePop').attr('data-target', '');
+
+                $('#submitUserScorePop').on('click', function(e){
+                    e.preventDefault();
+                });
+            }
+
         }else{
 
-            console.log($(this).attr('value') + ' is unchecked');
+            //console.log($(this).attr('value') + ' is unchecked');
             $recoInputValue = $(this).attr('value');
             $('.recoPost').each(function(index){
                 if($(this).attr('name') === $recoInputValue){
@@ -31,8 +196,67 @@ $(document).ready(function() {
                 }
             });
 
+            // style "selected for the selector
+            $(this).parent().parent().parent().parent().removeClass('tagSelect');
+            var pillHTML = $(this).parent().children()[2].innerHTML.trim();
+            //building the pills
+            $('.tagsBarItem').each(function(index, value){
+                var pillValue = $(this).children().html();
+                if(typeof pillHTML !== "undefined" && typeof pillValue !== "undefined"){
+                    if(pillValue.trim() === pillHTML.trim()){
+                        $(this).remove();
+                    }
+                }
+            });
+
+            counterCheck = counterCheck - 1;
+            console.log(counterCheck);
+            if(counterCheck >= 5){
+                $('#submitUserScorePop').html('Suivant');
+                $('#submitUserScorePop').off('click');
+                $('#submitUserScorePop').addClass('nextGo');
+                console.log($('#submitUserScorePop').html());
+                console.log($('#submitUserScorePop').parent());
+                $('#submitUserScorePop').parent().removeClass('tagsBarNextDisable');
+                $('#submitUserScorePop').attr('data-target', '#modal_register_user');
+
+
+            }else if(counterCheck < 5){
+
+                if(counterCheck === 0){
+                    $('.tagsBarItemEmpty').each(function(index, value){
+                        // building the first empty pill on the list
+                        if(index === 0){
+                            // remove empty class and build pill
+                            $(this).addClass('tagsBarItemEmpty');
+                            $(this).html('<p class="tagsBarItemP animated fadeIn">Choisissez votre premier critère ci - dessous</p>');
+                        }
+                    });
+                }
+
+                $('#submitUserScorePop').attr('data-target', '');
+
+                console.log($('#submitUserScorePop').html());
+                $('#submitUserScorePop').html((5 - counterCheck)+' Restant');
+                $('#submitUserScorePop').removeClass('nextGo');
+                console.log($('#submitUserScorePop'));
+                console.log($('#submitUserScorePop').parent());
+                $('#submitUserScorePop').parent().addClass('tagsBarNextDisable');
+                $('#submitUserScorePop').on('click', function(e){
+                    e.preventDefault();
+                });
+            }
+
         }
+
+        // if there is no empty pill left , create one
+        if($('.tagsBarItemEmpty').length === 0){
+            $('.tagsBarInside').append('<div class="tagsBarItem tagsBarItemEmpty  animated fadeInDown"><p></p></div>');
+        }
+
+
     });
+
 
     /*
      *  Building user score
@@ -47,7 +271,7 @@ $(document).ready(function() {
             switch ($(this).attr('name')) {
                 case'artvivre':
 
-                    console.log('artvivre');
+                    //console.log('artvivre');
 
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
@@ -73,7 +297,7 @@ $(document).ready(function() {
                     break;
 
                 case'solidarite':
-                    console.log('solidarite');
+                    //console.log('solidarite');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 0;
@@ -96,7 +320,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'bienetre':
-                    console.log('bienetre');
+                    //console.log('bienetre');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 4;
@@ -119,7 +343,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'divertissement':
-                    console.log('divertissement');
+                    //console.log('divertissement');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 4;
@@ -142,7 +366,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'histoireculture':
-                    console.log('histoireculture');
+                    //console.log('histoireculture');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 1;
@@ -165,7 +389,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'amoureux':
-                    console.log('amoureux');
+                    //console.log('amoureux');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 3;
@@ -188,7 +412,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'arts':
-                    console.log('arts');
+                    //console.log('arts');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 3;
@@ -211,7 +435,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'sports':
-                    console.log('sports');
+                    //console.log('sports');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 10;
@@ -234,7 +458,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'vienocturne':
-                    console.log('vienocturne');
+                    //console.log('vienocturne');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 7;
@@ -257,7 +481,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'aventure':
-                    console.log('aventure');
+                    //console.log('aventure');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 4;
@@ -280,7 +504,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 case'affaires':
-                    console.log('affaires');
+                    //console.log('affaires');
                     //eclat
                     var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                     var neweclatPost = oldeclatPost + 0;
@@ -303,7 +527,7 @@ $(document).ready(function() {
                     $('#humaPost').attr('value', newhumaPost);
                     break;
                 default:
-                    console.log('default');
+                    //console.log('default');
                     break;
             }
         }
@@ -313,7 +537,7 @@ $(document).ready(function() {
                 switch ($(this).attr('name')) {
                     case'artvivre':
 
-                        console.log('artvivre');
+                        //console.log('artvivre');
 
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
@@ -339,7 +563,7 @@ $(document).ready(function() {
                         break;
 
                     case'solidarite':
-                        console.log('solidarite');
+                       // console.log('solidarite');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 0;
@@ -362,7 +586,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'bienetre':
-                        console.log('bienetre');
+                        //console.log('bienetre');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 4;
@@ -385,7 +609,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'divertissement':
-                        console.log('divertissement');
+                        //console.log('divertissement');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 4;
@@ -408,7 +632,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'histoireculture':
-                        console.log('histoireculture');
+                        //console.log('histoireculture');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 1;
@@ -431,7 +655,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'amoureux':
-                        console.log('amoureux');
+                        //console.log('amoureux');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 3;
@@ -454,7 +678,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'arts':
-                        console.log('arts');
+                        //console.log('arts');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 3;
@@ -477,7 +701,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'sports':
-                        console.log('sports');
+                        //console.log('sports');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 10;
@@ -500,7 +724,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'vienocturne':
-                        console.log('vienocturne');
+                        //console.log('vienocturne');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 7;
@@ -523,7 +747,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'aventure':
-                        console.log('aventure');
+                        //console.log('aventure');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 4;
@@ -546,7 +770,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     case'affaires':
-                        console.log('affaires');
+                        //console.log('affaires');
                         //eclat
                         var oldeclatPost = parseInt($('#eclatPost').attr('value'));
                         var neweclatPost = oldeclatPost - 0;
@@ -569,7 +793,7 @@ $(document).ready(function() {
                         $('#humaPost').attr('value', newhumaPost);
                         break;
                     default:
-                        console.log('default');
+                        //console.log('default');
                         break;
                 }
 

@@ -42,6 +42,30 @@ class VilleDAO
     }
 
     /**
+     * Return a list of the five pays, sorted by date (most recent first).
+     *
+     * @return array A list of five pays.
+     */
+    public function findFiveCountries() {
+
+        $sql = "SELECT * FROM ville WHERE `nomPaysNumbeo` = 'Canada' OR `nomPaysNumbeo` = 'Indonesia' OR `nomPaysNumbeo` = 'Morocco' OR `nomPaysNumbeo` = 'Thailand' OR `nomPaysNumbeo` = 'Portugal' OR `nomPaysNumbeo` = 'Spain'";
+        $result = $this->db->fetchAll($sql);
+        //return $result;
+
+        // Convert query result to an array of custom objects
+
+        $fiveCountries = array();
+        foreach ($result as $row) {
+            $fiveCountriesID = $row['id'];
+            $fiveCountries[$fiveCountriesID] = $this->buildVille($row);
+        }
+
+        return $fiveCountries;
+
+    }
+
+
+    /**
      * Creates an pays object based on a DB row.
      *
      * @param array $row The DB row containing pays data.

@@ -1,30 +1,203 @@
 {% include 'tpl/head.html.twig' %}
-<!-- RECO -->
+<!-- RECO RESULTS -->
+
+<!-- TAGS BAR -->
+<div class="tagsBarContainer tagsBarContainerResults animated fadeInDown">
+
+    <div id="tagsBarInside" class="tagsBarInside ">
+
+        {% for key, pill in pillsTAB %}
+
+            {% if pill == 'checked' %}
+                <div class="tagsBarItem">
+                    <p> {{ key }} </p>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+    <div class="tagsBarFade">
+    </div>
+
+    <div class="tagsBarNext">
+        <a href="{{ path('recommendation') }}">Refaire une selection</a>
+    </div>
+
+</div>
+
+<section class="recoresultsbody">
 
 <div class="container">
 
     <div class="row">
         <div class="col-md-12">
-            <h1>user score</h1>
+            <div class="recoresultsbanner animated fadeInDown">
+                <p>Le Pélican vous recommande</p>
 
-            <div id="userscore">
+                <!--
+                <p>
+                    Voici les villes que le Pélican vous recommande. Vous avez la possibilité de refaire un test ou bien de découvrir en détail la ville de vos rêves !
+                </p>
+                -->
+                {% for key_five, top_five in cities_top_five_to_push %}
+
+                {% if key_five == 0 %}
+                <p>{{ top_five['city_name']|trim}}, {{ top_five['city_country_name']|trim }}</p>
+
+                    <form action="{{ path('recommendationDetail') }}" method="POST">
+
+                        {% for key, pill in pillsTAB %}
+                            <input type="hidden" name="{{ key }}" value="{{ pill }}">
+                        {% endfor %}
+
+                        <input type="hidden" name="user_type" value="{{ user_type }}">
+                        <input type="hidden" name="city_id" value="{{ top_five['city_id_numbeo'] }}">
+                        <input class="btn btn-default btnpelican" type="submit" value="voir la ville" name="voirVilleSubmit">
+
+                    </form>
+
+                {% endif %}
+
+                {% endfor %}
             </div>
-
         </div>
     </div>
 
+    <div class="row">
+
+        <div class="col-md-12 animated fadeInDown">
+
+            <div class="recofollowupbanner ">
+
+                <p>Le Pélican vous recommande également</p>
+
+            </div>
+
+            <div class="recofollowupWrap ">
+
+                {% for key_five, top_five in cities_top_five_to_push %}
+
+                    {% if key_five != 0 %}
+
+                        <div class="recofollowupContainer">
+
+                            <div class="recofollowupInside">
+
+                                <p>{{ top_five['city_name']|trim}}, {{ top_five['city_country_name']|trim }}</p>
+
+                                <form action="{{ path('recommendationDetail') }}" method="POST">
+
+                                    {% for key, pill in pillsTAB %}
+                                        <input type="hidden" name="{{ key }}" value="{{ pill }}">
+                                    {% endfor %}
+
+                                    <input type="hidden" name="user_type" value="{{ user_type }}">
+                                    <input type="hidden" name="city_id" value="{{ top_five['city_id_numbeo'] }}">
+                                    <input class="btn btn-default btnpelican" type="submit" value="voir la ville" name="voirVilleSubmit">
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <!--
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            {% for city_info in cities_infos_to_push %}
+
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+
+                        <p><strong>{{ city_info['city_name'] }}</strong></p>
+                        <p>{{ city_info['city_country_name'] }}</p>
+
+                        <form action="{{ path('recommendationDetail') }}" method="POST">
+
+                            {% for key, pill in pillsTAB %}
+                                <input type="hidden" name="{{ key }}" value="{{ pill }}">
+                            {% endfor %}
+
+                            <input type="hidden" name="city_id" value="{{ city_info['city_id_numbeo'] }}">
+                            <input type="submit" value="voir la ville" name="voirVilleSubmit">
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    -->
+
 </div>
 
-<script>
 
-    /*
-    var user_score_eclater = {% if user_score_ratio is defined %}{{ user_score_ratio['éclater'] }}{% else %}null{% endif %}
-    var user_score_investir = {% if user_score_ratio is defined %}{{ user_score_ratio['investir'] }}{% else %}null{% endif %}
-    var user_score_culture = {% if user_score_ratio is defined %}{{ user_score_ratio['culture'] }}{% else %}null{% endif %}
-    var user_score_humanitaire = {% if user_score_ratio is defined %}{{ user_score_ratio['humanitaire'] }}{% else %}null{% endif %}
-    */
+    <section class="recofooter">
 
-</script>
+        <div class="recofooterreturn">
+
+            <div class="recofooterreturninside">
+
+                <a href="{{ path('home') }}">Le projet Pélican</a>
+
+            </div>
+
+        </div>
+
+        <div class="manifesto_section manifesto_footer">
+            <div class="manifesto_footer_inside">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="manifesto_footer_others">
+                                <p>© Tout droits réservés Le Pélican - <a id="manifesto_mention" data-toggle="modal" data-target="#modal_mention" href="">Mentions légales</a></p>
+                                <p>
+                                    <a id="manifesto_mailto" target="_blank" href="mailto:contact@le-pelican.eu">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </a>
+                                    <a id="manifesto_facebook" target="_blank" href="https://www.facebook.com/lepelican.eu/">
+                                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                                    </a>
+                                    <a id="manifesto_twitter" target="_blank" href="https://twitter.com/Le__Pelican">
+                                        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                                    </a>
+
+                                    <a id="manifesto_kitpresse" href="{{ asset('/img/cdp.pdf') }}">Télécharger le kit presse <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
 
 <!-- /RECO -->
 {% include 'tpl/footerrecoresults.html.twig' %}
