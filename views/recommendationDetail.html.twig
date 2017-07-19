@@ -1,1 +1,1076 @@
-{{ city_id }}
+{% include 'tpl/head.html.twig' %}
+<!-- RECO DETAIL -->
+
+    {% for key, infos in thatCityInfos %}
+        {% if key == 'nomPaysNumbeo' %}
+            {% if infos == 'Morocco' %}
+                    <section class="recoDetailJumbo" style="background:url('{{ asset('/img/detailbackground/moroccolandscape.jpg') }}'); background-size: cover;">
+            {% endif %}
+            {% if infos == 'Indonesia' %}
+                    <section class="recoDetailJumbo" style="background:url('{{ asset('/img/detailbackground/indonesialandscapelandscape.jpg') }}'); background-size: cover;">
+            {% endif %}
+            {% if infos == 'Portugal' %}
+                    <section class="recoDetailJumbo" style="background:url('{{ asset('/img/detailbackground/portugallandscape.jpg') }}'); background-size: cover;">
+            {% endif %}
+            {% if infos == 'Spain' %}
+                    <section class="recoDetailJumbo" style="background:url('{{ asset('/img/detailbackground/spainlandscape.jpg') }}'); background-size: cover;">
+            {% endif %}
+            {% if infos == 'Canada' %}
+                    <section class="recoDetailJumbo" style="background:url('{{ asset('/img/detailbackground/canadianlandscape.jpg') }}'); background-size: cover;">
+            {% endif %}
+            {% if infos == 'Thailand' %}
+                    <section class="recoDetailJumbo" style="background:url('{{ asset('/img/detailbackground/thailandlandscape.jpg') }}'); background-size: cover;">
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="recoDetailJumboInside">
+
+        <div class="recoDetailJumboPills container">
+            <ul>
+                {% for key, pill in pills_array %}
+                    {% if pill == 'checked' %}
+                        <li>{{ key }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="recoDetailJumboIntro">
+
+            <div class="recoDetailJumboIntroBlock">
+                <p class="introSmallTxt">Le Pélican</p>
+                <p class="introSmallTxt">vous propose</p>
+            </div>
+            <div class="recoDetailJumboIntroBlock">
+                {% for key, infos in thatCityInfos %}
+                    {% if key == 'nomNumbeo' %}
+                        <p class="introBigTxt">{{ infos }}</p>
+                    {% endif %}
+                    {% if key == 'nomPaysNumbeo' %}
+
+                {% if infos == 'Morocco' %}
+                    <p class="introSmallTxt" style="font-style: italic">Au Maroc</p>
+                    {% endif %}
+                    {% if infos == 'Indonesia' %}
+                        <p class="introSmallTxt" style="font-style: italic">En Indonésie</p>
+                        {% endif %}
+                        {% if infos == 'Portugal' %}
+                            <p class="introSmallTxt" style="font-style: italic">Au Portugal</p>
+                            {% endif %}
+                            {% if infos == 'Spain' %}
+                                <p class="introSmallTxt" style="font-style: italic">En Espagne</p>
+                                {% endif %}
+                                {% if infos == 'Canada' %}
+                                    <p class="introSmallTxt" style="font-style: italic">Au Canada</p>
+                                    {% endif %}
+                                    {% if infos == 'Thailand' %}
+                                        <p class="introSmallTxt" style="font-style: italic">En Thailande</p>
+                                        {% endif %}
+
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <!--
+            <div class="recoDetailJumboIntroBlock">
+                <p class="introSmallTxt">recommandé à</p>
+                <p class="introBigTxt">56%</p>
+            </div>
+            -->
+
+            <!--
+            <a class="btn btn-default btnpelican" href="">Je veux y aller</a>
+            -->
+
+        </div>
+        <!--
+        <div class="recoDetailJumboFooter">
+            <p class="introSmallTxt">
+                <a href=""><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                     Destination précedente</a>
+            </p>
+            <p class="introSmallTxt">
+                <a href="">Destination suivante <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                </a>
+            </p>
+        </div>
+        -->
+
+    </div>
+
+
+
+    <div class="recoDetailJumboFilter">
+    </div>
+
+
+</section>
+<section class="recoDetailMenu">
+    <div class="recoDetailMenuInside">
+        <ul>
+            <li><a href="javascript:void(0)">La ville</a></li>
+            <li><a href="javascript:void(0)">A vivre</a></li>
+            <li><a href="javascript:void(0)">Voir sur la carte</a></li>
+            <li><a href="javascript:void(0)">Les prix</a></li>
+        </ul>
+    </div>
+</section>
+<section class="recoDetailBody">
+    <div class="recoDetailBodyDesc">
+
+        {% for key, infos in thatCityInfos %}
+            {% if key == 'nomNumbeo' %}
+                <p class="recoSectionTitle">{{ infos }} en quelques mots</p>
+            {% endif %}
+        {% endfor %}
+
+        <div class="container">
+
+            <div class="desccontainer">
+
+                <p>{{ city_desc }}</p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <!--
+    <div class="recoDetailBodyUtil">
+        <p class="recoSectionTitle">Quelques infos utiles</p>
+
+        <div class="container">
+
+
+        <div class="recoDetailBodyUtilContainer">
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+            <div class="UtilBlock">
+                <div class="UtilBlockImg">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                </div>
+                <div class="UtilBlockTxt">
+                    <p>mabite</p>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    -->
+
+    <div class="recoDetailBodyExp">
+        <p class="recoSectionTitle">Le top des expériences pour vous</p>
+
+        <div class="container">
+
+
+            <!-- SI CEST UN ECLAT MAN -->
+
+            {% if user_type == 'éclater' %}
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Les meilleurs bars
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+
+                                {% for key, placeeclat in places_eclater %}
+
+                                            {% if key == 'bar' %}
+
+                                                {% for keybar, bareclat in placeeclat %}
+
+                                                    <div class="experienceContainer">
+
+                                                        <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+
+                                                            <div class="experianceRight">
+
+                                                            <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div></div>
+
+                                                        {% endif %}
+
+                                                    {% endfor %}
+
+                                                        </div>
+
+                                                    </div>
+
+                                                {% endfor %}
+
+                                            {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Les meilleurs casino
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+
+
+                                {% for key, placeeclat in places_eclater %}
+
+                                    {% if key == 'casino' %}
+
+                                        {% for keybar, bareclat in placeeclat %}
+
+                                            <div class="experienceContainer">
+
+                                                <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+
+                                                    <div class="experianceRight">
+
+                                                    <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div></div>
+
+                                                    {% endif %}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Les meilleurs salle de sports
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+
+                                {% for key, placeeclat in places_eclater %}
+
+                                    {% if key == 'gym' %}
+
+                                        {% for keybar, bareclat in placeeclat %}
+
+                                            <div class="experienceContainer">
+
+                                                <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+                                                    <div class="experianceRight">
+
+
+                                                    <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div></div>
+
+                                                    {% endif %}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFour">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Les meilleurs night clubs
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="panel-body">
+
+                                {% for key, placeeclat in places_eclater %}
+
+                                    {% if key == 'night_club' %}
+
+                                        {% for keybar, bareclat in placeeclat %}
+
+                                            <div class="experienceContainer">
+
+                                                <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+
+                                                    <div class="experianceRight">
+
+                                                    <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div></div>
+
+                                                    {% endif %}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- SI CEST UN CUTLURE MAN -->
+
+            {% if user_type == 'culture' %}
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Les meilleurs galleries d'arts
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+
+                                {% for key, placeeclat in places_culture %}
+
+                                    {% if key == 'art_gallery' %}
+
+                                        {% for keybar, bareclat in placeeclat %}
+
+                                            <div class="experienceContainer">
+
+                                                <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+
+                                                    <div class="experianceRight">
+
+                                                    <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div></div>
+
+                                                    {% endif %}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Les meilleurs musées
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+
+
+                                {% for key, placeeclat in places_culture %}
+
+                                    {% if key == 'museum' %}
+
+                                        {% for keybar, bareclat in placeeclat %}
+
+                                            <div class="experienceContainer">
+
+                                                <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+
+                                                    <div class="experianceRight">
+
+                                                    <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div></div>
+
+                                                    {% endif %}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Les meilleures bibliothèques
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+
+                                {% for key, placeeclat in places_culture %}
+
+                                    {% if key == 'library' %}
+
+                                        {% for keybar, bareclat in placeeclat %}
+
+                                            <div class="experienceContainer">
+
+                                                <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+
+
+                                                    <div class="experianceRight">
+
+                                                            <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div></div>
+
+                                                    {% endif %}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFour">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    Les meilleures salles de cinéma
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <div class="panel-body">
+
+                                {% for key, placeeclat in places_culture %}
+
+                                    {% if key == 'movie_theater' %}
+
+                                        {% for keybar, bareclat in placeeclat %}
+
+                                            <div class="experienceContainer">
+
+                                                <div class="experienceContainerInside">
+
+                                                    {% for keybarbar, bars in bareclat %}
+
+                                                        {% if keybarbar == 'name' %}
+
+                                                            <div class="experianceName">{{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'rating' %}
+
+                                                            <div class="experianceRight">
+                                                            <div class="experianceRating">score : {{ bars }}</div>
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lat' %}
+
+
+                                                            <div class="experianceSee"><a target="_blank" href="http://www.google.com/maps/place/{{ bars }},
+
+
+                                                        {% endif %}
+
+                                                        {% if keybarbar == 'lng' %}
+
+                                                            {{ bars }}">checkout on maps</a></div>
+                                                        </div>
+
+
+                                                    {% endif %}
+
+                                                    {% endfor %}
+
+                                                </div>
+
+                                            </div>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- SI CEST UN INVESTISSEUR MAN -->
+
+            {% if user_type == 'investir' %}
+
+                <div class="recoDetailBodyDesc">
+
+
+                    <div class="container">
+
+                        <div class="desccontainer">
+
+                            <p>Informations à venir !</p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- SI CEST UN HUMANITAIRE MAN -->
+
+            {% if user_type == 'humanitaire' %}
+
+                <div class="recoDetailBodyDesc">
+
+
+                    <div class="container">
+
+                        <div class="desccontainer">
+
+                            <p>Informations à venir !</p>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            {% endif %}
+
+<!--
+        <div class="recoDetailBodyExpContainer">
+            <div class="ExpBlock">
+
+                <div class="ExpBlockInside">
+
+                <div class="ExpBlockImg">
+                    <img src="{{ asset('img/espagne.png') }}"/>
+
+                    <div class="recoDetailJumboFilter">
+                    </div>
+
+                </div>
+                <div class="ExpBlockTxt">
+                    <p>mabite</p>
+                    <p>parceque vous aimez la bite</p>
+                </div>
+
+                </div>
+            </div>
+            <div class="ExpBlock">
+                <div class="ExpBlockInside">
+
+                    <div class="ExpBlockImg">
+                        <img src="{{ asset('img/espagne.png') }}"/>
+
+                        <div class="recoDetailJumboFilter">
+                        </div>
+                    </div>
+                    <div class="ExpBlockTxt">
+                        <p>mabite</p>
+                        <p>parceque vous aimez la bite</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="ExpBlock">
+                <div class="ExpBlockInside">
+
+                    <div class="ExpBlockImg">
+                        <img src="{{ asset('img/espagne.png') }}"/>
+
+                        <div class="recoDetailJumboFilter">
+                        </div>
+                    </div>
+                    <div class="ExpBlockTxt">
+                        <p>mabite</p>
+                        <p>parceque vous aimez la bite</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="ExpBlock">
+                <div class="ExpBlockInside">
+
+                    <div class="ExpBlockImg">
+                        <img src="{{ asset('img/espagne.png') }}"/>
+
+                        <div class="recoDetailJumboFilter">
+                        </div>
+                    </div>
+                    <div class="ExpBlockTxt">
+                        <p>mabite</p>
+                        <p>parceque vous aimez la bite</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+            -->
+
+        </div>
+
+    </div>
+
+    <div class="recoDetailBodyMap">
+        <p class="recoSectionTitle">Sur la carte</p>
+        <div id="city_map"></div>
+    </div>
+
+
+    <div class="recoDetailBodyPrices">
+        <p class="recoSectionTitle">Les prix</p>
+
+        <div class="container">
+
+        <div class="recoDetailBodyPricesContainer">
+
+        {% if user_type == 'culture' %}
+
+
+            {% for keyprices, price in eclat_prices %}
+            <div class="PricesBlock">
+                <div class="PricesBlockInside">
+
+                <div class="PricesBlockPrice">
+
+                    {{ price|round(1, 'ceil') }} Euros
+
+                </div>
+                <div class="PricesBlockTxt">
+                    {% if keyprices == 'price_expensive_restaurant' %}
+
+                        Prix d'un restaurant gastronomique
+
+                    {% endif %}
+                    {% if keyprices == 'price_cinema' %}
+
+                        Prix d'un cinéma
+
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        {% endif %}
+
+        {% if user_type == 'éclater' %}
+
+
+            {% for keyprices, price in eclat_prices %}
+            <div class="PricesBlock">
+                <div class="PricesBlockInside">
+
+                <div class="PricesBlockPrice">
+
+                    {{ price|round(1, 'ceil') }} Euros
+
+                </div>
+                <div class="PricesBlockTxt">
+
+                    {% if keyprices == 'price_wine' %}
+
+                        Prix d'une boutille de vin
+
+                    {% endif %}
+                    {% if keyprices == 'price_cheap_restaurant' %}
+
+                        Prix d'un fast food
+
+                    {% endif %}
+                    {% if keyprices == 'price_beer_domestic' %}
+
+                        Prix d'une bouteille de bière
+
+                    {% endif %}
+                    {% if keyprices == 'price_transport_one_way' %}
+
+                        Prix des transport en commun
+
+                    {% endif %}
+                    {% if keyprices == 'price_taxi_one_miles' %}
+
+                        Prix d'une kilomètre de taxi
+
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        {% endif %}
+
+
+        </div>
+
+        </div>
+
+    </div>
+</section>
+                        <div class="container">
+                            <section class="recoDetailFooter">
+                                <p class="recoSectionTitle">Etes vous satisfait de cette proposition ?</p>
+                                <div>
+                                    <p class="footerCTA"><a class="btn btn-default btnpelican" href="javascript:void(0)">Oui</a></p>
+                                    <p class="footerCTA"><a class="btn btn-default btnpelican" href="javascript:void(0)">Non</a></p>
+                                </div>
+
+                            </section>
+                        </div>
+
+
+
+
+
+<section class="recofooter">
+
+    <div class="recofooterreturn">
+
+        <div class="recofooterreturninside">
+
+            <a href="{{ path('home') }}">Le projet Pélican</a>
+
+        </div>
+
+    </div>
+
+    <div class="manifesto_section manifesto_footer">
+        <div class="manifesto_footer_inside">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="manifesto_footer_others">
+                            <p>© Tout droits réservés Le Pélican - <a id="manifesto_mention" data-toggle="modal" data-target="#modal_mention" href="">Mentions légales</a></p>
+                            <p>
+                                <a id="manifesto_mailto" target="_blank" href="mailto:contact@le-pelican.eu">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </a>
+                                <a id="manifesto_facebook" target="_blank" href="https://www.facebook.com/lepelican.eu/">
+                                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                                </a>
+                                <a id="manifesto_twitter" target="_blank" href="https://twitter.com/Le__Pelican">
+                                    <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                                </a>
+
+                                <a id="manifesto_kitpresse" href="{{ asset('/img/cdp.pdf') }}">Télécharger le kit presse <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+
+    {% for key, infos in thatCityInfos %}
+        {% if key == 'lat' %}
+            var thatCityLat = {{ infos }}
+        {% endif %}
+        {% if key == 'long' %}
+            var thatCityLong = {{ infos }}
+        {% endif %}
+    {% endfor %}
+
+    console.log(thatCityLat);
+    console.log(thatCityLong);
+
+
+</script>
+
+{% include 'tpl/footerrecommendationdetail.html.twig' %}

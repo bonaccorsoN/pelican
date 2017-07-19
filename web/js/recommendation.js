@@ -3,6 +3,17 @@ $(document).ready(function() {
     console.log('reco.js');
 
 
+    $('.radioHommeFemmeLabel').on('click', function(e){
+
+        $('.radioHommeFemmeLabel').each(function(index){
+            $(this).removeClass('radioHommeFemmeLabelChecked');
+        });
+
+        $(this).addClass('radioHommeFemmeLabelChecked');
+
+    });
+
+
     /*
      *  Building pills
      */
@@ -110,7 +121,7 @@ $(document).ready(function() {
      * prevent form post
      */
 
-    $('#submitUserScore').on('click', function(e){
+    $('#submitUserScorePop').on('click', function(e){
         e.preventDefault();
     });
 
@@ -143,19 +154,33 @@ $(document).ready(function() {
                 if(index === 0){
                     // remove empty class and build pill
                     $(this).removeClass('tagsBarItemEmpty');
-                    $(this).html('<p class="tagsBarItemP">'+pillHTML+'</p>');
+                    $(this).html('<p class="tagsBarItemP animated fadeIn">'+pillHTML+'</p>');
                 }
             });
 
             counterCheck = counterCheck + 1;
             console.log(counterCheck);
             if(counterCheck >= 5){
-                $('#submitUserScore').attr('value', 'GO');
-                $('#submitUserScore').off('click');
-                $('#submitUserScore').addClass('nextGo');
+                $('#submitUserScorePop').html('Suivant');
+                $('#submitUserScorePop').off('click');
+                $('#submitUserScorePop').addClass('nextGo');
+                console.log($('#submitUserScorePop').parent());
+                $('#submitUserScorePop').parent().removeClass('tagsBarNextDisable');
+
+                //#modal_register_user
+                //data-target
+                $('#submitUserScorePop').attr('data-target', '#modal_register_user');
+
+
             }else if(counterCheck < 5){
-                $('#submitUserScore').removeClass('nextGo');
-                $('#submitUserScore').on('click', function(e){
+                $('#submitUserScorePop').html((5 - counterCheck)+' Restant');
+                $('#submitUserScorePop').removeClass('nextGo');
+                console.log($('#submitUserScore').parent());
+                $('#submitUserScorePop').parent().addClass('tagsBarNextDisable');
+
+                $('#submitUserScorePop').attr('data-target', '');
+
+                $('#submitUserScorePop').on('click', function(e){
                     e.preventDefault();
                 });
             }
@@ -187,12 +212,37 @@ $(document).ready(function() {
             counterCheck = counterCheck - 1;
             console.log(counterCheck);
             if(counterCheck >= 5){
-                $('#submitUserScore').attr('value', 'GO');
-                $('#submitUserScore').off('click');
-                $('#submitUserScore').addClass('nextGo');
+                $('#submitUserScorePop').html('Suivant');
+                $('#submitUserScorePop').off('click');
+                $('#submitUserScorePop').addClass('nextGo');
+                console.log($('#submitUserScorePop').html());
+                console.log($('#submitUserScorePop').parent());
+                $('#submitUserScorePop').parent().removeClass('tagsBarNextDisable');
+                $('#submitUserScorePop').attr('data-target', '#modal_register_user');
+
+
             }else if(counterCheck < 5){
-                $('#submitUserScore').removeClass('nextGo');
-                $('#submitUserScore').on('click', function(e){
+
+                if(counterCheck === 0){
+                    $('.tagsBarItemEmpty').each(function(index, value){
+                        // building the first empty pill on the list
+                        if(index === 0){
+                            // remove empty class and build pill
+                            $(this).addClass('tagsBarItemEmpty');
+                            $(this).html('<p class="tagsBarItemP animated fadeIn">Choisissez votre premier critère ci - dessous</p>');
+                        }
+                    });
+                }
+
+                $('#submitUserScorePop').attr('data-target', '');
+
+                console.log($('#submitUserScorePop').html());
+                $('#submitUserScorePop').html((5 - counterCheck)+' Restant');
+                $('#submitUserScorePop').removeClass('nextGo');
+                console.log($('#submitUserScorePop'));
+                console.log($('#submitUserScorePop').parent());
+                $('#submitUserScorePop').parent().addClass('tagsBarNextDisable');
+                $('#submitUserScorePop').on('click', function(e){
                     e.preventDefault();
                 });
             }
@@ -201,8 +251,9 @@ $(document).ready(function() {
 
         // if there is no empty pill left , create one
         if($('.tagsBarItemEmpty').length === 0){
-            $('.tagsBarInside').append('<div class="tagsBarItem tagsBarItemEmpty"><p></p></div>');
+            $('.tagsBarInside').append('<div class="tagsBarItem tagsBarItemEmpty  animated fadeInDown"><p></p></div>');
         }
+
 
     });
 
